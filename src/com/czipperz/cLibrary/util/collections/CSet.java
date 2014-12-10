@@ -18,7 +18,7 @@ public class CSet<E> extends TreeSet<E> {
 		if(index < 0 || index >= size())
 			throw new IndexOutOfBoundsException("Index out of bounds!");
 		int i = 0;
-		E e;
+		E e = null;
 		while(it.hasNext() ? (e = it.next()) != null : false)
 			if(i++ == index)
 				return e;
@@ -28,7 +28,7 @@ public class CSet<E> extends TreeSet<E> {
 	public int indexOf(E e) {
 		Iterator<E> it = iterator();
 		int i = 0;
-		E a;
+		E a = null;
 		while(it.hasNext() ? (a = it.next()) != null : false) {
 			if(a.equals(e))
 				return i;
