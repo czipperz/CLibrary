@@ -12,7 +12,6 @@ import java.awt.Rectangle;
  */
 public abstract class CObject extends CIDAble implements IIDDrawAble {
 	private boolean active = true;
-	private Object imageObject = new Object();
 	
 	/**
 	 * Compares the object to another object.  (compares the IDs)
