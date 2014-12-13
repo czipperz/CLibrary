@@ -12,7 +12,7 @@ public class CEnumTypeNotListedException extends RuntimeException {
 		super("The enum type was not listed, and caused a code error.");
 	}
 
-	public static Object it() throws CEnumTypeNotListedException {
+	public static CEnumTypeNotListedException it() throws CEnumTypeNotListedException {
 		throw new CEnumTypeNotListedException();
 	}
 }
