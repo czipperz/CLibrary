@@ -33,9 +33,4 @@ public interface IDrawAble {
 	 * @return true to be drawn the object, false if to not be.
 	 */
 	public boolean needUpdate();
-	/**
-	 * Gets the object to synchronize with when editing or drawing this object's image.
-	 * @return the Object.
-	 */
-	public Object getImageObject();
 }

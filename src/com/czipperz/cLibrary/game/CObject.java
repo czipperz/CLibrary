@@ -54,26 +54,16 @@ public abstract class CObject extends CIDAble implements IIDDrawAble {
 	}
 	
 	/**
-	 * @return if the boolean value of "active". (whether the object should be drawn)
-	 */
-	public boolean isActive() {
-		return active;
-	}
-	
-	/**
 	 * @return the "bounds" of the object on the screen. (assuming that it is being displayed on a CView with size set to the maximum)
 	 */
 	public abstract Rectangle getLocScreen();
 	
 	/**
-	 * @return the <code>Color</code> that will be displayed to surround this sprite when it is toggled on by the JFrame.
+	 * @return the <code>Color</code> that will be displayed to surround this sprite when it is toggled on by the CGameFrame.
+	 * @link com.czipperz.cLibrary.game.CGameFrame
 	 */
 	public Color getOutlineColor() {
 		return Color.BLACK;
-	}
-
-	public Object getImageObject() {
-		return imageObject;
 	}
 	
 	/**
