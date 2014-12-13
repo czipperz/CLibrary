@@ -46,8 +46,6 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	public CGameFrame() {
 		super();
 		addKeyListener(new CKeys());
-		CControllerButtonPS3.setup();
-		CControllerButtonXBox.setup();
 		CMouse.addToFrame(this);
 		setupDraw();
 		//createBufferStrategy(2);
