@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import com.czipperz.cLibrary.exceptions.CDoNotCallException;
 import com.czipperz.cLibrary.location.CMouseSafe;
 
 /**
@@ -46,29 +47,33 @@ public class CMouse extends CMouseSafe implements MouseListener {
 	
 	/**
 	 * DO NOT CALL!!!
+	 * @throws com.czipperz.cLibrary.exceptions.CDoNotCallException
 	 */
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) throws CDoNotCallException {
 		add(e);
 	}
 
 	/**
 	 * DO NOT CALL!!!
+	 * @throws com.czipperz.cLibrary.exceptions.CDoNotCallException
 	 */
-	public void mouseEntered(MouseEvent e) {
+	public void mouseEntered(MouseEvent e) throws CDoNotCallException {
 		add(e);
 	}
 
 	/**
 	 * DO NOT CALL!!!
+	 * @throws com.czipperz.cLibrary.exceptions.CDoNotCallException
 	 */
-	public void mouseExited(MouseEvent e) {
+	public void mouseExited(MouseEvent e) throws CDoNotCallException {
 		add(e);
 	}
 
 	/**
 	 * DO NOT CALL!!!
+	 * @throws com.czipperz.cLibrary.exceptions.CDoNotCallException
 	 */
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) throws CDoNotCallException {
 		add(e);
 		if(e.getButton() == MouseEvent.BUTTON1) {
 			leftDown = true;
@@ -83,8 +88,9 @@ public class CMouse extends CMouseSafe implements MouseListener {
 
 	/**
 	 * DO NOT CALL!!!
+	 * @throws com.czipperz.cLibrary.exceptions.CDoNotCallException
 	 */
-	public void mouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent e) throws CDoNotCallException {
 		add(e);
 		if(e.getButton() == MouseEvent.BUTTON1) {
 			leftDown = false;
