@@ -140,7 +140,6 @@ public class CView extends CIDAble implements IIDDrawAble, Comparable<CView>, Se
 					}
 					g.drawRect(a.getBounds().x - 1, a.getBounds().y - 1, a.getBounds().width + 1, a.getBounds().height + 1);
 				}
-				return this;
 			}
 			return this;
 		}
