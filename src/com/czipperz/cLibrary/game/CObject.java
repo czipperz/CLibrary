@@ -16,7 +16,7 @@ public abstract class CObject extends CIDAble implements IIDDrawAble {
 	/**
 	 * Compares the object to another object.  (compares the IDs)
 	 * @see com.czipperz.cLibrary.game.CID
-	 * @param the instance to compare this object to.
+	 * @param other - the instance to compare this object to.
 	 */
 	public int compareTo(CObject other) {
 		return this.getInstanceID().compareTo(other.getInstanceID());
