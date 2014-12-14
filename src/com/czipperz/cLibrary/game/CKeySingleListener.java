@@ -19,7 +19,7 @@ public class CKeySingleListener implements KeyListener {
 		public List<KeyListener> listeners;
 
 		public CO() {
-			listeners = new ArrayList<KeyListener>();
+			listeners = new ArrayList<>();
 		}
 
 		public CO(KeyListener listener) {
@@ -61,32 +61,14 @@ public class CKeySingleListener implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent ev) {
-		Iterator<EKeys> keys = e.iteratorKeys();
-		for(int i = 0; keys.hasNext(); i++) {
-			EKeys k = keys.next();
-			if(k.getValue() == ev.getKeyCode())
-				for(KeyListener l : e.getItem(i).listeners)
-					l.keyPressed(ev);
-		}
+		e.getKeys().stream().filter(k -> k.getValue() == ev.getKeyCode()).forEach(k -> e.getItem(k).listeners.stream().forEach(i -> i.keyPressed(ev)));
 	}
 
 	public void keyReleased(KeyEvent ev) {
-		Iterator<EKeys> keys = e.iteratorKeys();
-		for(int i = 0; keys.hasNext(); i++) {
-			EKeys k = keys.next();
-			if(k.getValue() == ev.getKeyCode())
-				for(KeyListener l : e.getItem(i).listeners)
-					l.keyReleased(ev);
-		}
+		e.getKeys().stream().filter(k -> k.getValue() == ev.getKeyCode()).forEach(k -> e.getItem(k).listeners.stream().forEach(i -> i.keyReleased(ev)));
 	}
 
 	public void keyTyped(KeyEvent ev) {
-		Iterator<EKeys> keys = e.iteratorKeys();
-		for(int i = 0; keys.hasNext(); i++) {
-			EKeys k = keys.next();
-			if(k.getValue() == ev.getKeyCode())
-				for(KeyListener l : e.getItem(i).listeners)
-					l.keyTyped(ev);
-		}
+		e.getKeys().stream().filter(k -> k.getValue() == ev.getKeyCode()).forEach(k -> e.getItem(k).listeners.stream().forEach(i -> i.keyTyped(ev)));
 	}
 }
