@@ -91,16 +91,9 @@ public enum EKeys{
 		return vk;
 	}
 	
-	public int getKeyCode() {
-		return vk;
-	}
-	
 	public String toString() {
 		String main = super.toString();
 		StringBuffer b = new StringBuffer(main);
-		b.deleteCharAt(0);
-		b.deleteCharAt(0);
-		b.deleteCharAt(0);
 		b.deleteCharAt(0);
 		b.deleteCharAt(0);
 		char[] bl = b.toString().toLowerCase().toCharArray();
