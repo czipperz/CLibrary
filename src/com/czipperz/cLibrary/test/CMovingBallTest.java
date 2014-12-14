@@ -54,7 +54,8 @@ public class CMovingBallTest extends CGameFrame implements IUpdateAble {
 		CObjectDrawAble o = new CObjectDrawAble(this, -100, moving);
 		System.out.println("ObjectID: " + o.getInstanceID().toString());
 
-		CView view = new CView(this, o.getInstanceID(), 100);
+		CView view = new CView(this, 100);
+		view.addToDraw(o);
 		//CView miniMap = new CView(this, new Rectangle(0, 0, 50, 50), -100);
 
 		this.addUpdater(this);
@@ -93,10 +94,10 @@ public class CMovingBallTest extends CGameFrame implements IUpdateAble {
 			}
 		}
 		else {
-			xp -= CKeys.isD() ? 0 : 2;
-			xp += CKeys.isA() ? 0 : 2;
-			yp -= CKeys.isS() ? 0 : 2;
-			yp += CKeys.isW() ? 0 : 2;
+			xp -= getKeys().isD() ? 0 : 2;
+			xp += getKeys().isA() ? 0 : 2;
+			yp -= getKeys().isS() ? 0 : 2;
+			yp += getKeys().isW() ? 0 : 2;
 		}
 		return this;
 	}

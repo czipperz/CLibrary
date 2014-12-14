@@ -23,7 +23,12 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	private int depth = 1000;
 	private CThread updateThread;
 	private Object imageObject = new Object(), updateObject = new Object();
+	private CKeys keys;
 	//private BufferStrategy strategy;
+
+	public CKeys getKeys() {
+		return keys;
+	}
 
 	/**
 	 * Makes a new CGameFrame.
@@ -31,7 +36,8 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	 */
 	public CGameFrame() {
 		super();
-		addKeyListener(new CKeys());
+		keys = new CKeys();
+		addKeyListener(keys);
 		CMouse.addToFrame(this);
 		setupDraw();
 		//createBufferStrategy(2);
@@ -219,7 +225,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 
 	private void update() {
 		while(true) {
-			if(CKeys.isF8()) {
+			if(keys.isF8()) {
 				if(isF8) {
 
 				}
@@ -233,7 +239,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 			break;
 		}
 		while(true) {
-			if(CKeys.isF7()) {
+			if(keys.isF7()) {
 				if(isF7) {
 
 				} else {
