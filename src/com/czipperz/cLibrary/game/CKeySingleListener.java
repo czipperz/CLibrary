@@ -54,10 +54,10 @@ public class CKeySingleListener implements KeyListener {
 			try {
 				e.get(key).listeners.remove(listener);
 			} catch(RuntimeException e) {
-				throw new InvalidParameterException("The inputed key does not have any registered listeners.");
+				throw new InvalidParameterException("The inputted key does not have any registered listeners.");
 			}
 		else
-			throw new InvalidParameterException("The inputed key does not have any registered listeners.");
+			throw new InvalidParameterException("The inputted key does not have any registered listeners.");
 	}
 
 	public void keyPressed(KeyEvent ev) {
