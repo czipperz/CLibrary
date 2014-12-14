@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Set;
 
 public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAble, IIDAble {
-	//TODO: Fix.  Ex. Make drawEverything() into setDrawEverything() and make it public
 	private CGameFrame displayOn;
 	private boolean active = true;
 	private int depth = 0;
@@ -44,12 +43,17 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	 * @param displayOn
 	 * @param toDraw
 	 * @param depth
-	 * @see public CView(CGameFrame displayOn, ArrayList<CID> toDraw, Rectangle drawRect, int depth)
 	 */
 	public CView(CGameFrame displayOn, ArrayList<CID> toDraw, int depth) {
 		this(displayOn, toDraw, displayOn.getBounds(), depth);
 	}
 
+	/**
+	 * Sets to draw only draw the object inputted have CID matching that of the array displayOn.  displayOn is the CGameFrame this will be shown on.  It auto registers itself and uses some of the methods of this class.  See the setters of toDraw, drawRect, and depth for more information.  Generates the drawRect based on the bounds of the paramter displayOn.
+	 * @param displayOn
+	 * @param toDraw
+	 * @param depth
+	 */
 	public CView(CGameFrame displayOn, CID toDraw, int depth) {
 		this(displayOn, CArrayHelper.createArrayList(toDraw), depth);
 	}
@@ -212,7 +216,7 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	}
 
 	public CView draw(Graphics g, ArrayList<IIDDrawAble> ids, ArrayList<Image> images) {
-		while(!preparePaint()) {};
+		while(!preparePaint()) {}
 		return paintPrepared(g, ids, images);
 	}
 
@@ -247,11 +251,12 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	}
 
 	/**
-	 * Adds the item to
+	 * Adds the item to the drawing que
 	 * @param toDraw
-	 * @return
 	 */
 	public CView addToDraw(CID toDraw) {
+		if(this.toDraw == null)
+			return setToDraw(toDraw);
 		this.toDraw.add(toDraw);
 		return this;
 	}
@@ -259,13 +264,10 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	/**
 	 * Adds the following items to the drawing que
 	 * @param toDraw
-	 * @return
 	 */
 	public CView addToDraw(ArrayList<CID> toDraw) {
-		if(this.toDraw == null) {
-			setToDraw(toDraw);
-			return this;
-		}
+		if(this.toDraw == null)
+			return setToDraw(toDraw);
 		this.toDraw.addAll(toDraw);
 		return this;
 	}
