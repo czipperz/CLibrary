@@ -11,6 +11,18 @@ import java.awt.*;
  */
 public abstract class CObject extends CIDAble implements IIDDrawAble {
 	private boolean active = true;
+	private CGameFrame displayOn;
+
+	public CObject(CGameFrame displayOn) {
+		this.displayOn = displayOn;
+	}
+
+	/**
+	 * @return the CGameFrame this instance was initialized with.
+	 */
+	public CGameFrame getDisplayOn() {
+		return displayOn;
+	}
 	
 	/**
 	 * Compares the object to another object.  (compares the IDs)
