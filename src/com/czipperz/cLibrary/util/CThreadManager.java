@@ -1,9 +1,9 @@
 package com.czipperz.cLibrary.util;
 
+import com.czipperz.cLibrary.util.collections.CListMap;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.czipperz.cLibrary.util.collections.CListMap;
 
 public class CThreadManager {
 	private CThreadManager() {

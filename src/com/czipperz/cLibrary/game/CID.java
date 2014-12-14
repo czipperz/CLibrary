@@ -1,9 +1,9 @@
 package com.czipperz.cLibrary.game;
 
+import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException;
+
 import java.io.Serializable;
 import java.security.InvalidParameterException;
-
-import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException;
 
 /**
  * This is an ID that acts to identity objects (mostly implementing <code>IIDAble</code> from each other.<br />

@@ -1,14 +1,13 @@
 package com.czipperz.cLibrary.location;
 
-import java.awt.Graphics;
-import java.awt.Point;
+import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException;
+
+import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 import java.security.InvalidParameterException;
-
-import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException;
 
 public class CLine extends Line2D implements Serializable {
 	private static final long serialVersionUID = 4562728086780386239L;

@@ -1,7 +1,6 @@
 package com.czipperz.cLibrary.game;
 
-import java.awt.Color;
-import java.awt.Rectangle;
+import java.awt.*;
 
 /**
  * An object that allows for IDing and Drawing, but doesn't supply drawing methods.
@@ -70,5 +69,9 @@ public abstract class CObject extends CIDAble implements IIDDrawAble {
 	 */
 	public Rectangle getBounds() {
 		return getLocScreen();
+	}
+
+	public int compareTo(IDrawAble other) {
+		return new CDepthSorter().compare(this, other);
 	}
 }

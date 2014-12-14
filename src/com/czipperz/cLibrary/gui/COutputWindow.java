@@ -1,8 +1,7 @@
 package com.czipperz.cLibrary.gui;
 
-import java.awt.Color;
-import javax.swing.JFrame;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.*;
+import java.awt.*;
 
 public class COutputWindow {
 	private JFrame frame;

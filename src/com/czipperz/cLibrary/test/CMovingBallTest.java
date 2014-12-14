@@ -1,18 +1,6 @@
 package com.czipperz.cLibrary.test;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-
-import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Controller;
-import org.lwjgl.input.Controllers;
-
-import com.czipperz.cLibrary.game.CGameFrame;
-import com.czipperz.cLibrary.game.CKeys;
-import com.czipperz.cLibrary.game.CObjectDrawAble;
-import com.czipperz.cLibrary.game.CView;
-import com.czipperz.cLibrary.game.IUpdateAble;
+import com.czipperz.cLibrary.game.*;
 import com.czipperz.cLibrary.game.controller.CControllerXBox;
 import com.czipperz.cLibrary.game.controller.CControllersHandler;
 import com.czipperz.cLibrary.gui.CJFrameHelper;
@@ -20,6 +8,11 @@ import com.czipperz.cLibrary.imaging.CGraphics;
 import com.czipperz.cLibrary.imaging.CImage;
 import com.czipperz.cLibrary.imaging.CImageBackground;
 import com.czipperz.cLibrary.imaging.CImageDraw;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Controller;
+import org.lwjgl.input.Controllers;
+
+import java.awt.*;
 
 public class CMovingBallTest extends CGameFrame implements IUpdateAble {
 	public static void main(String[] args) {

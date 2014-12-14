@@ -1,11 +1,7 @@
 package com.czipperz.cLibrary.util.collections;
 
 import java.security.InvalidParameterException;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class CSet<E> extends TreeSet<E> {
 	public CSet() {super();}

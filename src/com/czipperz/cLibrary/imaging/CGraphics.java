@@ -1,21 +1,12 @@
 package com.czipperz.cLibrary.imaging;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.awt.Shape;
+import com.czipperz.cLibrary.location.CRect;
+
+import java.awt.*;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
-
-import com.czipperz.cLibrary.location.CRect;
 
 public class CGraphics {
 	private Graphics g;

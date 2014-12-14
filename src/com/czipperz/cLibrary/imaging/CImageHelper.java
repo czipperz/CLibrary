@@ -1,7 +1,7 @@
 package com.czipperz.cLibrary.imaging;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -10,10 +10,6 @@ import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
-
-import javax.imageio.ImageIO;
-
-import com.czipperz.cLibrary.CStaticClass;
 
 
 public final class CImageHelper {

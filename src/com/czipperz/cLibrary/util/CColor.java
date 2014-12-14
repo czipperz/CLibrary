@@ -1,11 +1,8 @@
 package com.czipperz.cLibrary.util;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.security.InvalidParameterException;
-
-import javax.print.attribute.IntegerSyntax;
 
 public class CColor {
 	public static final CColor SKY_BLUE = new CColor(5, 238, 250);

@@ -1,13 +1,12 @@
 package com.czipperz.cLibrary.game;
 
+import com.czipperz.cLibrary.exceptions.CDoNotCallException;
+import com.czipperz.cLibrary.location.CMouseSafe;
+
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
-import javax.swing.JFrame;
-
-import com.czipperz.cLibrary.exceptions.CDoNotCallException;
-import com.czipperz.cLibrary.location.CMouseSafe;
 
 /**
  * A class that extends all methods of CMouse and adds upon that a allowance for MouseEvent handling.

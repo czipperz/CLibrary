@@ -1,11 +1,10 @@
 package com.czipperz.cLibrary.math;
 
-import java.awt.Point;
-import java.awt.geom.Point2D;
-
-import com.czipperz.cLibrary.location.CPoint;
 import com.czipperz.cLibrary.math.operators.INullaryOperation;
 import com.czipperz.cLibrary.math.wrappers.CDouble;
+
+import java.awt.*;
+import java.awt.geom.Point2D;
 
 public abstract class CMath implements IMathType {
 	public static final int INT_POS_INF = Integer.MAX_VALUE;

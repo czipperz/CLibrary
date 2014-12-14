@@ -1,7 +1,5 @@
 package com.czipperz.cLibrary.game;
 
-import com.czipperz.cLibrary.game.IDrawAble;
-
 import java.util.Comparator;
 
 /**
@@ -9,7 +7,7 @@ import java.util.Comparator;
  */
 
 public class CDepthSorter implements Comparator<IDrawAble> {
-    public int compare(IDrawAble a, IDrawAble b) {
-        return b.getDepth() - a.getDepth();
+    public int compare(IDrawAble o1, IDrawAble o2) {
+        return o2.getDepth() - o1.getDepth();
     }
 }

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.czipperz.cLibrary.CStaticClass;
-
 public final class CArrayHelper {
     private CArrayHelper() {}
 

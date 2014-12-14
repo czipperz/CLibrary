@@ -1,10 +1,8 @@
 package com.czipperz.cLibrary.game;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import com.czipperz.cLibrary.imaging.CImage;
+
+import java.awt.*;
 
 /**
  * A class that extends CObject.  Makes the depth, 

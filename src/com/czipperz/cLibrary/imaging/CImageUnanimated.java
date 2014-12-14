@@ -1,11 +1,10 @@
 package com.czipperz.cLibrary.imaging;
 
-import java.awt.Point;
-import java.awt.Rectangle;
+import com.czipperz.cLibrary.location.CRect;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-
-import com.czipperz.cLibrary.location.CRect;
 
 public class CImageUnanimated extends CImageBuffered {
 	private BufferedImage image;

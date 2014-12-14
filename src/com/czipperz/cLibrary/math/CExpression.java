@@ -1,11 +1,11 @@
 package com.czipperz.cLibrary.math;
 
+import com.czipperz.cLibrary.math.wrappers.CDouble;
+import com.czipperz.cLibrary.math.wrappers.CVal;
+
 import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-
-import com.czipperz.cLibrary.math.wrappers.CDouble;
-import com.czipperz.cLibrary.math.wrappers.CVal;
 
 public class CExpression implements IMathType, Serializable {
 	private static final long serialVersionUID = -226985950114769624L;

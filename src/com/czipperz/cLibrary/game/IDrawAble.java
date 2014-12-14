@@ -1,15 +1,13 @@
 package com.czipperz.cLibrary.game;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.util.Comparator;
+import java.awt.*;
 
 /**
  * A basic interface that allows the CGameFrame to draw appropriately the Object.
  * @author Chris Gregory
  * @see com.czipperz.cLibrary.game.CGameFrame
  */
-public interface IDrawAble {
+public interface IDrawAble extends Comparable<IDrawAble> {
 	
 	/**
 	 * Called by the CGameFrame.  Put your drawing code here.

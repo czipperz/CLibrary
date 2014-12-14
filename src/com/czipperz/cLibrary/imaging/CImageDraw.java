@@ -1,8 +1,8 @@
 package com.czipperz.cLibrary.imaging;
 
-import java.awt.Rectangle;
-
 import com.czipperz.cLibrary.game.CGameFrame;
+
+import java.awt.*;
 
 public abstract class CImageDraw extends CImage {
 	private CGameFrame displayOn;

@@ -1,6 +1,6 @@
 package com.czipperz.cLibrary.imaging;
 
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Calendar;
 
