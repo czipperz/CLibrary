@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * A class that allows for concise listening by KeyListeners on a designated key.  KeyListeners can be registered multiple times to a given key, or to multiplse differe
+ * A class that allows for concise listening by KeyListeners on a designated key.  KeyListeners can be registered multiple times to different (or the same) key and multiple keys may be bound to the same key.
  * @author Chris Gregory
  *
  */
@@ -29,6 +29,7 @@ public class CKeySingleListener implements KeyListener {
 	}
 
 	private static CListMap<EKeys, CO> e = new CListMap<EKeys, CO>();
+
 
 	/**
 	 * Adds the designated listener to the key.
