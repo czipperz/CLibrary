@@ -1,13 +1,10 @@
 package com.czipperz.cLibrary.imaging;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public abstract class CImageBuffered extends CImage {
 	private Rectangle locImage;

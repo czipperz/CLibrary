@@ -1,10 +1,7 @@
 package com.czipperz.cLibrary.gui;
 
-import java.awt.Dimension;
-
-import javax.swing.JFrame;
-
-import com.czipperz.cLibrary.CStaticClass;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * These methods set up the JFrame in a particular manner but DOES NOT MAKE IT VISIBLE.

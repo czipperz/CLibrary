@@ -1,9 +1,9 @@
 package com.czipperz.cLibrary.game;
 
+import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException;
+
 import java.io.Serializable;
 import java.security.InvalidParameterException;
-
-import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException;
 
 /**
  * This is an ID that acts to identity objects (mostly implementing <code>IIDAble</code> from each other.<br />
@@ -14,7 +14,7 @@ import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException;
  */
 public class CID implements Comparable<CID>, Serializable {
 	public enum EIDType {
-		TYPE_CLASS_ID, TYPE_INSTANCE_ID;
+		TYPE_CLASS_ID, TYPE_INSTANCE_ID
 	}
 
 	private final EIDType idType;
@@ -59,7 +59,7 @@ public class CID implements Comparable<CID>, Serializable {
 
 	/**
 	 * Creates a CID object for a class (note: this should be set in the constructor of a class)
-	 * @return
+	 * @return the CID for the instance
 	 */
 	public static CID createInstanceID() {
 		return new CID(EIDType.TYPE_INSTANCE_ID);
@@ -98,7 +98,9 @@ public class CID implements Comparable<CID>, Serializable {
 	/**
 	 * @return a String object that shows the class / instance represented.
 	 */
-	public String toString() {
-		return "A CID Object representing a" + (idType == EIDType.TYPE_CLASS_ID ? " class" : idType == EIDType.TYPE_INSTANCE_ID ? "n instance" : CEnumTypeNotListedException.it().toString());
+	public String toString() throws CEnumTypeNotListedException {
+		if(idType != EIDType.TYPE_CLASS_ID && idType != EIDType.TYPE_INSTANCE_ID)
+			throw CEnumTypeNotListedException.it();
+		return "A CID Object representing a" + (idType == EIDType.TYPE_CLASS_ID ? " class" : "n instance");
 	}
 }

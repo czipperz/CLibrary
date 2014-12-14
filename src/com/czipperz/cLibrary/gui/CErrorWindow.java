@@ -1,11 +1,7 @@
 package com.czipperz.cLibrary.gui;
 
-import java.awt.Color;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-
-import javax.swing.JFrame;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * A JFrame that shows errors inputed by the user and exits (<code>JFrame.<!----->EXIT_ON_CLOSE</code>) on closing if instructed to.

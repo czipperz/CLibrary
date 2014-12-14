@@ -1,9 +1,7 @@
 package com.czipperz.cLibrary.gui;
 
-import java.awt.Color;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
+import java.awt.*;
 
 public class CTextArea extends JTextArea {
 	private static final long serialVersionUID = 3321834594121643706L;

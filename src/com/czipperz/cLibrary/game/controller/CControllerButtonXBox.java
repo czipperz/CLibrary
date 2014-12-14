@@ -1,9 +1,8 @@
 package com.czipperz.cLibrary.game.controller;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-
-import javax.imageio.ImageIO;
 
 public class CControllerButtonXBox {
 	private static BufferedImage buttonX = null, buttonY = null, buttonA = null, buttonB = null;

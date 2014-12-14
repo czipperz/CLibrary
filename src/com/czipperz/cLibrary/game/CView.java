@@ -1,19 +1,16 @@
 package com.czipperz.cLibrary.game;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
+import com.czipperz.cLibrary.imaging.CGraphics;
+import com.czipperz.cLibrary.util.collections.CArrayHelper;
+
+import java.awt.*;
 import java.io.Serializable;
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.czipperz.cLibrary.imaging.CGraphics;
-import com.czipperz.cLibrary.util.collections.CArrayHelper;
-
-public class CView extends CIDAble implements IIDDrawAble, Comparable<CView>, Serializable {
+public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAble, IIDAble {
+	//TODO: Fix.  Ex. Make drawEverything() into setDrawEverything() and make it public
 	private CGameFrame displayOn;
 	private boolean active = true;
 	private int depth = 0;
@@ -140,7 +137,6 @@ public class CView extends CIDAble implements IIDDrawAble, Comparable<CView>, Se
 					}
 					g.drawRect(a.getBounds().x - 1, a.getBounds().y - 1, a.getBounds().width + 1, a.getBounds().height + 1);
 				}
-				return this;
 			}
 			return this;
 		}
@@ -189,7 +185,7 @@ public class CView extends CIDAble implements IIDDrawAble, Comparable<CView>, Se
 	}
 
 	public IDrawAble draw(Graphics g) {
-		while(!preparePaint()) {};
+		while(!preparePaint()) {}
 		paintRuntime(g);
 		return this;
 	}
@@ -239,9 +235,8 @@ public class CView extends CIDAble implements IIDDrawAble, Comparable<CView>, Se
 
 	/**
 	 * Causes toDraw to be null and drawEverything to be set to true.
-	 * @param drawEverything
 	 */
-	public CView drawEverything() {
+	public CView setDrawEverything() {
 		this.drawEverything = true;
 		this.toDraw = null;
 		return this;
@@ -252,7 +247,31 @@ public class CView extends CIDAble implements IIDDrawAble, Comparable<CView>, Se
 	}
 
 	/**
-	 * Causes drawEverything to be false and toDraw to be se to the parameter toDraw.
+	 * Adds the item to
+	 * @param toDraw
+	 * @return
+	 */
+	public CView addToDraw(CID toDraw) {
+		this.toDraw.add(toDraw);
+		return this;
+	}
+
+	/**
+	 * Adds the following items to the drawing que
+	 * @param toDraw
+	 * @return
+	 */
+	public CView addToDraw(ArrayList<CID> toDraw) {
+		if(this.toDraw == null) {
+			setToDraw(toDraw);
+			return this;
+		}
+		this.toDraw.addAll(toDraw);
+		return this;
+	}
+
+	/**
+	 * Overrides the current objects to be drawn.
 	 * @param toDraw
 	 */
 	public CView setToDraw(ArrayList<CID> toDraw) {
@@ -261,8 +280,12 @@ public class CView extends CIDAble implements IIDDrawAble, Comparable<CView>, Se
 		return this;
 	}
 
+	/**
+	 * Overrides the current objects to be drawn and creates an ArrayList of this single item.
+	 * @param toDraw
+	 */
 	public CView setToDraw(CID toDraw) {
-		ArrayList<CID> to = new ArrayList<CID>();
+		ArrayList<CID> to = new ArrayList<>();
 		to.add(toDraw);
 		return this.setToDraw(toDraw);
 	}
@@ -280,22 +303,8 @@ public class CView extends CIDAble implements IIDDrawAble, Comparable<CView>, Se
 		return this;
 	}
 
-	public boolean isActive() {
-		return active;
-	}
-
-	public CView setActive(boolean active) {
+	public CView setNeedUpdate(boolean active) {
 		this.active = active;
-		return this;
-	}
-
-	public CView setActive() {
-		setActive(true);
-		return this;
-	}
-
-	public CView setInactive() {
-		setActive(false);
 		return this;
 	}
 
@@ -307,14 +316,9 @@ public class CView extends CIDAble implements IIDDrawAble, Comparable<CView>, Se
 		return active;
 	}
 
-	public int compareTo(CView other) {
-		if(other instanceof CView) {
-			return new CDepthSorter().compare(this, (CView)other);
-		}
-		throw new InvalidParameterException("Other must be of class CView");
+	public int compareTo(IDrawAble o) {
+		return new CDepthSorter().compare(this, o);
 	}
 
-	public Object getImageObject() {
-		return imageObject;
-	}
+	//this is 100 o is 400
 }

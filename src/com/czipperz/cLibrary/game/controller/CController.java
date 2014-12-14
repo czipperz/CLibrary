@@ -1,10 +1,9 @@
 package com.czipperz.cLibrary.game.controller;
 
+import com.czipperz.cLibrary.location.CPoint;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Controller;
 import org.lwjgl.input.Controllers;
-
-import com.czipperz.cLibrary.location.CPoint;
 
 public abstract class CController {
 	public static final int BUTTON_LEFT_BUMPER = 4, BUTTON_RIGHT_BUMPER = 5, BUTTON_LEFT_JOYSTICK = 8, BUTTON_RIGHT_JOYSTICK = 9, BUTTON_START = 7;

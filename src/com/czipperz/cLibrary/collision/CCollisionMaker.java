@@ -1,11 +1,9 @@
 package com.czipperz.cLibrary.collision;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-
-import com.czipperz.cLibrary.CStaticClass;
 import com.czipperz.cLibrary.imaging.CImageHelper;
+
+import java.awt.*;
+import java.awt.image.RenderedImage;
 
 /**
  * This class creates Collisions used by {@link CCollisionTester}.

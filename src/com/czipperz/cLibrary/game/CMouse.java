@@ -1,12 +1,12 @@
 package com.czipperz.cLibrary.game;
 
+import com.czipperz.cLibrary.exceptions.CDoNotCallException;
+import com.czipperz.cLibrary.location.CMouseSafe;
+
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
-import javax.swing.JFrame;
-
-import com.czipperz.cLibrary.location.CMouseSafe;
 
 /**
  * A class that extends all methods of CMouse and adds upon that a allowance for MouseEvent handling.
@@ -46,29 +46,33 @@ public class CMouse extends CMouseSafe implements MouseListener {
 	
 	/**
 	 * DO NOT CALL!!!
+	 * @throws com.czipperz.cLibrary.exceptions.CDoNotCallException
 	 */
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e) throws CDoNotCallException {
 		add(e);
 	}
 
 	/**
 	 * DO NOT CALL!!!
+	 * @throws com.czipperz.cLibrary.exceptions.CDoNotCallException
 	 */
-	public void mouseEntered(MouseEvent e) {
+	public void mouseEntered(MouseEvent e) throws CDoNotCallException {
 		add(e);
 	}
 
 	/**
 	 * DO NOT CALL!!!
+	 * @throws com.czipperz.cLibrary.exceptions.CDoNotCallException
 	 */
-	public void mouseExited(MouseEvent e) {
+	public void mouseExited(MouseEvent e) throws CDoNotCallException {
 		add(e);
 	}
 
 	/**
 	 * DO NOT CALL!!!
+	 * @throws com.czipperz.cLibrary.exceptions.CDoNotCallException
 	 */
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) throws CDoNotCallException {
 		add(e);
 		if(e.getButton() == MouseEvent.BUTTON1) {
 			leftDown = true;
@@ -83,8 +87,9 @@ public class CMouse extends CMouseSafe implements MouseListener {
 
 	/**
 	 * DO NOT CALL!!!
+	 * @throws com.czipperz.cLibrary.exceptions.CDoNotCallException
 	 */
-	public void mouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent e) throws CDoNotCallException {
 		add(e);
 		if(e.getButton() == MouseEvent.BUTTON1) {
 			leftDown = false;

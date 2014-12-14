@@ -1,8 +1,8 @@
 package com.czipperz.cLibrary.game;
 
-import java.awt.Dimension;
-
 import com.czipperz.cLibrary.imaging.CImage;
+
+import java.awt.*;
 
 public abstract class CEntitySubtype extends CObjectDrawAble {
 	public CEntitySubtype(CGameFrame displayOn, CImage image) {

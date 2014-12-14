@@ -5,10 +5,14 @@ package com.czipperz.cLibrary.game.directions;
  * This is a class that has an embedded enum.  Use one of the other variables to test against.
  * <br /><strong>NOTE:</strong> <code>LEFT</code> IS NOT EQUAL TO <code>RIGHT</code>, <strong>but</strong> <code>LEFT</code> IS EQUAL TO <code>WEST</code>.
  * @author Chris Gregory
- * @see {@link #HORIZONTAL}
- * @see {@link #VERTICAL}
- * @see {@link #NORTH_EAST}
- * @see {@link #NORTH_WEST}
+ * @see {@link #LEFT}
+ * @see {@link #UP_LEFT}
+ * @see {@link #DOWN_LEFT}
+ * @see {@link #RIGHT}
+ * @see {@link #UP_RIGHT}
+ * @see {@link #DOWN_RIGHT}
+ * @see {@link #UP}
+ * @see {@link #DOWN}
  * @see {@link com.czipperz.cLibrary.game.directions.EDirectionsAdvanced} for variables where LEFT == RIGHT
  */
 public class EDirectionsAdvancedDifferential {

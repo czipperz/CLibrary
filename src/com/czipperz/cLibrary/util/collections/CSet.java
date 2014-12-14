@@ -1,11 +1,7 @@
 package com.czipperz.cLibrary.util.collections;
 
 import java.security.InvalidParameterException;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class CSet<E> extends TreeSet<E> {
 	public CSet() {super();}
@@ -18,7 +14,7 @@ public class CSet<E> extends TreeSet<E> {
 		if(index < 0 || index >= size())
 			throw new IndexOutOfBoundsException("Index out of bounds!");
 		int i = 0;
-		E e;
+		E e = null;
 		while(it.hasNext() ? (e = it.next()) != null : false)
 			if(i++ == index)
 				return e;
@@ -28,7 +24,7 @@ public class CSet<E> extends TreeSet<E> {
 	public int indexOf(E e) {
 		Iterator<E> it = iterator();
 		int i = 0;
-		E a;
+		E a = null;
 		while(it.hasNext() ? (a = it.next()) != null : false) {
 			if(a.equals(e))
 				return i;

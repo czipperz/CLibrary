@@ -1,9 +1,8 @@
 package com.czipperz.cLibrary.gui;
 
+import javax.swing.*;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
-
-import javax.swing.JScrollPane;
 
 public class CScrollPane extends JScrollPane {
 	private static final long serialVersionUID = -1566253300903991951L;

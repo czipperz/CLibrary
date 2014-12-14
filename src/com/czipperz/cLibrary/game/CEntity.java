@@ -1,14 +1,13 @@
 package com.czipperz.cLibrary.game;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import com.czipperz.cLibrary.imaging.CImage;
+
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import com.czipperz.cLibrary.imaging.CImage;
 
 /**
  * This class is an example of a {@link CObjectDrawAble} that allows for {@link CEntitySubtype}

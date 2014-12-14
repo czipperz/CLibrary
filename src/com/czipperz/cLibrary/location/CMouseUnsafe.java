@@ -1,8 +1,6 @@
 package com.czipperz.cLibrary.location;
 
-import java.awt.AWTException;
-import java.awt.MouseInfo;
-import java.awt.Robot;
+import java.awt.*;
 import java.awt.geom.Point2D;
 
 /**

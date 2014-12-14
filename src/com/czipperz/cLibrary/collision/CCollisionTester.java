@@ -1,11 +1,10 @@
 package com.czipperz.cLibrary.collision;
 
-import java.awt.Dimension;
-import java.awt.geom.Point2D;
-
-import com.czipperz.cLibrary.CStaticClass;
 import com.czipperz.cLibrary.math.CMath;
 import com.czipperz.cLibrary.util.collections.CArrayHelper;
+
+import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * This class tests if your Entitys have collided.

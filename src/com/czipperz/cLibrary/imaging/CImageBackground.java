@@ -1,10 +1,8 @@
 package com.czipperz.cLibrary.imaging;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-
 import com.czipperz.cLibrary.game.CGameFrame;
+
+import java.awt.*;
 
 public class CImageBackground extends CImageDraw {
 	private Color color;

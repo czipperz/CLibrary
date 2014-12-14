@@ -1,11 +1,8 @@
 package com.czipperz.cLibrary.game.controller;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-
-import javax.imageio.ImageIO;
-
-import com.czipperz.cLibrary.game.CGameFrame;
 
 public class CControllerButtonPS3 {
 	private static BufferedImage buttonSquare = null, buttonTriangle = null, buttonCross = null, buttonCircle = null;

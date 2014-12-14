@@ -1,7 +1,6 @@
 package com.czipperz.cLibrary.game;
 
-import java.awt.Color;
-import java.awt.Rectangle;
+import java.awt.*;
 
 /**
  * An object that allows for IDing and Drawing, but doesn't supply drawing methods.
@@ -12,12 +11,11 @@ import java.awt.Rectangle;
  */
 public abstract class CObject extends CIDAble implements IIDDrawAble {
 	private boolean active = true;
-	private Object imageObject = new Object();
 	
 	/**
 	 * Compares the object to another object.  (compares the IDs)
 	 * @see com.czipperz.cLibrary.game.CID
-	 * @param the instance to compare this object to.
+	 * @param other - the instance to compare this object to.
 	 */
 	public int compareTo(CObject other) {
 		return this.getInstanceID().compareTo(other.getInstanceID());
@@ -54,26 +52,16 @@ public abstract class CObject extends CIDAble implements IIDDrawAble {
 	}
 	
 	/**
-	 * @return if the boolean value of "active". (whether the object should be drawn)
-	 */
-	public boolean isActive() {
-		return active;
-	}
-	
-	/**
 	 * @return the "bounds" of the object on the screen. (assuming that it is being displayed on a CView with size set to the maximum)
 	 */
 	public abstract Rectangle getLocScreen();
 	
 	/**
-	 * @return the <code>Color</code> that will be displayed to surround this sprite when it is toggled on by the JFrame.
+	 * @return the <code>Color</code> that will be displayed to surround this sprite when it is toggled on by the CGameFrame.
+	 * @link com.czipperz.cLibrary.game.CGameFrame
 	 */
 	public Color getOutlineColor() {
 		return Color.BLACK;
-	}
-
-	public Object getImageObject() {
-		return imageObject;
 	}
 	
 	/**
@@ -81,5 +69,9 @@ public abstract class CObject extends CIDAble implements IIDDrawAble {
 	 */
 	public Rectangle getBounds() {
 		return getLocScreen();
+	}
+
+	public int compareTo(IDrawAble other) {
+		return new CDepthSorter().compare(this, other);
 	}
 }

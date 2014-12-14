@@ -1,29 +1,15 @@
 package com.czipperz.cLibrary.game;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
+import com.czipperz.cLibrary.util.CThread;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-
-import javax.swing.JFrame;
-
-import com.czipperz.cLibrary.game.controller.CControllerButtonPS3;
-import com.czipperz.cLibrary.game.controller.CControllerButtonXBox;
-import com.czipperz.cLibrary.util.CThread;
 
 /**
  * A class that handles everything frame related.  There is built in double-buffering, object storage, and overlay (
@@ -46,8 +32,6 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	public CGameFrame() {
 		super();
 		addKeyListener(new CKeys());
-		CControllerButtonPS3.setup();
-		CControllerButtonXBox.setup();
 		CMouse.addToFrame(this);
 		setupDraw();
 		//createBufferStrategy(2);
@@ -353,6 +337,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	protected CGameFrame drawViews(Graphics g) {
+		//Collections.sort(views, new CDepthSorter());
 		for(CView v : views) {
 			v.draw(g);
 		}
@@ -367,7 +352,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	public CGameFrame draw(Graphics g) {
 		if(showData) {
 			Font bold = new Font("Arial", Font.BOLD, 14);
-			Font normal = new Font("Arial", Font.PLAIN|Font.ITALIC, 14);
+			Font normal = new Font("Arial", Font.PLAIN, 14);
 			g.setFont(bold);
 			g.setColor(Color.GREEN);
 			g.drawString("Window Width", 3, 14);
@@ -441,5 +426,9 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 
 	public Object getImageObject() {
 		return imageObject;
+	}
+
+	public int compareTo(IDrawAble o) {
+		return 0;
 	}
 }

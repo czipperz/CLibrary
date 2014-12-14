@@ -1,6 +1,6 @@
 package com.czipperz.cLibrary.location;
 
-import java.awt.Point;
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.Serializable;
 
