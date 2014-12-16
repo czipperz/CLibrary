@@ -62,7 +62,11 @@ public abstract class CObject extends CIDAble implements IIDDrawAble {
 	public boolean needUpdate() {
 		return active;
 	}
-	
+
+	public boolean needDraw() {
+		return active;
+	}
+
 	/**
 	 * @return the "bounds" of the object on the screen. (assuming that it is being displayed on a CView with size set to the maximum)
 	 */

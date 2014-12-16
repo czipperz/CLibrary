@@ -35,7 +35,7 @@ public class CObjectDrawAble extends CObject {
 	 * Calls the main constructer with the depth set as 0.
 	 * @param displayOn
 	 * @param image
-	 * @see main constructor: {@link #CObjectDrawAble(CGameFrame, int, CImage)}
+	 * @see {@link #CObjectDrawAble(CGameFrame, int, CImage)}
 	 */
 	public CObjectDrawAble(CGameFrame displayOn, CImage image) {
 		this(displayOn, 0, image);
@@ -80,10 +80,14 @@ public class CObjectDrawAble extends CObject {
 		return this;
 	}
 
+	public IDrawAble tick() {
+		return this;
+	}
+
 	public Rectangle getBounds() {
 		return image.getBounds();
 	}
-	
+
 	public Rectangle getLocScreen() {
 		return image.getLocScreen();
 	}
