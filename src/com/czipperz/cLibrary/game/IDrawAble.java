@@ -9,27 +9,11 @@ import java.awt.*;
  */
 public interface IDrawAble extends Comparable<IDrawAble> {
 	/**
-	 * Called by the CGameFrame.  Called first
-	 * @param g - the Graphics to be drawn on
-	 * @return this
-	 */
-	public default IDrawAble drawBefore(Graphics g) {
-		return this;
-	}
-	/**
-	 * Called by the CGameFrame.  Put your drawing code here. Called after {@link #drawBefore(Graphics)}.
+	 * Called by the CGameFrame.  Put your drawing code here.
 	 * @param g - the Graphics to drawn on.
 	 * @return this
 	 */
 	public IDrawAble draw(Graphics g);
-	/**
-	 * Called by the CGameFrame.  Called after all the {@link #drawBefore(Graphics)} and {@link #draw(Graphics)} methods.
-	 * @param g - the Graphics to be drawn on
-	 * @return this
-	 */
-	public default IDrawAble drawAfter(Graphics g) {
-		return this;
-	}
 
 
 
