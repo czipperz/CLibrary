@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
-public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAble, IIDAble {
+public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAble {
 	private CGameFrame displayOn;
 	private boolean active = true;
 	private int depth = 0;
@@ -68,6 +68,10 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 		return this;
 	}
 
+	public IDrawAble tick() {
+		return this;
+	}
+
 	private boolean preparePaint() {
 		//If wrong reset
 		if(bufferWidth != displayOn.getWidth() || bufferHeight != displayOn.getHeight() || bufferImage == null || bufferGraphics == null) {
@@ -114,7 +118,7 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 		if(drawEverything) {
 			Set<IIDDrawAble> x = displayOn.getObjects();
 			for(IDrawAble a : x) {
-				if(a.needUpdate())
+				if(a.needDraw())
 					a.draw(g);
 				if(displayOn.isShowBorders()) {
 					if(a instanceof CObject)
@@ -129,7 +133,7 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 		//Draws everything specifically given to it to run.
 		if(toDraw != null) {
 			for(IDrawAble i : this.toDraw) {
-				if(i.needUpdate())
+				if(i.needDraw())
 					i.draw(g);
 				if(displayOn.isShowBorders()) {
 					if(i instanceof CObject)
@@ -229,6 +233,11 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 		return this;
 	}
 
+	public CView setActive(boolean active) {
+		this.active = active;
+		return this;
+	}
+
 	public CView setNeedUpdate(boolean active) {
 		this.active = active;
 		return this;
@@ -239,6 +248,10 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	}
 
 	public boolean needUpdate() {
+		return false;
+	}
+
+	public boolean needDraw() {
 		return active;
 	}
 
