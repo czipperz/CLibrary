@@ -197,12 +197,9 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 				delta += (now - lastTime) / ns;
 				lastTime = now;
 				while(delta >= 1) {
-					tickBefore();
-					tick();
-					tickAfter();
+					updateAll();
 					delta--;
 				}
-				updateAll();
 				repaint();
 				frames++;
 				if(System.currentTimeMillis() - timer > 1000){
@@ -228,11 +225,15 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	private void updateAll() {
-		//Overlays?
+		//Overlays
 		update();
 
+		//Ticks
+		tickBefore();
 		updaters.forEach(IUpdateAble::updateBefore);
+		tick();
 		updaters.forEach(IUpdateAble::update);
+		tickAfter();
 		updaters.forEach(IUpdateAble::updateAfter);
 	}
 
