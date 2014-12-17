@@ -4,6 +4,7 @@ import com.czipperz.cLibrary.imaging.CImage;
 
 import java.awt.*;
 
+//TODO: finish this comment
 /**
  * A class that extends CObject.  Makes the depth, 
  * @author Chris Gregory
