@@ -28,10 +28,6 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	private boolean allowConsoleSpam = true;
 	//private BufferStrategy strategy;
 
-	public CKeys getKeys() {
-		return keys;
-	}
-
 	/**
 	 * Makes a new CGameFrame.
 	 * @see CGameFrame
@@ -45,6 +41,10 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		//createBufferStrategy(2);
 		//strategy = getBufferStrategy();
 		//this.setIgnoreRepaint(true);
+	}
+
+	public CKeys getKeys() {
+		return keys;
 	}
 
 	public void setFullscreen() {
@@ -186,6 +186,16 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	private long timer = System.currentTimeMillis();
 	private int frames = 0;
 
+	private void updateAll() {
+		//Overlays
+		updateOverlayToggle();
+
+		//Ticks
+		tickBefore();
+		tick();
+		tickAfter();
+	}
+
 	/**
 	 * Where the update loop is initialized.
 	 * @return this
@@ -224,25 +234,12 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		return this;
 	}
 
-	private void updateAll() {
-		//Overlays
-		update();
-
-		//Ticks
-		tickBefore();
-		updaters.forEach(IUpdateAble::updateBefore);
-		tick();
-		updaters.forEach(IUpdateAble::update);
-		tickAfter();
-		updaters.forEach(IUpdateAble::updateAfter);
-	}
-
 	private boolean isF7 = false;
 	private boolean showData = false;
 	private boolean isF8 = false;
 	private boolean showBorders = false;
 
-	private void update() {
+	private void updateOverlayToggle() {
 		if(overlayEnabled) {
 			while (true) {
 				if (keys.isF8()) {
@@ -320,7 +317,6 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 			//Note: sorting is done when objects are added.
 			//Draw Before Views
 			synchronized(imageObject) {
-				drawBefore(bufferGraphics);
 				//Draw Views
 				drawViews(bufferGraphics);
 				//Draw After Views
@@ -351,15 +347,6 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 
 	public void update(Graphics g) {
 		paint(g);
-	}
-
-	/**
-	 * Draw before the views
-	 * @param g - the Graphics to draw onto
-	 * @return this
-	 */
-	public CGameFrame drawBefore(Graphics g) {
-		return this;
 	}
 
 	protected CGameFrame drawViews(Graphics g) {
@@ -396,16 +383,19 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 
 	public IDrawAble tickBefore() {
 		objects.forEach(IIDDrawAble::tickBefore);
+		updaters.forEach(IUpdateAble::updateBefore);
 		return this;
 	}
 
 	public IDrawAble tick() {
 		objects.forEach(IIDDrawAble::tick);
+		updaters.forEach(IUpdateAble::update);
 		return this;
 	}
 
 	public IDrawAble tickAfter() {
 		objects.forEach(IIDDrawAble::tickAfter);
+		updaters.forEach(IUpdateAble::updateAfter);
 		return this;
 	}
 
