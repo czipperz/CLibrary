@@ -1,8 +1,6 @@
 package com.czipperz.cLibrary.gui;
 
 import javax.swing.*;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 
 public class CScrollPane extends JScrollPane {
 	private static final long serialVersionUID = -1566253300903991951L;
@@ -16,15 +14,13 @@ public class CScrollPane extends JScrollPane {
 	public CScrollPane setAutoScroll(boolean isAuto) {
 		if(isAuto && !autoScroll) {
 			this.autoScroll = isAuto;
-			this.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-				public void adjustmentValueChanged(AdjustmentEvent e) {
-					if (isAutoScroll()) {
-						if (!e.getValueIsAdjusting()) {
-							e.getAdjustable().setValue(e.getAdjustable().getMaximum());
-						}
-					}
-				}
-			});
+			this.getVerticalScrollBar().addAdjustmentListener(e -> {
+                if (isAutoScroll()) {
+                    if (!e.getValueIsAdjusting()) {
+                        e.getAdjustable().setValue(e.getAdjustable().getMaximum());
+                    }
+                }
+            });
 		}
 		return this;
 	}
