@@ -17,6 +17,9 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	private boolean drawEverything = true;
 	private List<IDrawAble> toDraw = null;
 	private Rectangle drawRect = null;
+	private int bufferWidth, bufferHeight;
+	private Image bufferImage;
+	private Graphics bufferGraphics;
 
 	/**
 	 * Sets to draw Everything.  displayOn is the CGameFrame this will be shown on.  It auto registers itself and uses some of the methods of this class.  See the setters of drawRect and depth for more information.
@@ -57,10 +60,6 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	public CView(CGameFrame displayOn) {
 		this(displayOn, 0);
 	}
-
-	private int bufferWidth, bufferHeight;
-	private Image bufferImage;
-	private Graphics bufferGraphics;
 
 	public IDrawAble draw(Graphics g) {
 		while(!preparePaint()) {}
@@ -258,6 +257,4 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	public int compareTo(IDrawAble o) {
 		return new CDepthSorter().compare(this, o);
 	}
-
-	//this is 100 o is 400
 }
