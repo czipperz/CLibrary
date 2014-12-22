@@ -22,7 +22,7 @@ public class CMouse extends CMouseSafe implements MouseListener {
 	private static MouseEvent event = null;
 	
 	private CMouse() {
-		ev = new ArrayList<MouseEvent>();
+		ev = new ArrayList<>();
 	}
 	
 	static CMouse addToFrame(JFrame frame) {
