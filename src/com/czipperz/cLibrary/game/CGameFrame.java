@@ -27,6 +27,17 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	private boolean overlayEnabled = false;
 	private boolean allowConsoleSpam = true;
 	//private BufferStrategy strategy;
+	private boolean isF7 = false;
+	private boolean showData = false;
+	private boolean isF8 = false;
+	private boolean showBorders = false;
+	private long lastTime = System.nanoTime();
+	private double amountOfTicks = 60, ns = 1000000000 / amountOfTicks, delta = 0;
+	private long timer = System.currentTimeMillis();
+	private int frames = 0;
+	private int bufferWidth, bufferHeight;
+	private Image bufferImage;
+	private Graphics bufferGraphics;
 
 	/**
 	 * Makes a new CGameFrame.
@@ -181,11 +192,6 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		updateThread.start();
 	}
 
-	private long lastTime = System.nanoTime();
-	private double amountOfTicks = 60, ns = 1000000000 / amountOfTicks, delta = 0;
-	private long timer = System.currentTimeMillis();
-	private int frames = 0;
-
 	private void updateAll() {
 		//Overlays
 		updateOverlayToggle();
@@ -233,11 +239,6 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
         }, false);
 		return this;
 	}
-
-	private boolean isF7 = false;
-	private boolean showData = false;
-	private boolean isF8 = false;
-	private boolean showBorders = false;
 
 	private void updateOverlayToggle() {
 		if(overlayEnabled) {
@@ -300,9 +301,6 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 	 */
 
-	private int bufferWidth, bufferHeight;
-	private Image bufferImage;
-	private Graphics bufferGraphics;
 	private void render(Graphics g) {
 		//If wrong reset
 		if(bufferWidth != getWidth() || bufferHeight != getHeight() || bufferImage == null || bufferGraphics == null) {
@@ -483,5 +481,13 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 
 	public void setAllowConsoleSpam(boolean allowConsoleSpam) {
 		this.allowConsoleSpam = allowConsoleSpam;
+	}
+
+	public double getTicksPerSecond() {
+		return amountOfTicks;
+	}
+
+	public void setTicksPerSecond(double amountOfTicks) {
+		this.amountOfTicks = amountOfTicks;
 	}
 }
