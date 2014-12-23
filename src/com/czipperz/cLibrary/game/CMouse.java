@@ -16,27 +16,19 @@ import java.util.ArrayList;
  * @see com.czipperz.cLibrary.location.CMouseSafe
  */
 public class CMouse extends CMouseSafe implements MouseListener {
-	private static CMouse instance = null;
-	private static boolean leftDown = false, rightDown = false, middleDown = false;
-	private static ArrayList<MouseEvent> ev;
-	private static MouseEvent event = null;
-	
-	private CMouse() {
+	private boolean leftDown = false, rightDown = false, middleDown = false;
+	private ArrayList<MouseEvent> ev;
+	private MouseEvent event = null;
+
+	CMouse() {
 		ev = new ArrayList<>();
 	}
 	
-	static CMouse addToFrame(JFrame frame) {
-		frame.addMouseListener(getInstance());
-		return instance;
+	CMouse addToFrame(JFrame frame) {
+		frame.addMouseListener(this);
+		return this;
 	}
-	
-	static CMouse getInstance() {
-		if(instance == null) {
-			instance = new CMouse();
-		}
-		return instance;
-	}
-	
+
 	private void add(MouseEvent e) {
 		ev.add(e);
 		if(event == null) {
@@ -109,7 +101,7 @@ public class CMouse extends CMouseSafe implements MouseListener {
 	 *
 	 * @return True if there is still an event to process
 	 */
-	public static boolean next() {
+	public boolean next() {
 		if (ev.size() == 0) {
 			event = null;
 			return false;
@@ -125,7 +117,7 @@ public class CMouse extends CMouseSafe implements MouseListener {
 	 * @return The event currently stored
 	 * @see {@link #next()}
 	 */
-	public static MouseEvent getEvent() {
+	public MouseEvent getEvent() {
 		return event;
 	}
 	
@@ -135,28 +127,28 @@ public class CMouse extends CMouseSafe implements MouseListener {
 	 * @see {@link #getEvent()}
 	 * @see {@link #next()}
 	 */
-	public static ArrayList<MouseEvent> getEvents() {
+	public ArrayList<MouseEvent> getEvents() {
 		return ev;
 	}
 	
 	/**
 	 * You can't read huh?
 	 */
-	public static boolean isLeftDown() {
+	public boolean isLeftDown() {
 		return leftDown;
 	}
 
 	/**
 	 * You can't read huh?
 	 */
-	public static boolean isRightDown() {
+	public boolean isRightDown() {
 		return rightDown;
 	}
 
 	/**
 	 * You can't read huh?
 	 */
-	public static boolean isMiddleDown() {
+	public boolean isMiddleDown() {
 		return middleDown;
 	}
 }

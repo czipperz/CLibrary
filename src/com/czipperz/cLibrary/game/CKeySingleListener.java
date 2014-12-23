@@ -15,7 +15,7 @@ import java.util.List;
  *
  */
 public class CKeySingleListener implements KeyListener {
-	private static class CO {
+	private class CO {
 		public List<KeyListener> listeners;
 
 		public CO() {
@@ -28,7 +28,7 @@ public class CKeySingleListener implements KeyListener {
 		}
 	}
 
-	private static CListMap<EKeys, CO> e = new CListMap<EKeys, CO>();
+	private CListMap<EKeys, CO> e = new CListMap<EKeys, CO>();
 
 
 	/**
@@ -36,7 +36,7 @@ public class CKeySingleListener implements KeyListener {
 	 * @param key - the key that will have this listener added.
 	 * @param listener - the listener that will called on events from the designated key.
 	 */
-	public static void add(EKeys key, KeyListener listener) {
+	public void add(EKeys key, KeyListener listener) {
 		if(e.containsKey(key))
 			e.get(key).listeners.add(listener);
 		else
@@ -49,7 +49,7 @@ public class CKeySingleListener implements KeyListener {
 	 * @param listener - the listener that will no longer be called on events from the designated key.
 	 * @throws java.security.InvalidParameterException will be thrown if the inputed key does not have any listeners.
 	 */
-	public static void remove(EKeys key, KeyListener listener) throws InvalidParameterException {
+	public void remove(EKeys key, KeyListener listener) throws InvalidParameterException {
 		if(e.containsKey(key))
 			try {
 				e.get(key).listeners.remove(listener);
