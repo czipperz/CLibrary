@@ -17,7 +17,11 @@ public abstract class CImage implements Serializable {
 	public Rectangle getBounds() {
 		return locScreen;
 	}
-	
+
+	public Rectangle getLocScreen() {
+		return locScreen;
+	}
+
 	public CImage setLocScreen(Rectangle locScreen) {
 		this.locScreen = locScreen;
 		return this;
