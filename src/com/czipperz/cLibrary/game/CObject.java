@@ -15,6 +15,7 @@ public abstract class CObject extends CIDAble implements IIDDrawAble {
 
 	public CObject(CGameFrame displayOn) {
 		this.displayOn = displayOn;
+		this.displayOn.addObject(this);
 	}
 
 	/**
