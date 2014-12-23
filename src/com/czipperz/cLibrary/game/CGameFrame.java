@@ -24,6 +24,8 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	private CThread updateThread;
 	private Object imageObject = new Object(), updateObject = new Object();
 	private CKeys keys;
+	private CKeySingleListener keySingleListener;
+	private CMouse mouse;
 	private boolean overlayEnabled = false;
 	private boolean allowConsoleSpam = true;
 	//private BufferStrategy strategy;
@@ -47,7 +49,10 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		super();
 		keys = new CKeys();
 		addKeyListener(keys);
-		CMouse.addToFrame(this);
+		keySingleListener = new CKeySingleListener();
+		addKeyListener(keySingleListener);
+		mouse = new CMouse();
+		mouse.addToFrame(this);
 		setupDraw();
 		//createBufferStrategy(2);
 		//strategy = getBufferStrategy();
@@ -212,6 +217,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 				long now = System.nanoTime();
 				delta += (now - lastTime) / ns;
 				lastTime = now;
+				//System.out.println("Delta:" + delta);
 				while(delta >= 1) {
 					updateAll();
 					delta--;
@@ -380,20 +386,26 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	public IDrawAble tickBefore() {
-		objects.forEach(IIDDrawAble::tickBefore);
-		updaters.forEach(IUpdateAble::updateBefore);
+		for(IDrawAble o : objects)
+			o.tickBefore();
+		for(IUpdateAble o : updaters)
+			o.updateBefore();
 		return this;
 	}
 
 	public IDrawAble tick() {
-		objects.forEach(IIDDrawAble::tick);
-		updaters.forEach(IUpdateAble::update);
+		for(IDrawAble o : objects)
+			o.tick();
+		for(IUpdateAble o : updaters)
+			o.update();
 		return this;
 	}
 
 	public IDrawAble tickAfter() {
-		objects.forEach(IIDDrawAble::tickAfter);
-		updaters.forEach(IUpdateAble::updateAfter);
+		for(IDrawAble o : objects)
+			o.tickAfter();
+		for(IUpdateAble o : updaters)
+			o.updateAfter();
 		return this;
 	}
 
@@ -489,5 +501,13 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 
 	public void setTicksPerSecond(double amountOfTicks) {
 		this.amountOfTicks = amountOfTicks;
+	}
+
+	public CKeySingleListener getKeySingleListener() {
+		return keySingleListener;
+	}
+
+	public void setKeySingleListener(CKeySingleListener keySingleListener) {
+		this.keySingleListener = keySingleListener;
 	}
 }
