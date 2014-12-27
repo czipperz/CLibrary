@@ -46,12 +46,12 @@ public interface IDrawAble extends Comparable<IDrawAble> {
 	 */
 	public int getDepth();
 	/**
-	 * Return a Rectangle that represents the boundaries of the object.
+	 * Return a Rectangle that represents the boundaries of the object on the CGameFrame.
 	 * @return a Rectangle object that represents the boundaries of the object.
 	 */
 	public Rectangle getBounds();
 	/**
-	 * Tells the update processor if you want this object to be updated.
+	 * Tells the update processor if you want this object to be ticked.
 	 * @return true to updated the object, false if to not be.
 	 */
 	public boolean needUpdate();
