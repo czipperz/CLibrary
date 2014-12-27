@@ -1,22 +1,24 @@
 package com.czipperz.cLibrary.game;
 
 import com.czipperz.cLibrary.imaging.CGraphics;
-import com.czipperz.cLibrary.util.collections.CArrayHelper;
 
 import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Consumer;
 
 public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAble {
 	private CGameFrame displayOn;
 	private boolean active = true;
 	private int depth = 0;
+
 	private boolean drawEverything = true;
 	private List<IDrawAble> toDraw = null;
+
+	private boolean drawFullWindow = false;
 	private Rectangle drawRect = null;
+
 	private int bufferWidth, bufferHeight;
 	private Image bufferImage;
 	private Graphics bufferGraphics;
@@ -29,10 +31,10 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	 */
 	public CView(CGameFrame displayOn, Rectangle drawRect, int depth) {
 		this.displayOn = displayOn;
+		this.displayOn.addView(this);
 		this.drawEverything = true;
 		this.drawRect = drawRect;
 		this.depth = depth;
-		this.displayOn.addView(this);
 	}
 
 	/**
@@ -85,8 +87,13 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	}
 
 	private synchronized void resetBuffer() {
-		bufferWidth = displayOn.getWidth();
-		bufferHeight = displayOn.getHeight();
+		if(drawFullWindow) {
+			bufferWidth = displayOn.getWidth();
+			bufferHeight = displayOn.getHeight();
+		} else {
+			bufferWidth = drawRect.width;
+			bufferHeight = drawRect.height;
+		}
 
 		if(bufferGraphics != null) {
 			bufferGraphics.dispose();
