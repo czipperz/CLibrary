@@ -11,389 +11,390 @@ import java.awt.event.KeyListener;
  * @see com.czipperz.cLibrary.game.CKeyListener
  */
 public class CKeys implements KeyListener {
-	private static transient boolean isEscape;
-	private static transient boolean isF1;
-	private static transient boolean isF2;
-	private static transient boolean isF3;
-	private static transient boolean isF4;
-	private static transient boolean isF5;
-	private static transient boolean isF6;
-	private static transient boolean isF7;
-	private static transient boolean isF8;
-	private static transient boolean isF9;        
-	private static transient boolean isF10;       
-	private static transient boolean isF11;       
-	private static transient boolean isF12;       
-	private static transient boolean isInsert;    
-	private static transient boolean isHome;      
-	private static transient boolean isPageUp;   
-	private static transient boolean isDelete;    
-	private static transient boolean isEnd;       
-	private static transient boolean isPageDown; 
-	private static transient boolean is1;         
-	private static transient boolean is2;         
-	private static transient boolean is3;         
-	private static transient boolean is4;         
-	private static transient boolean is5;         
-	private static transient boolean is6;         
-	private static transient boolean is7;         
-	private static transient boolean is8;         
-	private static transient boolean is9;         
-	private static transient boolean is0;         
-	private static transient boolean isMinus;     
-	private static transient boolean isEquals;    
-	private static transient boolean isBackSpace;
-	private static transient boolean isTab;       
-	private static transient boolean isQ;         
-	private static transient boolean isW;         
-	private static transient boolean isE;         
-	private static transient boolean isR;         
-	private static transient boolean isT;         
-	private static transient boolean isY;         
-	private static transient boolean isU;         
-	private static transient boolean isI;         
-	private static transient boolean isO;         
-	private static transient boolean isP;         
-	private static transient boolean isOpenBracket;
-	private static transient boolean isCloseBracket;
-	private static transient boolean isBackSlash;
-	private static transient boolean isCapsLock; 
-	private static transient boolean isA;         
-	private static transient boolean isS;         
-	private static transient boolean isD;         
-	private static transient boolean isF;         
-	private static transient boolean isG;         
-	private static transient boolean isH;         
-	private static transient boolean isJ;         
-	private static transient boolean isK;         
-	private static transient boolean isL;         
-	private static transient boolean isSemiColon; 
-	private static transient boolean isQuote;     
-	private static transient boolean isEnter;     
-	private static transient boolean isShift;     
-	private static transient boolean isZ;         
-	private static transient boolean isX;         
-	private static transient boolean isC;         
-	private static transient boolean isV;         
-	private static transient boolean isB;         
-	private static transient boolean isN;         
-	private static transient boolean isM;         
-	private static transient boolean isComma;     
-	private static transient boolean isPeriod;    
-	private static transient boolean isControl;   
-	private static transient boolean isWindows;   
-	private static transient boolean isAlt;       
-	private static transient boolean isSpace;     
-	private static transient boolean isLeft;      
-	private static transient boolean isUp;        
-	private static transient boolean isDown;      
-	private static transient boolean isRight;     
+	private transient boolean isEscape;
+	private transient boolean isF1;
+	private transient boolean isF2;
+	private transient boolean isF3;
+	private transient boolean isF4;
+	private transient boolean isF5;
+	private transient boolean isF6;
+	private transient boolean isF7;
+	private transient boolean isF8;
+	private transient boolean isF9;
+	private transient boolean isF10;
+	private transient boolean isF11;
+	private transient boolean isF12;
+	private transient boolean isInsert;
+	private transient boolean isHome;
+	private transient boolean isPageUp;
+	private transient boolean isDelete;
+	private transient boolean isEnd;
+	private transient boolean isPageDown;
+	private transient boolean is1;
+	private transient boolean is2;
+	private transient boolean is3;
+	private transient boolean is4;
+	private transient boolean is5;
+	private transient boolean is6;
+	private transient boolean is7;
+	private transient boolean is8;
+	private transient boolean is9;
+	private transient boolean is0;
+	private transient boolean isMinus;
+	private transient boolean isEquals;
+	private transient boolean isBackSpace;
+	private transient boolean isTab;
+	private transient boolean isQ;
+	private transient boolean isW;
+	private transient boolean isE;
+	private transient boolean isR;
+	private transient boolean isT;
+	private transient boolean isY;
+	private transient boolean isU;
+	private transient boolean isI;
+	private transient boolean isO;
+	private transient boolean isP;
+	private transient boolean isOpenBracket;
+	private transient boolean isCloseBracket;
+	private transient boolean isBackSlash;
+	private transient boolean isCapsLock;
+	private transient boolean isA;
+	private transient boolean isS;
+	private transient boolean isD;
+	private transient boolean isF;
+	private transient boolean isG;
+	private transient boolean isH;
+	private transient boolean isJ;
+	private transient boolean isK;
+	private transient boolean isL;
+	private transient boolean isSemiColon;
+	private transient boolean isQuote;
+	private transient boolean isEnter;
+	private transient boolean isShift;
+	private transient boolean isZ;
+	private transient boolean isX;
+	private transient boolean isC;
+	private transient boolean isV;
+	private transient boolean isB;
+	private transient boolean isN;
+	private transient boolean isM;
+	private transient boolean isComma;
+	private transient boolean isPeriod;
+	private transient boolean isControl;
+	private transient boolean isWindows;
+	private transient boolean isAlt;
+	private transient boolean isSpace;
+	private transient boolean isLeft;
+	private transient boolean isUp;
+	private transient boolean isDown;
+	private transient boolean isRight;
 
-	public static boolean isEscape() {
+	public boolean isEscape() {
 		return isEscape;
 	}
 
-	public static boolean isF1() {
+	public boolean isF1() {
 		return isF1;
 	}
 
-	public static boolean isF2() {
+	public boolean isF2() {
 		return isF2;
 	}
 
-	public static boolean isF3() {
+	public boolean isF3() {
 		return isF3;
 	}
 
-	public static boolean isF4() {
+	public boolean isF4() {
 		return isF4;
 	}
 
-	public static boolean isF5() {
+	public boolean isF5() {
 		return isF5;
 	}
 
-	public static boolean isF6() {
+	public boolean isF6() {
 		return isF6;
 	}
 
-	public static boolean isF7() {
+	public boolean isF7() {
 		return isF7;
 	}
 
-	public static boolean isF8() {
+	public boolean isF8() {
 		return isF8;
 	}
 
-	public static boolean isF9() {     
+	public boolean isF9() {
 		return isF9;
 	}
 
-	public static boolean isF10() {       
+	public boolean isF10() {
 		return isF10;
 	}
 
-	public static boolean isF11() {    
+	public boolean isF11() {
 		return isF11;
 	}
 
-	public static boolean isF12() {      
+	public boolean isF12() {
 		return isF12;
 	}
 
-	public static boolean isInsert() {  
+	public boolean isInsert() {
 		return isInsert;
 	}
 
-	public static boolean isHome() {    
+	public boolean isHome() {
 		return isHome;
 	}
 
-	public static boolean isPageUp() {   
+	public boolean isPageUp() {
 		return isPageUp;
 	}
 
-	public static boolean isDelete() {    
+	public boolean isDelete() {
 		return isDelete;
 	}
 
-	public static boolean isEnd() {       
+	public boolean isEnd() {
 		return isEnd;
 	}
 
-	public static boolean isPageDown() { 
+	public boolean isPageDown() {
 		return isPageDown;
 	}
 
-	public static boolean is1() {         
+	public boolean is1() {
 		return is1;
 	}
 
-	public static boolean is2() {         
+	public boolean is2() {
 		return is2;
 	}
 
-	public static boolean is3() {         
+	public boolean is3() {
 		return is3;
 	}
 
-	public static boolean is4() {         
+	public boolean is4() {
 		return is4;
 	}
 
-	public static boolean is5() {         
+	public boolean is5() {
 		return is5;
 	}
 
-	public static boolean is6() {         
+	public boolean is6() {
 		return is6;
 	}
 
-	public static boolean is7() {         
+	public boolean is7() {
 		return is7;
 	}
 
-	public static boolean is8() {         
+	public boolean is8() {
 		return is8;
 	}
 
-	public static boolean is9() {         
+	public boolean is9() {
 		return is9;
 	}
 
-	public static boolean is0() {         
+	public boolean is0() {
 		return is0;
 	}
 
-	public static boolean isMinus() {     
+	public boolean isMinus() {
 		return isMinus;
 	}
 
-	public static boolean isEquals() {    
+	public boolean isEquals() {
 		return isEquals;
 	}
 
-	public static boolean isBackSpace() {
+	public boolean isBackSpace() {
 		return isBackSpace;
 	}
 
-	public static boolean isTab() {       
+	public boolean isTab() {
 		return isTab;
 	}
 
-	public static boolean isQ() {         
+	public boolean isQ() {
 		return isQ;
 	}
 
-	public static boolean isW() {         
+	public boolean isW() {
 		return isW;
 	}
 
-	public static boolean isE() {         
+	public boolean isE() {
 		return isE;
 	}
 
-	public static boolean isR() {         
+	public boolean isR() {
 		return isR;
 	}
 
-	public static boolean isT() {         
+	public boolean isT() {
 		return isT;
 	}
 
-	public static boolean isY() {         
+	public boolean isY() {
 		return isY;
 	}
 
-	public static boolean isU() {         
+	public boolean isU() {
 		return isU;
 	}
 
-	public static boolean isI() {         
+	public boolean isI() {
 		return isI;
 	}
 
-	public static boolean isO() {         
+	public boolean isO() {
 		return isO;
 	}
 
-	public static boolean isP() {         
+	public boolean isP() {
 		return isP;
 	}
 
-	public static boolean isOpenBracket() {
+	public boolean isOpenBracket() {
 		return isOpenBracket;
 	}
 
-	public static boolean isCloseBracket() {
+	public boolean isCloseBracket() {
 		return isCloseBracket;
 	}
 
-	public static boolean isBackSlash() {
+	public boolean isBackSlash() {
 		return isBackSlash;
 	}
 
-	public static boolean isCapsLock() { 
+	public boolean isCapsLock() {
 		return isCapsLock;
 	}
 
-	public static boolean isA() {         
+	public boolean isA() {
 		return isA;
 	}
 
-	public static boolean isS() {         
+	public boolean isS() {
 		return isS;
 	}
 
-	public static boolean isD() {         
+	public boolean isD() {
 		return isD;
 	}
 
-	public static boolean isF() {         
+	public boolean isF() {
 		return isF;
 	}
 
-	public static boolean isG() {         
+	public boolean isG() {
 		return isG;
 	}
 
-	public static boolean isH() {         
+	public boolean isH() {
 		return isH;
 	}
 
-	public static boolean isJ() {         
+	public boolean isJ() {
 		return isJ;
 	}
 
-	public static boolean isK() {         
+	public boolean isK() {
 		return isK;
 	}
 
-	public static boolean isL() {        
+	public boolean isL() {
 		return isL;
 	}
 
-	public static boolean isSemiColon() { 
+	public boolean isSemiColon() {
 		return isSemiColon;
 	}
 
-	public static boolean isQuote() {     
+	public boolean isQuote() {
 		return isQuote;
 	}
 
-	public static boolean isEnter() {     
+	public boolean isEnter() {
 		return isEnter;
 	}
 
-	public static boolean isShift() {     
+	public boolean isShift() {
 		return isShift;
 	}
 
-	public static boolean isZ() {         
+	public boolean isZ() {
 		return isZ;
 	}
 
-	public static boolean isX() {         
+	public boolean isX() {
 		return isX;
 	}
 
-	public static boolean isC() {         
+	public boolean isC() {
 		return isC;
 	}
 
-	public static boolean isV() {         
+	public boolean isV() {
 		return isV;
 	}
 
-	public static boolean isB() {         
+	public boolean isB() {
 		return isB;
 	}
 
-	public static boolean isN() {         
+	public boolean isN() {
 		return isN;
 	}
 
-	public static boolean isM() {         
+	public boolean isM() {
 		return isM;
 	}
 
-	public static boolean isComma() {     
+	public boolean isComma() {
 		return isComma;
 	}
 
-	public static boolean isPeriod() {    
+	public boolean isPeriod() {
 		return isPeriod;
 	}
 
-	public static boolean isControl() {   
+
+	public boolean isControl() {
 		return isControl;
 	}
 
-	public static boolean isWindows() {   
+	public boolean isWindows() {
 		return isWindows;
 	}
 
-	public static boolean isAlt() {       
+	public boolean isAlt() {
 		return isAlt;
 	}
 
-	public static boolean isSpace() {     
+	public boolean isSpace() {
 		return isSpace;
 	}
 
-	public static boolean isLeft() {      
+	public boolean isLeft() {
 		return isLeft;
 	}
 
-	public static boolean isUp() {        
+	public boolean isUp() {
 		return isUp;
 	}
 
-	public static boolean isDown() {      
+	public boolean isDown() {
 		return isDown;
 	}
 
-	public static boolean isRight() {     	
+	public boolean isRight() {
 		return isRight;
 	}
 	

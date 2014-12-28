@@ -18,12 +18,28 @@ import java.util.List;
  */
 public class CGameFrame extends JFrame implements IDrawAble, Serializable, MouseListener, MouseMotionListener {
 	private Set<IIDDrawAble> objects = new TreeSet<IIDDrawAble>();
-	private Set<CView> views = new TreeSet<CView>();
-	private List<IUpdateAble> updaters = new ArrayList<IUpdateAble>(5);
+	private Set<CView> views = new TreeSet<>();
+	private List<IUpdateAble> updaters = new ArrayList<>(5);
 	private int depth = 1000;
 	private CThread updateThread;
 	private Object imageObject = new Object(), updateObject = new Object();
+	private CKeys keys;
+	private CKeySingleListener keySingleListener;
+	private CMouse mouse;
+	private boolean overlayEnabled = false;
+	private boolean allowConsoleSpam = true;
 	//private BufferStrategy strategy;
+	private boolean isF7 = false;
+	private boolean showData = false;
+	private boolean isF8 = false;
+	private boolean showBorders = false;
+	private long lastTime = System.nanoTime();
+	private double amountOfTicks = 60, ns = 1000000000 / amountOfTicks, delta = 0;
+	private long timer = System.currentTimeMillis();
+	private int frames = 0;
+	private int bufferWidth, bufferHeight;
+	private Image bufferImage;
+	private Graphics bufferGraphics;
 
 	/**
 	 * Makes a new CGameFrame.
@@ -31,12 +47,20 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	 */
 	public CGameFrame() {
 		super();
-		addKeyListener(new CKeys());
-		CMouse.addToFrame(this);
+		keys = new CKeys();
+		addKeyListener(keys);
+		keySingleListener = new CKeySingleListener();
+		addKeyListener(keySingleListener);
+		mouse = new CMouse();
+		mouse.addToFrame(this);
 		setupDraw();
 		//createBufferStrategy(2);
 		//strategy = getBufferStrategy();
 		//this.setIgnoreRepaint(true);
+	}
+
+	public CKeys getKeys() {
+		return keys;
 	}
 
 	public void setFullscreen() {
@@ -173,77 +197,83 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		updateThread.start();
 	}
 
+	private void updateAll() {
+		//Overlays
+		updateOverlayToggle();
+
+		//Ticks
+		tickBefore();
+		tick();
+		tickAfter();
+	}
+
+	/**
+	 * Where the update loop is initialized.
+	 * @return this
+	 */
 	public CGameFrame setupDraw() {
-		updateThread = new CThread(new Runnable() {
-			public void run() {
-				synchronized(updateObject) {
-					long start = Calendar.getInstance().getTimeInMillis();
+		updateThread = new CThread(() -> {
+			synchronized(updateObject) {
+				long now = System.nanoTime();
+				delta += (now - lastTime) / ns;
+				lastTime = now;
+				//System.out.println("Delta:" + delta);
+				while(delta >= 1) {
 					updateAll();
-					repaint();
-					long dif = Calendar.getInstance().getTimeInMillis() - start;
-					long sl = 15 - dif;
-					try {
-						Thread.sleep(sl);
-					} catch (RuntimeException e) {
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					delta--;
 				}
+				repaint();
+				frames++;
+				if(System.currentTimeMillis() - timer > 1000){
+					timer += 1000;
+					if(allowConsoleSpam)
+						System.out.println("FPS: " + frames);
+					frames = 0;
+				}
+                /*long start = Calendar.getInstance().getTimeInMillis();
+                updateAll();
+                repaint();
+                long dif = Calendar.getInstance().getTimeInMillis() - start;
+                long sl = 15 - dif;
+                try {
+                    Thread.sleep(sl);
+                } catch (RuntimeException e) {
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
 			}
 		}, false);
 		return this;
 	}
 
-	private void updateAll() {
-		update();
-		for(IUpdateAble o : updaters) {
-			o.updateBefore();
-		}
-		for(IIDDrawAble o : objects)  {
-			Class<?>[] in = o.getClass().getInterfaces();
-			for(Class<?> i : in) {
-				if(i.getName().equals("IUpdateAble")) {
-					((IUpdateAble) o).update();
-				}
-			}
-		}
-		for(IUpdateAble o : updaters) {
-			o.update();
-		}
-	}
+	private void updateOverlayToggle() {
+		if(overlayEnabled) {
+			while (true) {
+				if (keys.isF8()) {
+					if (isF8) {
 
-	private boolean isF7 = false;
-	private boolean showData = false;
-	private boolean isF8 = false;
-	private boolean showBorders = false;
-
-	private void update() {
-		while(true) {
-			if(CKeys.isF8()) {
-				if(isF8) {
-
+					} else {
+						showBorders = !showBorders;
+						isF8 = true;
+					}
+					break;
 				}
-				else {
-					showBorders = !showBorders;
-					isF8 = true;
-				}
+				isF8 = false;
 				break;
 			}
-			isF8 = false;
-			break;
-		}
-		while(true) {
-			if(CKeys.isF7()) {
-				if(isF7) {
+			while (true) {
+				if (keys.isF7()) {
+					if (isF7) {
 
-				} else {
-					showData = !showData;
-					isF7 = true;
+					} else {
+						showData = !showData;
+						isF7 = true;
+					}
+					break;
 				}
+				isF7 = false;
 				break;
 			}
-			isF7 = false;
-			break;
 		}
 	}
 
@@ -277,9 +307,6 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 	 */
 
-	private int bufferWidth, bufferHeight;
-	private Image bufferImage;
-	private Graphics bufferGraphics;
 	private void render(Graphics g) {
 		//If wrong reset
 		if(bufferWidth != getWidth() || bufferHeight != getHeight() || bufferImage == null || bufferGraphics == null) {
@@ -294,7 +321,6 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 			//Note: sorting is done when objects are added.
 			//Draw Before Views
 			synchronized(imageObject) {
-				drawBefore(bufferGraphics);
 				//Draw Views
 				drawViews(bufferGraphics);
 				//Draw After Views
@@ -327,20 +353,12 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		paint(g);
 	}
 
-	/**
-	 * Draw before the views
-	 * @param g - the Graphics to draw onto
-	 * @return this
-	 */
-	protected CGameFrame drawBefore(Graphics g) {
-		return this;
-	}
-
 	protected CGameFrame drawViews(Graphics g) {
 		//Collections.sort(views, new CDepthSorter());
-		for(CView v : views) {
-			v.draw(g);
-		}
+		views.forEach(v -> {
+			if(v.needDraw())
+				v.draw(g);
+		});
 		return this;
 	}
 
@@ -367,8 +385,41 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		return this;
 	}
 
+	public IDrawAble tickBefore() {
+		for(IDrawAble o : objects) {
+			if(o.needUpdate())
+				o.tickBefore();
+		}
+		for(IUpdateAble o : updaters)
+			o.updateBefore();
+		return this;
+	}
+
+	public IDrawAble tick() {
+		for(IDrawAble o : objects)
+			if(o.needUpdate())
+				o.tick();
+		for(IUpdateAble o : updaters)
+			o.update();
+		return this;
+	}
+
+	public IDrawAble tickAfter() {
+		for(IDrawAble o : objects)
+			if(o.needUpdate())
+				o.tickAfter();
+		for(IUpdateAble o : updaters)
+			o.updateAfter();
+		return this;
+	}
+
 	public boolean isShowBorders() {
 		return showBorders;
+	}
+
+	public CGameFrame setShowBorders(boolean showBorders) {
+		this.showBorders = showBorders;
+		return this;
 	}
 
 	public CGameFrame setDepth(int depth) {
@@ -420,15 +471,47 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		return true;
 	}
 
+	public boolean needDraw() {
+		return true;
+	}
+
 	public CThread getUpdateThread() {
 		return updateThread;
 	}
 
-	public Object getImageObject() {
-		return imageObject;
-	}
-
 	public int compareTo(IDrawAble o) {
 		return 0;
+	}
+
+	public boolean isOverlayEnabled() {
+		return overlayEnabled;
+	}
+
+	public void setOverlayEnabled(boolean overlayEnabled) {
+		this.overlayEnabled = overlayEnabled;
+	}
+
+	public boolean isAllowConsoleSpam() {
+		return allowConsoleSpam;
+	}
+
+	public void setAllowConsoleSpam(boolean allowConsoleSpam) {
+		this.allowConsoleSpam = allowConsoleSpam;
+	}
+
+	public double getTicksPerSecond() {
+		return amountOfTicks;
+	}
+
+	public void setTicksPerSecond(double amountOfTicks) {
+		this.amountOfTicks = amountOfTicks;
+	}
+
+	public CKeySingleListener getKeySingleListener() {
+		return keySingleListener;
+	}
+
+	public void setKeySingleListener(CKeySingleListener keySingleListener) {
+		this.keySingleListener = keySingleListener;
 	}
 }

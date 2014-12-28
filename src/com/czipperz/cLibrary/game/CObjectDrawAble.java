@@ -4,6 +4,7 @@ import com.czipperz.cLibrary.imaging.CImage;
 
 import java.awt.*;
 
+//TODO: finish this comment
 /**
  * A class that extends CObject.  Makes the depth, 
  * @author Chris Gregory
@@ -13,7 +14,6 @@ import java.awt.*;
  */
 public class CObjectDrawAble extends CObject {
 	private int depth;
-	private CGameFrame displayOn;
 	private CImage image;
 	
 	/**
@@ -26,7 +26,7 @@ public class CObjectDrawAble extends CObject {
 	 * @see for a constructor with default of 0 depth: {@link #CObjectDrawAble(com.czipperz.cLibrary.game.CGameFrame, CImage)}
 	 */
 	public CObjectDrawAble(CGameFrame displayOn, int depth, CImage image) {
-		this.displayOn = displayOn;
+		super(displayOn);
 		this.depth = depth;
 		this.image = image;
 		displayOn.addObject(this);
@@ -36,7 +36,7 @@ public class CObjectDrawAble extends CObject {
 	 * Calls the main constructer with the depth set as 0.
 	 * @param displayOn
 	 * @param image
-	 * @see main constructor: {@link #CObjectDrawAble(com.czipperz.cLibrary.game.CGameFrame, int, CImage)}
+	 * @see {@link #CObjectDrawAble(CGameFrame, int, CImage)}
 	 */
 	public CObjectDrawAble(CGameFrame displayOn, CImage image) {
 		this(displayOn, 0, image);
@@ -54,13 +54,6 @@ public class CObjectDrawAble extends CObject {
 	public CObjectDrawAble setDepth(int depth) {
 		this.depth = depth;
 		return this;
-	}
-	
-	/**
-	 * @return the CGameFrame this instance was initialized with.
-	 */
-	public CGameFrame getDisplayOn() {
-		return displayOn;
 	}
 
 	/**
@@ -88,10 +81,14 @@ public class CObjectDrawAble extends CObject {
 		return this;
 	}
 
+	public IDrawAble tick() {
+		return this;
+	}
+
 	public Rectangle getBounds() {
 		return image.getBounds();
 	}
-	
+
 	public Rectangle getLocScreen() {
 		return image.getLocScreen();
 	}

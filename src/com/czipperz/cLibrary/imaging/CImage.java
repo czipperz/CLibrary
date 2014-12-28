@@ -17,7 +17,7 @@ public abstract class CImage implements Serializable {
 	public Rectangle getBounds() {
 		return locScreen;
 	}
-	
+
 	public Rectangle getLocScreen() {
 		return locScreen;
 	}
@@ -28,7 +28,7 @@ public abstract class CImage implements Serializable {
 	}
 	
 	/**
-	 * Make sure to use the getLocScreen() or getBounds() locations.
+	 * Make sure to use the getBounds() locations.
 	 * @param g
 	 * @return this instance of CImage.
 	 */

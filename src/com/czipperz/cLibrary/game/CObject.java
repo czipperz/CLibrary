@@ -11,14 +11,27 @@ import java.awt.*;
  */
 public abstract class CObject extends CIDAble implements IIDDrawAble {
 	private boolean active = true;
+	private CGameFrame displayOn;
+
+	public CObject(CGameFrame displayOn) {
+		this.displayOn = displayOn;
+		this.displayOn.addObject(this);
+	}
+
+	/**
+	 * @return the CGameFrame this instance was initialized with.
+	 */
+	public CGameFrame getDisplayOn() {
+		return displayOn;
+	}
 	
 	/**
 	 * Compares the object to another object.  (compares the IDs)
 	 * @see com.czipperz.cLibrary.game.CID
 	 * @param other - the instance to compare this object to.
 	 */
-	public int compareTo(CObject other) {
-		return this.getInstanceID().compareTo(other.getInstanceID());
+	public int compareTo(CID other) {
+		return this.getInstanceID().compareTo(other);
 	}
 	
 	/**
@@ -46,11 +59,19 @@ public abstract class CObject extends CIDAble implements IIDDrawAble {
 		this.active = active;
 		return this;
 	}
-	
-	public boolean needUpdate() {
+
+	public boolean isActive() {
 		return active;
 	}
-	
+
+	public boolean needUpdate() {
+		return isActive();
+	}
+
+	public boolean needDraw() {
+		return isActive();
+	}
+
 	/**
 	 * @return the "bounds" of the object on the screen. (assuming that it is being displayed on a CView with size set to the maximum)
 	 */
