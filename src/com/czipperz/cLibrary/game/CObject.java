@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * An object that allows for IDing and Drawing, but doesn't supply drawing methods.
  * @author Chris Gregory
- * @see Comparable<T>
+ * @see Comparable
  * @see IIDDrawAble
  * @see CObjectDrawAble
  */
