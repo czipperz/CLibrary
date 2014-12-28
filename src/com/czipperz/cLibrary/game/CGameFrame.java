@@ -213,7 +213,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	 */
 	public CGameFrame setupDraw() {
 		updateThread = new CThread(() -> {
-            synchronized(updateObject) {
+			synchronized(updateObject) {
 				long now = System.nanoTime();
 				delta += (now - lastTime) / ns;
 				lastTime = now;
@@ -241,8 +241,8 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }*/
-            }
-        }, false);
+			}
+		}, false);
 		return this;
 	}
 
@@ -386,8 +386,10 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	public IDrawAble tickBefore() {
-		for(IDrawAble o : objects)
-			o.tickBefore();
+		for(IDrawAble o : objects) {
+			if(o.needUpdate())
+				o.tickBefore();
+		}
 		for(IUpdateAble o : updaters)
 			o.updateBefore();
 		return this;
@@ -395,7 +397,8 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 
 	public IDrawAble tick() {
 		for(IDrawAble o : objects)
-			o.tick();
+			if(o.needUpdate())
+				o.tick();
 		for(IUpdateAble o : updaters)
 			o.update();
 		return this;
@@ -403,7 +406,8 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 
 	public IDrawAble tickAfter() {
 		for(IDrawAble o : objects)
-			o.tickAfter();
+			if(o.needUpdate())
+				o.tickAfter();
 		for(IUpdateAble o : updaters)
 			o.updateAfter();
 		return this;
