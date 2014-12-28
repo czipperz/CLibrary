@@ -59,13 +59,17 @@ public abstract class CObject extends CIDAble implements IIDDrawAble {
 		this.active = active;
 		return this;
 	}
-	
-	public boolean needUpdate() {
+
+	public boolean isActive() {
 		return active;
 	}
 
+	public boolean needUpdate() {
+		return isActive();
+	}
+
 	public boolean needDraw() {
-		return active;
+		return isActive();
 	}
 
 	/**
