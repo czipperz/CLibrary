@@ -1,6 +1,8 @@
 package com.czipperz.cLibrary.game;
 
+import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException;
 import com.czipperz.cLibrary.imaging.CGraphics;
+import com.czipperz.cLibrary.location.CRect;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -8,18 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAble {
-	private CGameFrame displayOn;
-	private boolean active = true;
+public class CView extends CObject implements Serializable, IDrawAble {
 	private int depth = 0;
 
-	private boolean drawEverything = true;
+	private boolean drawAllObjects = true;
 	private List<IDrawAble> toDraw = null;
 
+	//Draw on the CGameFrame
 	private boolean drawFullWindow = false;
 	private Rectangle drawRect = null;
 
-	private int bufferWidth, bufferHeight;
+	//Draw on the Buffer
+	private Dimension bufferDimension;
 	private Image bufferImage;
 	private Graphics bufferGraphics;
 
@@ -30,11 +32,11 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	 * @param depth
 	 */
 	public CView(CGameFrame displayOn, Rectangle drawRect, int depth) {
-		this.displayOn = displayOn;
-		this.displayOn.addView(this);
-		this.drawEverything = true;
+		super(displayOn);
+		this.drawAllObjects = true;
 		this.drawRect = drawRect;
 		this.depth = depth;
+		this.bufferDimension = new Dimension();
 	}
 
 	/**
@@ -75,25 +77,20 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 
 	private boolean preparePaint() {
 		//If wrong reset
-		if(bufferWidth != displayOn.getWidth() || bufferHeight != displayOn.getHeight() || bufferImage == null || bufferGraphics == null) {
+		if(bufferDimension.width != getDisplayOn().getWidth() || bufferDimension.height != getDisplayOn().getHeight() || bufferImage == null || bufferGraphics == null) {
 			resetBuffer();
 		}
 		if(bufferGraphics != null) {
 			//Clear
-			bufferGraphics.clearRect(0, 0, bufferWidth, bufferHeight);
+			bufferGraphics.clearRect(0,0, bufferDimension.width, bufferDimension.height);
 			return true;
 		}
 		return false;
 	}
 
 	private synchronized void resetBuffer() {
-		if(drawFullWindow) {
-			bufferWidth = displayOn.getWidth();
-			bufferHeight = displayOn.getHeight();
-		} else {
-			bufferWidth = drawRect.width;
-			bufferHeight = drawRect.height;
-		}
+		bufferDimension.width = getDisplayOn().getWidth();
+		bufferDimension.height = getDisplayOn().getHeight();
 
 		if(bufferGraphics != null) {
 			bufferGraphics.dispose();
@@ -105,53 +102,47 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 		}
 		System.gc();
 
-		bufferImage = displayOn.createImage(bufferWidth, bufferHeight);
+		bufferImage = getDisplayOn().createImage(bufferDimension.width, bufferDimension.height);
 		bufferGraphics = bufferImage.getGraphics();
 	}
 
 	private CView paintRuntime(Graphics g) {
 		//Draw
-		nowDraw(bufferGraphics);
+		if(isActive()) {
+			//Draws everything on the supplied CGameFrame
+			if (drawAllObjects) {
+				Set<IIDDrawAble> x = getDisplayOn().getObjects();
+				for (IDrawAble a : x) {
+					if (a.needDraw())
+						a.draw(g);
+					if (getDisplayOn().isShowBorders()) {
+						if (a instanceof CObject)
+							g.setColor(((CObject) a).getOutlineColor());
+						else
+							g.setColor(Color.BLACK);
+						g.drawRect(a.getBounds().x - 1, a.getBounds().y - 1, a.getBounds().width + 1, a.getBounds().height + 1);
+					}
+				}
+			}
+			//Draws everything specifically given to it to run.
+			else if (toDraw != null)
+				for (IDrawAble i : this.toDraw) {
+					if (i.needDraw())
+						i.draw(g);
+					if (getDisplayOn().isShowBorders()) {
+						if (i instanceof CObject)
+							g.setColor(((CObject) i).getOutlineColor());
+						else
+							g.setColor(Color.BLACK);
+						g.drawRect(i.getBounds().x - 1, i.getBounds().y - 1, i.getBounds().width + 1, i.getBounds().height + 1);
+					}
+				}
+			else
+				throw new CEnumTypeNotListedException();
+		}
 		//Display
-		new CGraphics(g).drawImage(bufferImage, drawRect, new Rectangle(bufferWidth, bufferHeight), displayOn);
+		new CGraphics(g).drawImage(bufferImage, drawRect != null ? drawRect : getDisplayOn().getBounds(), new CRect(0,0,bufferDimension), getDisplayOn());
 		return this;
-	}
-
-	private CView nowDraw(Graphics g) {
-		if(!active)
-			return this;
-		//Draws everything on the supplied CGameFrame
-		if(drawEverything) {
-			Set<IIDDrawAble> x = displayOn.getObjects();
-			for(IDrawAble a : x) {
-				if(a.needDraw())
-					a.draw(g);
-				if(displayOn.isShowBorders()) {
-					if(a instanceof CObject)
-						g.setColor(((CObject) a).getOutlineColor());
-					else
-						g.setColor(Color.BLACK);
-					g.drawRect(a.getBounds().x - 1, a.getBounds().y - 1, a.getBounds().width + 1, a.getBounds().height + 1);
-				}
-			}
-			return this;
-		}
-		//Draws everything specifically given to it to run.
-		if(toDraw != null) {
-			for(IDrawAble i : this.toDraw) {
-				if(i.needDraw())
-					i.draw(g);
-				if(displayOn.isShowBorders()) {
-					if(i instanceof CObject)
-						g.setColor(((CObject) i).getOutlineColor());
-					else
-						g.setColor(Color.BLACK);
-					g.drawRect(i.getBounds().x - 1, i.getBounds().y - 1, i.getBounds().width + 1, i.getBounds().height + 1);
-				}
-			}
-			return this;
-		}
-		throw new RuntimeException("Can't currently draw");
 	}
 
 	public int getDepth() {
@@ -167,19 +158,25 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 		return this;
 	}
 
-	public boolean isDrawEverything() {
-		return drawEverything;
+	/**
+	 * @return if all the objects registered to the CGameFrame will be drawn by this CView object.
+	 */
+	public boolean isDrawAllObjects() {
+		return drawAllObjects;
 	}
 
 	/**
-	 * Causes toDraw to be null and drawEverything to be set to true.
+	 * Causes toDraw to be null and drawAllObjects to be set to true.
 	 */
 	public CView setDrawEverything() {
-		this.drawEverything = true;
+		this.drawAllObjects = true;
 		this.toDraw = null;
 		return this;
 	}
 
+	/**
+	 * @return the custom objects toDraw. IF THE
+	 */
 	public List<? extends IDrawAble> getToDraw() {
 		return toDraw;
 	}
@@ -212,13 +209,14 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 	 */
 	public CView setToDraw(ArrayList<IDrawAble> toDraw) {
 		this.toDraw = toDraw;
-		this.drawEverything = false;
+		this.drawAllObjects = false;
 		return this;
 	}
 
 	/**
-	 * Overrides the current objects to be drawn and creates an ArrayList of this single item.
+	 * Overrides the current objects to be drawn by creates an ArrayList of this single item.
 	 * @param toDraw
+	 * @see #setToDraw(ArrayList<IDrawAble>)
 	 */
 	public CView setToDraw(IDrawAble toDraw) {
 		ArrayList<IDrawAble> to = new ArrayList<>();
@@ -226,6 +224,9 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 		return this.setToDraw(to);
 	}
 
+	/**
+	 * @return the rectangle it draws on the CGameFrame
+	 */
 	public Rectangle getDrawRect() {
 		return drawRect;
 	}
@@ -239,16 +240,13 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 		return this;
 	}
 
-	public CView setActive(boolean active) {
-		this.active = active;
-		return this;
+	public CObject setNeedUpdate(boolean active) {
+		return setActive(active);
 	}
 
-	public CView setNeedUpdate(boolean active) {
-		this.active = active;
-		return this;
-	}
-
+	/**
+	 * @see #getDrawRect
+	 */
 	public Rectangle getBounds() {
 		return getDrawRect();
 	}
@@ -257,8 +255,8 @@ public class CView extends CIDAble implements IIDDrawAble, Serializable, IDrawAb
 		return false;
 	}
 
-	public boolean needDraw() {
-		return active;
+	public Rectangle getLocScreen() {
+		return getDrawRect();
 	}
 
 	public int compareTo(IDrawAble o) {
