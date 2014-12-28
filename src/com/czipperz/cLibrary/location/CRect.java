@@ -18,6 +18,14 @@ public class CRect extends Rectangle implements Serializable {
 		super((int) point.getX(), (int) point.getY(), (int) size.getWidth(), (int) size.getHeight());
 	}
 
+	public CRect(double x, double y, Dimension2D size) {
+		this(x, y, size.getWidth(), size.getHeight());
+	}
+
+	public CRect(Point2D point, double width, double height) {
+		this(point.getX(), point.getY(), width, height);
+	}
+
 	public CRect(Dimension2D size) {
 		this(size.getWidth(), size.getHeight());
 	}
