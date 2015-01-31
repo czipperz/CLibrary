@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class CView extends CObject implements Serializable, IDrawAble {
+public class CView extends CObject implements Serializable, CDrawAble {
 	private int depth = 0;
 
 	private boolean drawAllObjects = true;
-	private List<IDrawAble> toDraw = null;
+	private List<CDrawAble> toDraw = null;
 
 	//Draw on the CGameFrame
 	private boolean drawFullWindow = false;
@@ -65,13 +65,13 @@ public class CView extends CObject implements Serializable, IDrawAble {
 		this(displayOn, 0);
 	}
 
-	public IDrawAble draw(Graphics g) {
+	public CDrawAble draw(Graphics g) {
 		while(!preparePaint()) {}
 		paintRuntime(g);
 		return this;
 	}
 
-	public IDrawAble tick() {
+	public CDrawAble tick() {
 		return this;
 	}
 
@@ -111,8 +111,8 @@ public class CView extends CObject implements Serializable, IDrawAble {
 		if(isActive()) {
 			//Draws everything on the supplied CGameFrame
 			if (drawAllObjects) {
-				Set<IIDDrawAble> x = getDisplayOn().getObjects();
-				for (IDrawAble a : x) {
+				Set<CIDDrawAble> x = getDisplayOn().getObjects();
+				for (CDrawAble a : x) {
 					if (a.needDraw())
 						a.draw(g);
 					if (getDisplayOn().isShowBorders()) {
@@ -126,7 +126,7 @@ public class CView extends CObject implements Serializable, IDrawAble {
 			}
 			//Draws everything specifically given to it to run.
 			else if (toDraw != null)
-				for (IDrawAble i : this.toDraw) {
+				for (CDrawAble i : this.toDraw) {
 					if (i.needDraw())
 						i.draw(g);
 					if (getDisplayOn().isShowBorders()) {
@@ -177,7 +177,7 @@ public class CView extends CObject implements Serializable, IDrawAble {
 	/**
 	 * @return the custom objects toDraw. IF THE
 	 */
-	public List<? extends IDrawAble> getToDraw() {
+	public List<? extends CDrawAble> getToDraw() {
 		return toDraw;
 	}
 
@@ -185,7 +185,7 @@ public class CView extends CObject implements Serializable, IDrawAble {
 	 * Adds the item to the drawing que
 	 * @param toDraw
 	 */
-	public CView addToDraw(IDrawAble toDraw) {
+	public CView addToDraw(CDrawAble toDraw) {
 		if(this.toDraw == null)
 			return setToDraw(toDraw);
 		this.toDraw.add(toDraw);
@@ -196,7 +196,7 @@ public class CView extends CObject implements Serializable, IDrawAble {
 	 * Adds the following items to the drawing que
 	 * @param toDraw
 	 */
-	public CView addToDraw(ArrayList<IDrawAble> toDraw) {
+	public CView addToDraw(ArrayList<CDrawAble> toDraw) {
 		if(this.toDraw == null)
 			return setToDraw(toDraw);
 		toDraw.stream().forEachOrdered(i -> toDraw.add(i));
@@ -207,7 +207,7 @@ public class CView extends CObject implements Serializable, IDrawAble {
 	 * Overrides the current objects to be drawn.
 	 * @param toDraw
 	 */
-	public CView setToDraw(ArrayList<IDrawAble> toDraw) {
+	public CView setToDraw(ArrayList<CDrawAble> toDraw) {
 		this.toDraw = toDraw;
 		this.drawAllObjects = false;
 		return this;
@@ -216,10 +216,10 @@ public class CView extends CObject implements Serializable, IDrawAble {
 	/**
 	 * Overrides the current objects to be drawn by creates an ArrayList of this single item.
 	 * @param toDraw
-	 * @see #setToDraw(ArrayList<IDrawAble>)
+	 * @see #setToDraw(ArrayList< CDrawAble >)
 	 */
-	public CView setToDraw(IDrawAble toDraw) {
-		ArrayList<IDrawAble> to = new ArrayList<>();
+	public CView setToDraw(CDrawAble toDraw) {
+		ArrayList<CDrawAble> to = new ArrayList<>();
 		to.add(toDraw);
 		return this.setToDraw(to);
 	}
@@ -259,7 +259,7 @@ public class CView extends CObject implements Serializable, IDrawAble {
 		return getDrawRect();
 	}
 
-	public int compareTo(IDrawAble o) {
+	public int compareTo(CDrawAble o) {
 		return new CDepthSorter().compare(this, o);
 	}
 }

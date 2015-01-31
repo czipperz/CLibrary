@@ -7,13 +7,13 @@ import java.awt.*;
  * @author Chris Gregory
  * @see com.czipperz.cLibrary.game.CGameFrame
  */
-public interface IDrawAble extends Comparable<IDrawAble> {
+public interface CDrawAble extends Comparable<CDrawAble> {
 	/**
 	 * Called by the CGameFrame.  Put your drawing code here.
 	 * @param g - the Graphics to drawn on.
 	 * @return this
 	 */
-	public IDrawAble draw(Graphics g);
+	public CDrawAble draw(Graphics g);
 
 
 
@@ -21,19 +21,19 @@ public interface IDrawAble extends Comparable<IDrawAble> {
 	 * Where you update the object so it is ready for the next draw events. Called before the other two ticks.
 	 * @return this
 	 */
-	public default IDrawAble tickBefore() {
+	public default CDrawAble tickBefore() {
 		return this;
 	}
 	/**
 	 * Where you update the object so it is ready for the next draw events. Called inbetween the other two ticks. Usually where most code goes.
 	 * @return this
 	 */
-	public IDrawAble tick();
+	public CDrawAble tick();
 	/**
 	 * Where you update the object so it is ready for the next draw events. Called after the other two ticks.
 	 * @return this
 	 */
-	public default IDrawAble tickAfter() {
+	public default CDrawAble tickAfter() {
 		return this;
 	}
 

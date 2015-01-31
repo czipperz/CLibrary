@@ -4,7 +4,7 @@ import com.czipperz.cLibrary.imaging.CImage;
 
 import java.awt.*;
 
-public abstract class CEntitySubtype extends CObjectDrawAble {
+public abstract class CEntitySubtype extends CObjectDrawWrapper {
 	public CEntitySubtype(CGameFrame displayOn, CImage image) {
 		super(displayOn, image);
 	}

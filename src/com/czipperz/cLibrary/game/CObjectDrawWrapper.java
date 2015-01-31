@@ -9,23 +9,23 @@ import java.awt.*;
  * A class that extends CObject.  Makes the depth, 
  * @author Chris Gregory
  * @see com.czipperz.cLibrary.game.CObject
- * @see {@link #CObjectDrawAble(com.czipperz.cLibrary.game.CGameFrame, int, CImage)}
- * @see {@link #CObjectDrawAble(com.czipperz.cLibrary.game.CGameFrame, CImage)}
+ * @see {@link #CObjectDrawWrapper(com.czipperz.cLibrary.game.CGameFrame, int, CImage)}
+ * @see {@link #CObjectDrawWrapper(com.czipperz.cLibrary.game.CGameFrame, CImage)}
  */
-public class CObjectDrawAble extends CObject {
+public class CObjectDrawWrapper extends CObject {
 	private int depth;
 	private CImage image;
 	
 	/**
-	 * Initializes the CObjectDrawAble.  The CGameFrame is set and is accessible by the object and others for later use.  This also adds this instance to the CGameFrame. <strong>NOTE: THIS DOES NOT MAKE THIS INSTANCE DRAW BY DEFAULT.  THERE MUST BE A CALL MADE TO ADD THIS TO ONE OR MORE <code>CView</code> (s).</strong><br />
+	 * Initializes the CObjectDrawWrapper.  The CGameFrame is set and is accessible by the object and others for later use.  This also adds this instance to the CGameFrame. <strong>NOTE: THIS DOES NOT MAKE THIS INSTANCE DRAW BY DEFAULT.  THERE MUST BE A CALL MADE TO ADD THIS TO ONE OR MORE <code>CView</code> (s).</strong><br />
 	 * The depth dictates how deep the Object is displayed on the screen (negative infinity is on top). <br />
 	 * The image is used to display the Object.  Its draw method will be called every time this Object is to be displayed on a CView.
 	 * @param displayOn
 	 * @param depth
 	 * @param image
-	 * @see for a constructor with default of 0 depth: {@link #CObjectDrawAble(com.czipperz.cLibrary.game.CGameFrame, CImage)}
+	 * @see for a constructor with default of 0 depth: {@link #CObjectDrawWrapper(com.czipperz.cLibrary.game.CGameFrame, CImage)}
 	 */
-	public CObjectDrawAble(CGameFrame displayOn, int depth, CImage image) {
+	public CObjectDrawWrapper(CGameFrame displayOn, int depth, CImage image) {
 		super(displayOn);
 		this.depth = depth;
 		this.image = image;
@@ -36,9 +36,9 @@ public class CObjectDrawAble extends CObject {
 	 * Calls the main constructer with the depth set as 0.
 	 * @param displayOn
 	 * @param image
-	 * @see {@link #CObjectDrawAble(CGameFrame, int, CImage)}
+	 * @see {@link #CObjectDrawWrapper(CGameFrame, int, CImage)}
 	 */
-	public CObjectDrawAble(CGameFrame displayOn, CImage image) {
+	public CObjectDrawWrapper(CGameFrame displayOn, CImage image) {
 		this(displayOn, 0, image);
 	}
 	
@@ -51,7 +51,7 @@ public class CObjectDrawAble extends CObject {
 	 * @param depth
 	 * @return this instance.
 	 */
-	public CObjectDrawAble setDepth(int depth) {
+	public CObjectDrawWrapper setDepth(int depth) {
 		this.depth = depth;
 		return this;
 	}
@@ -68,7 +68,7 @@ public class CObjectDrawAble extends CObject {
 	 * @param image
 	 * @return this instance for more method calls.
 	 */
-	public CObjectDrawAble setImage(CImage image) {
+	public CObjectDrawWrapper setImage(CImage image) {
 		this.image = image;
 		return this;
 	}
@@ -76,12 +76,12 @@ public class CObjectDrawAble extends CObject {
 	/**
 	 * Calls the drawing method of the CImage.
 	 */
-	public CObjectDrawAble draw(Graphics g) {
+	public CObjectDrawWrapper draw(Graphics g) {
 		image.draw(g);
 		return this;
 	}
 
-	public IDrawAble tick() {
+	public CDrawAble tick() {
 		return this;
 	}
 

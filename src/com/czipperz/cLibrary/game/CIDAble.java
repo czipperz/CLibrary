@@ -1,33 +1,25 @@
 package com.czipperz.cLibrary.game;
 
-import java.io.Serializable;
-
 /**
- * A basic class that allows for Serialization and IDing.
+ * A basic interface that allows for IDing.
  * @author Chris Gregory
+ * @see {@link #getClassID()}
+ * @see {@link #getInstanceID()}
  * @see com.czipperz.cLibrary.game.CID
+ * @see CIDWrapper
+ * @see CIDDrawAble
  */
-public abstract class CIDAble implements IIDAble, Serializable {
-	private static CID classID = CID.createClassID();
-	private CID id = CID.createInstanceID();
-
-	public CID getClassID() {
-		return classID;
-	}
-
-	public CID getInstanceID() {
-		return id;
-	}
+public interface CIDAble {
+	/**
+	 * @return The Class ID used to identify if this object is of <i><strong>EXACTLY</strong> THE SAME CLASS.</i>
+	 * @see {@link #getInstanceID()}
+	 */
+	public CID getClassID();
+	/**
+	 * @return The Instance ID used to identify this and only this object.  <strong>NOTE: Please Don't copy Instance IDs EVER</strong>
+	 * @see {@link #getClassID()}
+	 */
+	public CID getInstanceID();
 	
-	public boolean equals(Object other) {
-		return id.equals(other);
-	}
-	
-	public boolean actuallyEquals(Object other) {
-		return super.equals(other);
-	}
-
-	public int compareTo(IIDAble other) {
-		return id.compareTo(other.getInstanceID());
-	}
+	public int compareTo(CIDAble other);
 }

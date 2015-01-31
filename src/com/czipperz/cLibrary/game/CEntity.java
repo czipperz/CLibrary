@@ -10,12 +10,12 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * This class is an example of a {@link CObjectDrawAble} that allows for {@link CEntitySubtype}
+ * This class is an example of a {@link CObjectDrawWrapper} that allows for {@link CEntitySubtype}
  * to be collectivized in a single object.  This is a miniature form of a {@link CView},
  * not incapsulating a view but components of an object.
  * @author Chris Gregory
  */
-public class CEntity extends CObjectDrawAble {
+public class CEntity extends CObjectDrawWrapper {
 	private ArrayList<CEntitySubtype> subtypes;
 	private Rectangle locScreen;
 	private CImage image;

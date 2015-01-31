@@ -14,12 +14,12 @@ import java.util.List;
 /**
  * A class that handles everything frame related.  There is built in double-buffering, object storage, and overlay (
  * @author Chris Gregory
- * @see IIDDrawAble
+ * @see CIDDrawAble
  */
-public class CGameFrame extends JFrame implements IDrawAble, Serializable, MouseListener, MouseMotionListener {
-	private Set<IIDDrawAble> objects = new TreeSet<IIDDrawAble>();
+public class CGameFrame extends JFrame implements CDrawAble, Serializable, MouseListener, MouseMotionListener {
+	private Set<CIDDrawAble> objects = new TreeSet<CIDDrawAble>();
 	private Set<CView> views = new TreeSet<>();
-	private List<IUpdateAble> updaters = new ArrayList<>(5);
+	private List<CUpdateAble> updaters = new ArrayList<>(5);
 	private int depth = 1000;
 	private CThread updateThread;
 	private Object imageObject = new Object(), updateObject = new Object();
@@ -97,7 +97,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	public void mouseDragged(MouseEvent ev) {
-		for(IIDDrawAble o : objects) {
+		for(CIDDrawAble o : objects) {
 			if(o instanceof CEntity) {
 				if(((CEntity)o).getBounds().contains(CMouse.getLocation()))
 					((CEntity)o).mouseDragged(ev);
@@ -109,7 +109,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	public void mouseMoved(MouseEvent ev) {
-		for(IIDDrawAble o : objects) {
+		for(CIDDrawAble o : objects) {
 			if(o instanceof CEntity) {
 				if(((CEntity)o).getBounds().contains(CMouse.getLocation()))
 					((CEntity)o).mouseMoved(ev);
@@ -121,7 +121,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	public void mouseClicked(MouseEvent ev) {
-		for(IIDDrawAble o : objects) {
+		for(CIDDrawAble o : objects) {
 			if(o instanceof CEntity) {
 				if(((CEntity)o).getBounds().contains(CMouse.getLocation()))
 					((CEntity)o).mouseClicked(ev);
@@ -133,7 +133,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	public void mouseEntered(MouseEvent ev) {
-		for(IIDDrawAble o : objects) {
+		for(CIDDrawAble o : objects) {
 			if(o instanceof CEntity) {
 				if(((CEntity)o).getBounds().contains(CMouse.getLocation()))
 					((CEntity)o).mouseEntered(ev);
@@ -145,7 +145,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	public void mouseExited(MouseEvent ev) {
-		for(IIDDrawAble o : objects) {
+		for(CIDDrawAble o : objects) {
 			if(o instanceof CEntity) {
 				if(((CEntity)o).getBounds().contains(CMouse.getLocation()))
 					((CEntity)o).mouseExited(ev);
@@ -157,7 +157,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	public void mousePressed(MouseEvent ev) {
-		for(IIDDrawAble o : objects) {
+		for(CIDDrawAble o : objects) {
 			if(o instanceof CEntity) {
 				if(((CEntity)o).getBounds().contains(CMouse.getLocation()))
 					((CEntity)o).mousePressed(ev);
@@ -169,7 +169,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 	}
 
 	public void mouseReleased(MouseEvent ev) {
-		for(IIDDrawAble o : objects) {
+		for(CIDDrawAble o : objects) {
 			if(o instanceof CEntity) {
 				if(((CEntity)o).getBounds().contains(CMouse.getLocation()))
 					((CEntity)o).mouseReleased(ev);
@@ -385,30 +385,30 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		return this;
 	}
 
-	public IDrawAble tickBefore() {
-		for(IDrawAble o : objects) {
+	public CDrawAble tickBefore() {
+		for(CDrawAble o : objects) {
 			if(o.needUpdate())
 				o.tickBefore();
 		}
-		for(IUpdateAble o : updaters)
+		for(CUpdateAble o : updaters)
 			o.updateBefore();
 		return this;
 	}
 
-	public IDrawAble tick() {
-		for(IDrawAble o : objects)
+	public CDrawAble tick() {
+		for(CDrawAble o : objects)
 			if(o.needUpdate())
 				o.tick();
-		for(IUpdateAble o : updaters)
+		for(CUpdateAble o : updaters)
 			o.update();
 		return this;
 	}
 
-	public IDrawAble tickAfter() {
-		for(IDrawAble o : objects)
+	public CDrawAble tickAfter() {
+		for(CDrawAble o : objects)
 			if(o.needUpdate())
 				o.tickAfter();
-		for(IUpdateAble o : updaters)
+		for(CUpdateAble o : updaters)
 			o.updateAfter();
 		return this;
 	}
@@ -431,11 +431,11 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		return depth;
 	}
 
-	public Set<IIDDrawAble> getObjects() {
+	public Set<CIDDrawAble> getObjects() {
 		return objects;
 	}
 
-	public CGameFrame addObject(IIDDrawAble object) {
+	public CGameFrame addObject(CIDDrawAble object) {
 		if(object instanceof CView)
 			addView((CView) object);
 		else {
@@ -444,11 +444,11 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		return this;
 	}
 
-	public List<IUpdateAble> getUpdaters() {
+	public List<CUpdateAble> getUpdaters() {
 		return updaters;
 	}
 
-	public CGameFrame addUpdater(IUpdateAble updater) {
+	public CGameFrame addUpdater(CUpdateAble updater) {
 		updaters.add(updater);
 		return this;
 	}
@@ -479,7 +479,7 @@ public class CGameFrame extends JFrame implements IDrawAble, Serializable, Mouse
 		return updateThread;
 	}
 
-	public int compareTo(IDrawAble o) {
+	public int compareTo(CDrawAble o) {
 		return 0;
 	}
 

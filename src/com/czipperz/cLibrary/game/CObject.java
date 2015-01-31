@@ -6,10 +6,10 @@ import java.awt.*;
  * An object that allows for IDing and Drawing, but doesn't supply drawing methods.
  * @author Chris Gregory
  * @see Comparable
- * @see IIDDrawAble
- * @see CObjectDrawAble
+ * @see CIDDrawAble
+ * @see CObjectDrawWrapper
  */
-public abstract class CObject extends CIDAble implements IIDDrawAble {
+public abstract class CObject extends CIDWrapper implements CIDDrawAble {
 	private boolean active = true;
 	private CGameFrame displayOn;
 
@@ -92,7 +92,7 @@ public abstract class CObject extends CIDAble implements IIDDrawAble {
 		return getLocScreen();
 	}
 
-	public int compareTo(IDrawAble other) {
+	public int compareTo(CDrawAble other) {
 		return new CDepthSorter().compare(this, other);
 	}
 }

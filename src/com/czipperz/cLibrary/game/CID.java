@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.security.InvalidParameterException;
 
 /**
- * This is an ID that acts to identity objects (mostly implementing <code>IIDAble</code> from each other.<br />
+ * This is an ID that acts to identity objects (mostly implementing <code>CIDAble</code> from each other.<br />
  * <strong>NOTE:</strong> <i>IDs are <u>different</u> at <u>every runtime!</u></i>  <u><strong>DO NOT</strong> EXPECT</u> TO GET THE SAME VALUES WHEN <code>UNSERIALIZING</code>!
  * @author Chris Gregory
  * @see {@link #createClassID()} to make an <code>ID</code> to identify a <code>class</code> (replaces getClass().equals calls) 
@@ -66,17 +66,17 @@ public class CID implements Comparable<CID>, Serializable {
 	}
 
 	/**
-	 * Returns true if the other object is <code>IIDAble</code> (or this - note this class is NOT implementing <code>IIDAble</code>), has the same IDType, and has the same identifier.
+	 * Returns true if the other object is <code>CIDAble</code> (or this - note this class is NOT implementing <code>CIDAble</code>), has the same IDType, and has the same identifier.
 	 */
 	public boolean equals(Object other) {
 		if(other == null) {
 			throw new InvalidParameterException("Object can't be null!");
 		}
-		if(other instanceof IIDAble) {
+		if(other instanceof CIDAble) {
 			if(this.idType == EIDType.TYPE_CLASS_ID) 
-				return ((IIDAble) other).getClassID().id == this.id;
+				return ((CIDAble) other).getClassID().id == this.id;
 			if(this.idType == EIDType.TYPE_INSTANCE_ID)
-				return ((IIDAble) other).getInstanceID().id == this.id;
+				return ((CIDAble) other).getInstanceID().id == this.id;
 			throw new CEnumTypeNotListedException();
 		}
 		if(other instanceof CID) {

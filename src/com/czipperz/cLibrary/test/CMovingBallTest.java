@@ -14,7 +14,7 @@ import org.lwjgl.input.Controllers;
 
 import java.awt.*;
 
-public class CMovingBallTest extends CGameFrame implements IUpdateAble {
+public class CMovingBallTest extends CGameFrame implements CUpdateAble {
 	public static void main(String[] args) {
 		new CMovingBallTest();
 	}
@@ -37,7 +37,7 @@ public class CMovingBallTest extends CGameFrame implements IUpdateAble {
 			using = false;
 		}
 		CJFrameHelper.setUpDefaultJFrame(this, 500, 500);
-		CObjectDrawAble miniMapBackground = new CObjectDrawAble(this, CImageBackground.getDefaultDepth(), new CImageBackground(this, Color.RED));
+		CObjectDrawWrapper miniMapBackground = new CObjectDrawWrapper(this, CImageBackground.getDefaultDepth(), new CImageBackground(this, Color.RED));
 		System.out.println("BGID: " + miniMapBackground.getInstanceID().toString());
 		CImage moving = new CImageDraw(this, new Rectangle(xp, yp, 50, 50)) {
 			public CImage draw(Graphics g) {
@@ -51,7 +51,7 @@ public class CMovingBallTest extends CGameFrame implements IUpdateAble {
 				return Color.BLACK;
 			}
 		};
-		CObjectDrawAble o = new CObjectDrawAble(this, -100, moving);
+		CObjectDrawWrapper o = new CObjectDrawWrapper(this, -100, moving);
 		System.out.println("ObjectID: " + o.getInstanceID().toString());
 
 		CView view = new CView(this, 100);
