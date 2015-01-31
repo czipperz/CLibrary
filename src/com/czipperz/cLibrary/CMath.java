@@ -1,4 +1,4 @@
-package com.czipperz.cLibrary.math;
+package com.czipperz.cLibrary;
 
 import com.czipperz.cLibrary.math.operators.INullaryOperation;
 import com.czipperz.cLibrary.math.wrappers.CDouble;
