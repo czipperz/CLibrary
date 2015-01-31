@@ -1,6 +1,6 @@
 package com.czipperz.cLibrary.collision;
 
-import com.czipperz.cLibrary.math.CMath;
+import com.czipperz.cLibrary.CMath;
 import com.czipperz.cLibrary.util.collections.CArrayHelper;
 
 import java.awt.*;
