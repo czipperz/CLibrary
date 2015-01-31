@@ -1,6 +1,8 @@
 package com.czipperz.cLibrary.commands;
 
-import java.security.InvalidParameterException;
+import com.czipperz.cLibrary.exceptions.CCommandException;
+import com.czipperz.cLibrary.exceptions.CParameterException;
+
 import java.util.function.Consumer;
 
 /**

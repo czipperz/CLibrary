@@ -1,4 +1,4 @@
-package com.czipperz.cLibrary.commands;
+package com.czipperz.cLibrary.exceptions;
 
 /**
  * Created by czipperz on 1/30/15.
