@@ -1,31 +1,28 @@
 package com.czipperz.cLibrary.commands;
 
 /**
- * Created by czipperz on 1/30/15.
+ * Created by czipperz on 1/31/15.
  */
-public interface CCommandParameter {
-    public String man();
+public abstract class CCommandParameter {
+    private CCommandParameterType type;
 
-    /**
-     * For an example that would return true see: <i>vim -t "man()" CCommandParameter</i> would open cause the man() text to be searched in CCommandParameter.
-     * False modifiers are things like -h or -v (help and verbose, respectively) that don't need a second argument.
-     *
-     * @return true if this object needs a second value (not preceded by a switch).
-     * @return false if this object doesn't need a second value, standing by itself.
-     */
-    public boolean needsSecondArg();
+    public CCommandParameter(CCommandParameterType type) {
+        this.type = type;
+    }
 
-    /**
-     * Returns the single letter alias of the {@link CCommandParameter}
-     * For example, <i>tar -h</i> would call the help {@link CCommandParameter}.
-     * @return the singleton switch (-c would return c)
-     */
-    public char aliasSingleSwitch();
+    public CCommandParameterType getType() {
+        return type;
+    }
 
-    /**
-     * Returns the full name alias of the {@link CCommandParameter}
-     * For example, <i>tar --help</i> would call the help {@link CCommandParameter}.
-     * @return the doubleton switch (--calc would return calc)
-     */
-    public String aliasDoubleSwitch();
+    public String man() {
+        return type.man();
+    }
+
+    public String getAliasSingleSwitch() {
+        return type.getAliasSingleSwitch();
+    }
+
+    public String getAliasDoubleSwitch() {
+        return type.getAliasDoubleSwitch();
+    }
 }
