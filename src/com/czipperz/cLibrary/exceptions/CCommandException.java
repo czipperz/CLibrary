@@ -13,4 +13,6 @@ public abstract class CCommandException extends Exception {
         this.commandFailed = commandFailed;
         this.command = command;
     }
+
+    public abstract String getMessage();
 }
