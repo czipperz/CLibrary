@@ -1,14 +1,10 @@
 package com.czipperz.cLibrary.commands;
 
-import java.util.function.Function;
+import com.czipperz.cLibrary.exceptions.CCommandException;
 
 /**
  * Created by czipperz on 1/31/15.
  */
-public interface CCommandParser extends Function<String, CCommandInput> {
-    public default CCommandInput apply(String input) {
-        return parse(input);
-    }
-
-    public CCommandInput parse(String input);
+public interface CCommandParser {
+    public CCommandInput parse(CCommandExecutor[] possibleCommands, String input) throws CCommandException;
 }
