@@ -20,6 +20,4 @@ public interface CIDAble {
 	 * @see {@link #getClassID()}
 	 */
 	public CID getInstanceID();
-	
-	public int compareTo(CIDAble other);
 }

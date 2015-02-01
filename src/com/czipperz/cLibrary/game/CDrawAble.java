@@ -60,4 +60,6 @@ public interface CDrawAble extends Comparable<CDrawAble> {
 	 * @return true to draw the object, false if to not be.
 	 */
 	public boolean needDraw();
+
+    public int compareTo(CDrawAble other);
 }
