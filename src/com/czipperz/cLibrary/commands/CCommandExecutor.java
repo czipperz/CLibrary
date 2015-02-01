@@ -9,13 +9,14 @@ import java.util.function.Consumer;
  * Created by czipperz on 1/30/15.
  */
 public interface CCommandExecutor {
-    public CCommandExecutor execute(String input, Consumer<String> bash);
-    public CCommandExecutor execute(String input) throws CParameterException;
+    public CCommandExecutor execute(CCommandInput input, Consumer<String> bash);
+    public CCommandExecutor execute(CCommandInput input) throws CParameterException;
 
-    public boolean canExecute(String input);
-    public CCommandException whyNoExecute(String input);
+    public boolean canExecute(CCommandInput input);
+    public CCommandException whyNoExecute(CCommandInput input);
 
     public CCommandExecutor man(Consumer<String> bash);
 
-    public CCommandParameter[] getPotentialParameters();
+    public String getCallName();
+    public CCommandParameterType[] getPotentialParameters();
 }
