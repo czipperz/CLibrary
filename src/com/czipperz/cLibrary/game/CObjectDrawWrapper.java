@@ -4,9 +4,9 @@ import com.czipperz.cLibrary.imaging.CImage;
 
 import java.awt.*;
 
-//TODO: finish this comment
 /**
- * A class that extends CObject.  Makes the depth, 
+ * A class that extends CObject.  Controls the depth and drawing part of the object.
+ * It uses the CImage class as an input so that the programmer can control the drawing part.
  * @author Chris Gregory
  * @see com.czipperz.cLibrary.game.CObject
  * @see {@link #CObjectDrawWrapper(com.czipperz.cLibrary.game.CGameFrame, int, CImage)}
@@ -17,7 +17,8 @@ public class CObjectDrawWrapper extends CObject {
 	private CImage image;
 	
 	/**
-	 * Initializes the CObjectDrawWrapper.  The CGameFrame is set and is accessible by the object and others for later use.  This also adds this instance to the CGameFrame. <strong>NOTE: THIS DOES NOT MAKE THIS INSTANCE DRAW BY DEFAULT.  THERE MUST BE A CALL MADE TO ADD THIS TO ONE OR MORE <code>CView</code> (s).</strong><br />
+	 * Initializes the CObjectDrawWrapper.  The CGameFrame is set and is accessible by the object and others for later use.
+     * This also adds this instance to the CGameFrame. <strong>NOTE: THIS DOES NOT MAKE THIS INSTANCE DRAW BY DEFAULT.  THERE MUST BE A CALL MADE TO ADD THIS TO ONE OR MORE <code>CView</code> (s).</strong><br />
 	 * The depth dictates how deep the Object is displayed on the screen (negative infinity is on top). <br />
 	 * The image is used to display the Object.  Its draw method will be called every time this Object is to be displayed on a CView.
 	 * @param displayOn
