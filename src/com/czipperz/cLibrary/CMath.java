@@ -1,27 +1,10 @@
 package com.czipperz.cLibrary;
 
-import com.czipperz.cLibrary.math.operators.INullaryOperation;
-import com.czipperz.cLibrary.math.wrappers.CDouble;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public abstract class CMath implements IMathType {
+public abstract class CMath {
 	public static final int INT_POS_INF = Integer.MAX_VALUE;
-	public static final INullaryOperation INT_MAX_VALUE = new INullaryOperation() {
-		public CDouble perform(CDouble[] vals) {
-			return null;
-		}
-
-		public CDouble perform() {
-			return null;
-		}
-
-		public double perform(double[] vals) {
-			return 0;
-		}
-	};
-	
 	public static final int INT_NEG_INF = -Integer.MIN_VALUE;
 	public static final long LONG_POS_INF = Long.MAX_VALUE;
 	public static final long LONG_NEG_INF = Long.MIN_VALUE;
