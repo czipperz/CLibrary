@@ -12,8 +12,8 @@ public class CCommandParameterTypeBlank implements CCommandParameterType {
         return false;
     }
 
-    public String getAliasSingleSwitch() {
-        return "";
+    public char getAliasSingleSwitch() {
+        return '-';
     }
 
     public String getAliasDoubleSwitch() {

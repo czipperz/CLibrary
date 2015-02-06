@@ -22,14 +22,14 @@ public interface CCommandParameterType {
     /**
      * Returns the single letter alias of the {@link CCommandParameterType}
      * For example, <i>tar -h</i> would call the help {@link CCommandParameterType}.
-     * @return the singleton switch (ex. -h)
+     * @return the singleton switch (ex. h would be returned for -h)
      */
-    public String getAliasSingleSwitch();
+    public char getAliasSingleSwitch();
 
     /**
      * Returns the full name alias of the {@link CCommandParameterType}
      * For example, <i>tar --help</i> would call the help {@link CCommandParameterType}.
-     * @return the doubleton switch (ex. --help)
+     * @return the doubleton switch (ex. help would be returned for --help)
      */
     public String getAliasDoubleSwitch();
 }

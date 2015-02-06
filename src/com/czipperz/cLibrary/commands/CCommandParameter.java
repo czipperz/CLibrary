@@ -34,7 +34,7 @@ public class CCommandParameter {
         return type.man();
     }
 
-    public String getAliasSingleSwitch() {
+    public char getAliasSingleSwitch() {
         return type.getAliasSingleSwitch();
     }
 
