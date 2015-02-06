@@ -9,21 +9,21 @@ import java.util.ArrayList;
  */
 public class CCommandParameter {
     private CCommandParameterType type;
-    private ArrayList<String> v = null;
+    private ArrayList<String> values;
 
     public CCommandParameter(CCommandParameterType type) {
         this.type = type;
+        this.values = new ArrayList<>();
     }
 
     public CCommandParameter(CCommandParameterType type, ArrayList<String> values) {
-        this(type);
-        this.v = values;
+        this.type = type;
+        this.values = values;
     }
 
     public CCommandParameter(CCommandParameterType type, String value) {
         this(type);
-        this.v = new ArrayList<>();
-        this.v.add(value);
+        this.values.add(value);
     }
 
     public CCommandParameterType getType() {
@@ -42,7 +42,7 @@ public class CCommandParameter {
         return type.getAliasDoubleSwitch();
     }
 
-    public ArrayList<String> getAdditionalValues() throws NullPointerException {
-        return v;
+    public ArrayList<String> getAdditionalValues() {
+        return values;
     }
 }
