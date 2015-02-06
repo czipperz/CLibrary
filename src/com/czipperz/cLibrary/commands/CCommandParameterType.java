@@ -1,6 +1,10 @@
 package com.czipperz.cLibrary.commands;
 
 /**
+ * This interface describes the type of <i>{@link CCommandParameter}</i>
+ * <br /><br />
+ * This class is setup as that usages must test to see if there is a switch, then test compatibility with the switches.
+ *
  * Created by czipperz on 1/30/15.
  */
 public interface CCommandParameterType {
