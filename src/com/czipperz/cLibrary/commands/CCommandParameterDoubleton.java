@@ -1,17 +1,19 @@
 package com.czipperz.cLibrary.commands;
 
+import java.util.ArrayList;
+
 /**
  * Created by czipperz on 1/31/15.
  */
 public class CCommandParameterDoubleton extends CCommandParameter {
-    private String secondArg;
+    private ArrayList<String> secondArg;
 
-    public CCommandParameterDoubleton(CCommandParameterType type, String secondArg) {
+    public CCommandParameterDoubleton(CCommandParameterType type, ArrayList<String> secondArg) {
         super(type);
         this.secondArg = secondArg;
     }
 
-    public String getSecondArg() {
+    public ArrayList<String> getSecondArg() {
         return secondArg;
     }
 }

@@ -3,6 +3,7 @@ package com.czipperz.cLibrary.commands;
 import com.czipperz.cLibrary.exceptions.CCommandException;
 import com.czipperz.cLibrary.exceptions.CParameterException;
 
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 /**
@@ -18,5 +19,5 @@ public interface CCommandExecutor {
     public CCommandExecutor man(Consumer<String> bash);
 
     public String getCallName();
-    public CCommandParameterType[] getPotentialParameters();
+    public ArrayList<CCommandParameterType> getPotentialParameters();
 }
