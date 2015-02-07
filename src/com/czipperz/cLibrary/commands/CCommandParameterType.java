@@ -19,17 +19,27 @@ public interface CCommandParameterType {
      */
     public boolean needsSecondArg();
 
+    public default boolean hasAliasSingleSwitch() {
+        return getAliasSingleSwitch() != '-';
+    }
+
     /**
      * Returns the single letter alias of the {@link CCommandParameterType}
      * For example, <i>tar -h</i> would call the help {@link CCommandParameterType}.
      * @return the singleton switch (ex. h would be returned for -h)
+     * If this returns '-', then there isn't a single switch alias.
      */
     public char getAliasSingleSwitch();
+
+    public default boolean hasAliasDoubleSwitch() {
+        return !getAliasDoubleSwitch().equals("-");
+    }
 
     /**
      * Returns the full name alias of the {@link CCommandParameterType}
      * For example, <i>tar --help</i> would call the help {@link CCommandParameterType}.
-     * @return the doubleton switch (ex. help would be returned for --help)
+     * @return the doubleton switch (ex. help would be returned for --help).
+     * If this return "-", then there isn't a double switch alias.
      */
     public String getAliasDoubleSwitch();
 }
