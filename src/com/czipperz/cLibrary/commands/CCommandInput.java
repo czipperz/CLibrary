@@ -8,5 +8,4 @@ import java.util.ArrayList;
 public interface CCommandInput {
     public CCommandExecutor getCommandExecutor();
     public ArrayList<CCommandParameter> getParameters();
-
 }
