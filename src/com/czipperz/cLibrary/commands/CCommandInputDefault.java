@@ -5,20 +5,16 @@ import java.util.ArrayList;
 /**
  * Created by Chris on 2/6/2015.
  */
-public class CCommandInputDefault implements CCommandInput {
-    private CCommandExecutor executor;
-    private ArrayList<CCommandParameter> parameters;
-
-    public CCommandInputDefault(CCommandExecutor executor, ArrayList<CCommandParameter> parameters) {
-        this.executor = executor;
-        this.parameters = parameters;
+public class CCommandInputDefault extends CCommandInput {
+    public CCommandInputDefault(CCommandExecutor commandExecutor) {
+        super(commandExecutor);
     }
 
-    public CCommandExecutor getCommandExecutor() {
-        return executor;
+    public CCommandInputDefault(CCommandExecutor commandExecutor, CCommandParameter parameter) {
+        super(commandExecutor, parameter);
     }
 
-    public ArrayList<CCommandParameter> getParameters() {
-        return parameters;
+    public CCommandInputDefault(CCommandExecutor commandExecutor, ArrayList<CCommandParameter> parameters) {
+        super(commandExecutor, parameters);
     }
 }
