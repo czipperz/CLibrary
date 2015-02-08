@@ -7,8 +7,10 @@ package com.czipperz.cLibrary.commands;
  *
  * Created by czipperz on 1/30/15.
  */
-public interface CCommandParameterType {
-    public String man();
+public abstract class CCommandParameterType {
+
+
+    public abstract String man();
 
     /**
      * For an example that would return true see: <i>vim -t "man()" CCommandParameterType</i> would open cause the man() text to be searched in CCommandParameterType.
@@ -17,9 +19,9 @@ public interface CCommandParameterType {
      * @return true if this object needs a second value (not preceded by a switch).
      * @return false if this object doesn't need a second value, standing by itself.
      */
-    public boolean needsSecondArg();
+    public abstract boolean needsSecondArg();
 
-    public default boolean hasAliasSingleSwitch() {
+    public boolean hasAliasSingleSwitch() {
         return getAliasSingleSwitch() != '-';
     }
 
@@ -29,9 +31,9 @@ public interface CCommandParameterType {
      * @return the singleton switch (ex. h would be returned for -h)
      * If this returns '-', then there isn't a single switch alias.
      */
-    public char getAliasSingleSwitch();
+    public abstract char getAliasSingleSwitch();
 
-    public default boolean hasAliasDoubleSwitch() {
+    public boolean hasAliasDoubleSwitch() {
         return !getAliasDoubleSwitch().equals("-");
     }
 
@@ -41,5 +43,5 @@ public interface CCommandParameterType {
      * @return the doubleton switch (ex. help would be returned for --help).
      * If this return "-", then there isn't a double switch alias.
      */
-    public String getAliasDoubleSwitch();
+    public abstract String getAliasDoubleSwitch();
 }
