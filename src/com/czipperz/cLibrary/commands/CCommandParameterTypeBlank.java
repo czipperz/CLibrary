@@ -3,13 +3,19 @@ package com.czipperz.cLibrary.commands;
 /**
  * Created by Chris on 2/3/2015.
  */
-public class CCommandParameterTypeBlank implements CCommandParameterType {
+public class CCommandParameterTypeBlank extends CCommandParameterType {
+    private boolean needsSecondArg;
+
+    public CCommandParameterTypeBlank(boolean needsSecondArg) {
+        this.needsSecondArg = needsSecondArg;
+    }
+
     public String man() {
         return null;
     }
 
     public boolean needsSecondArg() {
-        return false;
+        return needsSecondArg;
     }
 
     public char getAliasSingleSwitch() {
@@ -17,6 +23,6 @@ public class CCommandParameterTypeBlank implements CCommandParameterType {
     }
 
     public String getAliasDoubleSwitch() {
-        return "--";
+        return "-";
     }
 }

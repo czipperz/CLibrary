@@ -34,6 +34,18 @@ public class CCommandParameter {
         return type.man();
     }
 
+    public boolean needsSecondArg() {
+        return type.needsSecondArg();
+    }
+
+    public boolean hasAliasSingleSwitch() {
+        return type.hasAliasSingleSwitch();
+    }
+
+    public boolean hasAliasDoubleSwitch() {
+        return type.hasAliasDoubleSwitch();
+    }
+
     public char getAliasSingleSwitch() {
         return type.getAliasSingleSwitch();
     }

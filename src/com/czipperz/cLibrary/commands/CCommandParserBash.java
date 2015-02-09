@@ -1,6 +1,7 @@
 package com.czipperz.cLibrary.commands;
 
 import com.czipperz.cLibrary.exceptions.CCommandExecutorUnfoundException;
+import com.czipperz.cLibrary.exceptions.CExceptionParser;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -23,10 +24,9 @@ public class CCommandParserBash implements CCommandParser {
         if(executor == null) {
             throw new CCommandExecutorUnfoundException(input);
         }
-        final CCommandExecutor finalExecutor = executor;
 
-        final ArrayList<CCommandParameter> params = new ArrayList<>();
 
+        ArrayList<CCommandParameter> params = new ArrayList<>();
         //If have params
         if(seperatedBySpace.length > 1) {
             //Stored previous param so can add args later
@@ -66,24 +66,14 @@ public class CCommandParserBash implements CCommandParser {
             }
         }
 
-        return new CCommandInput() {
-            public CCommandExecutor getCommandExecutor() {
-                return finalExecutor;
-            }
-
-            public ArrayList<CCommandParameter> getParameters() {
-                return params;
-            }
-        };
+        return new CCommandInputDefault(executor, params);
     }
 
     public CCommandInput parse(ArrayList<CCommandExecutor> possibleCommands, String input, Consumer<String> bash) {
         try {
             return parse(possibleCommands, input);
-        } catch(InvalidParameterException e) {
-
-        } catch (CCommandExecutorUnfoundException e) {
-
+        } catch (Exception e) {
+            CExceptionParser.feed(e, bash);
         }
         return null;
     }
