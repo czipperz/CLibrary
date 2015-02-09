@@ -9,11 +9,11 @@ import java.util.function.Consumer;
 /**
  * Created by czipperz on 1/30/15.
  */
-public interface CCommandExecutor {
-    public CCommandExecutor execute(CCommandInput input, Consumer<String> bash);
-    public CCommandExecutor execute(CCommandInput input) throws CParameterException;
+public abstract class CCommandExecutor {
+    public abstract CCommandExecutor execute(CCommandInput input, Consumer<String> bash);
+    public abstract CCommandExecutor execute(CCommandInput input) throws CParameterException;
 
-    public default boolean canExecute(CCommandInput input) {
+    public boolean canExecute(CCommandInput input) {
         return input.getCommandExecutor().getCallName().equals(this.getCallName());
     }
 
@@ -24,10 +24,10 @@ public interface CCommandExecutor {
      * @return the reason (in Exception form) of why the {@link com.czipperz.cLibrary.commands.CCommandInput} can't execute.
      * @see com.czipperz.cLibrary.commands.CCommandExecutor
      */
-    public CCommandException whyNoExecute(CCommandInput input);
+    public abstract CCommandException whyNoExecute(CCommandInput input);
 
-    public CCommandExecutor man(Consumer<String> bash);
+    public abstract CCommandExecutor man(Consumer<String> bash);
 
-    public String getCallName();
-    public ArrayList<CCommandParameterType> getPotentialParameters();
+    public abstract String getCallName();
+    public abstract ArrayList<CCommandParameterType> getPotentialParameters();
 }

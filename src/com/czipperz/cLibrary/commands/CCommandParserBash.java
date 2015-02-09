@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 /**
  * Created by czipperz on 1/31/15.
  */
-public class CCommandParserBash implements CCommandParser {
+public class CCommandParserBash extends CCommandParser {
     public CCommandInput parse(ArrayList<CCommandExecutor> commandExecutors, String input) throws CCommandExecutorUnfoundException, InvalidParameterException {
         CCommandExecutor executor = null;
 
@@ -37,7 +37,7 @@ public class CCommandParserBash implements CCommandParser {
                 String s = seperatedBySpace[i];
                 if (!s.startsWith("-")) {
                     if (i == 1)
-                        params.add(ccp = new CCommandParameter(new CCommandParameterTypeBlank()));
+                        params.add(ccp = new CCommandParameter(new CCommandParameterTypeBlank(false)));
                     else
                         ccp.getAdditionalValues().add(s);
                     break;
@@ -67,14 +67,5 @@ public class CCommandParserBash implements CCommandParser {
         }
 
         return new CCommandInputDefault(executor, params);
-    }
-
-    public CCommandInput parse(ArrayList<CCommandExecutor> possibleCommands, String input, Consumer<String> bash) {
-        try {
-            return parse(possibleCommands, input);
-        } catch (Exception e) {
-            CExceptionParser.feed(e, bash);
-        }
-        return null;
     }
 }

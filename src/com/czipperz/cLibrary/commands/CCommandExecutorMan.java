@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 /**
  * Created by Chris on 2/8/2015.
  */
-public class CCommandExecutorMan implements CCommandExecutor {
+public class CCommandExecutorMan extends CCommandExecutor {
     public CCommandExecutor execute(CCommandInput input, Consumer<String> bash) {
         return man(bash);
     }
