@@ -24,7 +24,7 @@ public class CCommandExecutorMan extends CCommandExecutor {
     }
 
     public CCommandExecutor man(Consumer<String> bash) {
-        //TODO: this
+        //TODO: write this
 
         return this;
     }
