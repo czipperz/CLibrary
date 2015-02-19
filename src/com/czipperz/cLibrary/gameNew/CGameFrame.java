@@ -1,6 +1,7 @@
 package com.czipperz.cLibrary.gameNew;
 
 import com.czipperz.cLibrary.CBash;
+import com.czipperz.cLibrary.CBashSOut;
 import com.czipperz.cLibrary.game.*;
 import com.czipperz.cLibrary.util.CThread;
 
@@ -10,16 +11,15 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * Created by 997robotics1 on 2/10/2015.
  */
 public class CGameFrame extends JFrame implements MouseListener, MouseMotionListener {
     //Lists
-    private List objects = new LinkedList<>();
-    private List views = new LinkedList<>();
-    private List updaters = new LinkedList<>();
+    private List<CIDDrawAble> objects = new LinkedList<>();
+    private List<CView> views = new LinkedList<>();
+    private List<CUpdateAble> updaters = new LinkedList<>();
     //Objects
     private CThread updateThread;
     //Inputs
@@ -28,7 +28,7 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
     private CKeySingleListener keySingleListener;
     //Bash spam (fps)
     private boolean allowConsoleSpam = false;
-    private CBash bash;
+    private CBash bash = new CBashSOut();
     //Overlays
     private boolean overlayEnabled = false;
     private boolean isF7 = false, showData = false;
@@ -42,8 +42,18 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
     private int frames = 0;
     private CGamePanel panel;
 
+    public CGameFrame registerObject(CIDDrawAble obj) {
+        objects.add(obj);
+        return this;
+    }
+
     public List<CIDDrawAble> getObjects() {
         return objects;
+    }
+
+    public CGameFrame registerView(CView view) {
+        views.add(view);
+        return this;
     }
 
     public List<CView> getViews() {
@@ -92,10 +102,10 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
         addMouseListener(mouse);
 
 
-        setupDraw();
+        makeDrawThread();
     }
 
-    private CGameFrame setupDraw() {
+    private CGameFrame makeDrawThread() {
         updateThread = new CThread(() -> {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
@@ -104,6 +114,13 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
                 updateAll();
             panel.repaint();
             frames++;
+            if(allowConsoleSpam) {
+                try {
+                    bash.println();
+                } catch(Exception e) {
+                    System.out.println("Error connecting to the bash client");
+                }
+            }
         }, false);
         return this;
     }
