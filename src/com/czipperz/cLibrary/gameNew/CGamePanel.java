@@ -1,12 +1,10 @@
 package com.czipperz.cLibrary.gameNew;
 
-import com.czipperz.cLibrary.game.CIDDrawAble;
-import com.czipperz.cLibrary.game.CUpdateAble;
+import com.czipperz.cLibrary.game.CDepthSorter;
 import com.czipperz.cLibrary.game.CView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -21,7 +19,9 @@ public class CGamePanel extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
-        linkedFrame.getViews().stream().forEach(v -> {
+        List<CView> views = linkedFrame.getViews();
+        views.sort(new CDepthSorter());
+        views.stream().forEachOrdered(v -> {
             if(v.needDraw())
                 v.draw(g);
         });
