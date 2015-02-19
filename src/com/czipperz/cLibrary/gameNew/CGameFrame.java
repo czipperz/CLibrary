@@ -4,11 +4,14 @@ import com.czipperz.cLibrary.CBash;
 import com.czipperz.cLibrary.CBashSOut;
 import com.czipperz.cLibrary.game.*;
 import com.czipperz.cLibrary.util.CThread;
+import com.czipperz.cLibrary.util.collections.CArrayHelper;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,8 +21,8 @@ import java.util.List;
 public class CGameFrame extends JFrame implements MouseListener, MouseMotionListener {
     //Lists
     private List<CIDDrawAble> objects = new LinkedList<>();
-    private List<CView> views = new LinkedList<>();
-    private List<CUpdateAble> updaters = new LinkedList<>();
+    private List<CView> views = new LinkedList<>(), viewsClone = new LinkedList<>();
+    private List<CUpdateAble> updaters = new ArrayList<>();
     //Objects
     private CThread updateThread;
     //Inputs
@@ -38,7 +41,6 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
     private double amountOfTicks = 60;
     private double ns = 1000000000 / amountOfTicks;
     private double delta = 0;
-    private long timer = System.currentTimeMillis();
     private int frames = 0;
     private CGamePanel panel;
 
@@ -47,19 +49,39 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
         return this;
     }
 
+    /**
+     * Add objects to the list by using {@linkplain #registerObject(com.czipperz.cLibrary.game.CIDDrawAble)}
+     * @return the list
+     */
     public List<CIDDrawAble> getObjects() {
         return objects;
     }
 
     public CGameFrame registerView(CView view) {
         views.add(view);
+        viewsClone.add(view);
+        views.sort(new CDepthSorter());
+        viewsClone.sort(new CDepthSorter());
         return this;
     }
 
+    /**
+     * Add objects to the list by using {@linkplain #registerView(com.czipperz.cLibrary.game.CView)}
+     * @return a clone of the list
+     */
     public List<CView> getViews() {
-        return views;
+        return viewsClone;
     }
 
+    public CGameFrame registerUpdater(CUpdateAble updater) {
+        updaters.add(updater);
+        return this;
+    }
+
+    /**
+     * Add objects to the list by using {@linkplain #registerUpdater(com.czipperz.cLibrary.game.CUpdateAble)}
+     * @return a the list
+     */
     public List<CUpdateAble> getUpdaters() {
         return updaters;
     }
@@ -116,7 +138,7 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
             frames++;
             if(allowConsoleSpam) {
                 try {
-                    bash.println();
+                    bash.println("FPS: " + frames);
                 } catch(Exception e) {
                     System.out.println("Error connecting to the bash client");
                 }
