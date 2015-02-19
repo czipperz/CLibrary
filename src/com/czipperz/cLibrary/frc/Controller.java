@@ -22,11 +22,11 @@ public class Controller {
     }
 
     public double getLY() {
-        return this.j.getRawAxis(1);
+        return -this.j.getRawAxis(1);
     }
 
     public double getRY() {
-        return this.j.getRawAxis(5);
+        return -this.j.getRawAxis(5);
     }
 
     public double getTriggers() {
