@@ -1,5 +1,6 @@
 package com.czipperz.cLibrary.commands;
 
+import com.czipperz.cLibrary.CBash;
 import com.czipperz.cLibrary.exceptions.CCommandException;
 import com.czipperz.cLibrary.exceptions.CExceptionParser;
 import com.czipperz.cLibrary.exceptions.CParameterException;
@@ -11,7 +12,7 @@ import java.util.function.Consumer;
  * Created by Chris on 2/8/2015.
  */
 public class CCommandExecutorMan extends CCommandExecutor {
-    public CCommandExecutor execute(CCommandInput input, Consumer<String> bash) {
+    public CCommandExecutor execute(CCommandInput input, CBash bash) {
         return man(bash);
     }
 
@@ -23,7 +24,7 @@ public class CCommandExecutorMan extends CCommandExecutor {
         return null;
     }
 
-    public CCommandExecutor man(Consumer<String> bash) {
+    public CCommandExecutor man(CBash bash) {
         //TODO: write this
 
         return this;
