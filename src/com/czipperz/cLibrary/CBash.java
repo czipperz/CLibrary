@@ -79,110 +79,42 @@ public class CBash {
     }
 
     public CBash println(String s) throws IOException {
-        if(method == InputMethods.Consumer) {
-            consumer.accept(s);
-            consumer.accept("\n");
-        }
-        else {
-            stream.write(s.getBytes());
-            stream.write("\n".getBytes());
-        }
-        return this;
+        return print(s).println();
     }
 
     public CBash println(boolean b) throws IOException {
-        if(method == InputMethods.Consumer) {
-            consumer.accept(b ? "true" : "false");
-            consumer.accept("\n");
-        }
-        else {
-            stream.write(b ? "true".getBytes() : "false".getBytes());
-            stream.write("\n".getBytes());
-        }
-        return this;
+        return print(b).println();
     }
 
     public CBash println(char c) throws IOException {
-        if(method == InputMethods.Consumer) {
-            consumer.accept(((Character) c).toString());
-            consumer.accept("\n");
-        }
-        else {
-            stream.write(c);
-            stream.write("\n".getBytes());
-        }
-        return this;
+        return print(c).println();
     }
 
     public CBash println(int i) throws IOException {
-        if(method == InputMethods.Consumer) {
-            consumer.accept(((Integer) i).toString());
-            consumer.accept("\n");
-        }
-        else {
-            stream.write(((Integer) i).byteValue());
-            stream.write("\n".getBytes());
-        }
-        return this;
+        return print(i).println();
     }
 
     public CBash println(byte b) throws IOException {
-        if(method == InputMethods.Consumer) {
-            consumer.accept(((Byte) b).toString());
-            consumer.accept("\n");
-        }
-        else {
-            stream.write(b);
-            stream.write("\n".getBytes());
-        }
-        return this;
+        return print(b).println();
     }
 
     public CBash println(double d) throws IOException {
-        if(method == InputMethods.Consumer) {
-            consumer.accept(((Double) d).toString());
-            consumer.accept("\n");
-        }
-        else {
-            stream.write(((Double) d).byteValue());
-            stream.write("\n".getBytes());
-        }
-        return this;
+        return print(d).println();
     }
 
-    public CBash println(float d) throws IOException {
-        if(method == InputMethods.Consumer) {
-            consumer.accept(((Float) d).toString());
-            consumer.accept("\n");
-        }
-        else {
-            stream.write(((Float) d).byteValue());
-            stream.write("\n".getBytes());
-        }
-        return this;
+    public CBash println(float f) throws IOException {
+        return print(f).println();
     }
 
-    public CBash println(short d) throws IOException {
-        if(method == InputMethods.Consumer) {
-            consumer.accept(((Short) d).toString());
-            consumer.accept("\n");
-        }
-        else {
-            stream.write(((Short) d).byteValue());
-            stream.write("\n".getBytes());
-        }
-        return this;
+    public CBash println(short s) throws IOException {
+        return print(s).println();
     }
 
     public CBash println(long d) throws IOException {
-        if(method == InputMethods.Consumer) {
-            consumer.accept(((Long) d).toString());
-            consumer.accept("\n");
-        }
-        else {
-            stream.write(((Long) d).byteValue());
-            stream.write("\n".getBytes());
-        }
-        return this;
+        return print(d).println();
+    }
+
+    public CBash println() throws IOException {
+        return print("\n");
     }
 }
