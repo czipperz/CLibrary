@@ -20,7 +20,7 @@ public class CMouse extends CMouseSafe implements MouseListener {
 	private ArrayList<MouseEvent> ev;
 	private MouseEvent event = null;
 
-	CMouse() {
+	public CMouse() {
 		ev = new ArrayList<>();
 	}
 	
