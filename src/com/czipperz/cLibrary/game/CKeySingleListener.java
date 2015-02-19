@@ -10,7 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * A class that allows for concise listening by KeyListeners on a designated key.  KeyListeners can be registered multiple times to different (or the same) key and multiple keys may be bound to the same key.
+ * A class that allows for concise listening by <code>KeyListeners</code> on a designated key.
+ * KeyListeners can be registered multiple times to different (or the same) key and multiple <code>KeyListeners</code> may be bound to the same key.
  * @author Chris Gregory
  *
  */
