@@ -7,6 +7,8 @@ import com.czipperz.cLibrary.util.CThread;
 import com.czipperz.cLibrary.util.collections.CArrayHelper;
 
 import javax.swing.*;
+import javax.swing.text.Keymap;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -18,7 +20,7 @@ import java.util.List;
 /**
  * Created by 997robotics1 on 2/10/2015.
  */
-public class CGameFrame extends JFrame implements MouseListener, MouseMotionListener {
+public class CGameFrame extends JFrame {
     //Lists
     private List<CIDDrawAble> objects = new LinkedList<>();
     private List<CView> views = new LinkedList<>(), viewsClone = new LinkedList<>();
@@ -34,8 +36,9 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
     private CBash bash = new CBashSOut();
     //Overlays
     private boolean overlayEnabled = false;
-    private boolean isF7 = false, showData = false;
-    private boolean isF8 = false, showBorders = false;
+    private boolean showData, showBorders = false;
+    private EKeys showDataKey = EKeys.K_F7;
+    private EKeys showBordersKey = EKeys.K_F8;
     //Rendering
     private long lastTime = System.nanoTime();
     private double amountOfTicks = 60;
@@ -43,6 +46,18 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
     private double delta = 0;
     private int frames = 0;
     private CGamePanel panel;
+
+    public CGameFrame() {
+        super();
+        keys = new CKeys();
+        addKeyListener(keys);
+        keySingleListener = new CKeySingleListener();
+        addKeyListener(keySingleListener);
+        mouse = new CMouse();
+        addMouseListener(mouse);
+
+        makeDrawThread();
+    }
 
     public CGameFrame registerObject(CIDDrawAble obj) {
         objects.add(obj);
@@ -86,6 +101,19 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
         return updaters;
     }
 
+    public CThread getUpdateThread() {
+        return updateThread;
+    }
+
+    public CGameFrame setOverlayEnabled(boolean b) {
+        overlayEnabled = true;
+        return this;
+    }
+
+    public boolean isOverlayEnabled() {
+        return overlayEnabled;
+    }
+
     public CMouse getMouse() {
         return mouse;
     }
@@ -114,19 +142,6 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
         return bash;
     }
 
-    public CGameFrame() {
-        super();
-        keys = new CKeys();
-        addKeyListener(keys);
-        keySingleListener = new CKeySingleListener();
-        addKeyListener(keySingleListener);
-        mouse = new CMouse();
-        addMouseListener(mouse);
-
-
-        makeDrawThread();
-    }
-
     private CGameFrame makeDrawThread() {
         updateThread = new CThread(() -> {
             long now = System.nanoTime();
@@ -136,46 +151,29 @@ public class CGameFrame extends JFrame implements MouseListener, MouseMotionList
                 updateAll();
             panel.repaint();
             frames++;
-            if(allowConsoleSpam) {
+            if(allowConsoleSpam)
                 try {
                     bash.println("FPS: " + frames);
                 } catch(Exception e) {
                     System.out.println("Error connecting to the bash client");
                 }
-            }
         }, false);
         return this;
     }
 
-    public CGameFrame updateAll() {
+    private CGameFrame updateAll() {
+        objects.stream().forEachOrdered(o -> {
+            if(o.needUpdateBefore())
+                o.tickBefore();
+        });
+        objects.stream().forEachOrdered(o -> {
+            if(o.needUpdate())
+                o.tick();
+        });
+        objects.stream().forEachOrdered(o -> {
+            if(o.needUpdateAfter())
+                o.tickAfter();
+        });
         return this;
-    }
-
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    public void mouseMoved(MouseEvent e) {
-
     }
 }
