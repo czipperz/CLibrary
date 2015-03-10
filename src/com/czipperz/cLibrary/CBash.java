@@ -1,120 +1,72 @@
 package com.czipperz.cLibrary;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.function.Consumer;
+import java.awt.*;
 
 /**
  * Created by Chris on 2/16/2015.
  */
-public class CBash {
-    private enum InputMethods {Stream, Consumer}
+public interface CBash {
+    public CBash setColor(Color c);
+    public CBash print(String s);
+    public CBash flush();
 
-    private InputMethods method;
-    private OutputStream stream;
-    private Consumer<String> consumer;
 
-    public CBash(OutputStream stream) {
-        method = InputMethods.Stream;
-        this.stream = stream;
+    /*
+       These methods just call the abstract print(String) method.
+     */
+    public default CBash print(boolean b) {
+        return print(Boolean.toString(b));
+    }
+    public default CBash print(char c) {
+        return print(Character.toString(c));
+    }
+    public default CBash print(int i) {
+        return print(Integer.toString(i));
+    }
+    public default CBash print(byte b) {
+        return print(Byte.toString(b));
+    }
+    public default CBash print(double d) {
+        return print(Double.toString(d));
+    }
+    public default CBash print(float d) {
+        return print(Float.toString(d));
+    }
+    public default CBash print(short d) {
+        return print(Short.toString(d));
+    }
+    public default CBash print(long d) {
+        return print(Long.toString(d));
     }
 
-    public CBash(Consumer<String> consumer) {
-        method = InputMethods.Stream;
-        this.consumer = consumer;
-    }
-
-    public CBash print(String s) throws IOException {
-        if(method == InputMethods.Consumer) consumer.accept(s);
-        else stream.write(s.getBytes());
-        return this;
-    }
-
-    public CBash print(boolean b) throws IOException {
-        if(method == InputMethods.Consumer) consumer.accept(b ? "true" : "false");
-        else stream.write(b ? "true".getBytes() : "false".getBytes());
-        return this;
-    }
-
-    public CBash print(char c) throws IOException {
-        if(method == InputMethods.Consumer) consumer.accept(((Character) c).toString());
-        else stream.write(c);
-        return this;
-    }
-
-    public CBash print(int i) throws IOException {
-        if(method == InputMethods.Consumer) consumer.accept(((Integer) i).toString());
-        else stream.write(((Integer) i).byteValue());
-        return this;
-    }
-
-    public CBash print(byte b) throws IOException {
-        if(method == InputMethods.Consumer) consumer.accept(((Byte) b).toString());
-        else stream.write(b);
-        return this;
-    }
-
-    public CBash print(double d) throws IOException {
-        if(method == InputMethods.Consumer) consumer.accept(((Double) d).toString());
-        else stream.write(((Double) d).byteValue());
-        return this;
-    }
-
-    public CBash print(float d) throws IOException {
-        if(method == InputMethods.Consumer) consumer.accept(((Float) d).toString());
-        else stream.write(((Float) d).byteValue());
-        return this;
-    }
-
-    public CBash print(short d) throws IOException {
-        if(method == InputMethods.Consumer) consumer.accept(((Short) d).toString());
-        else stream.write(((Short) d).byteValue());
-        return this;
-    }
-
-    public CBash print(long d) throws IOException {
-        if(method == InputMethods.Consumer) consumer.accept(((Long) d).toString());
-        else stream.write(((Long) d).byteValue());
-        return this;
-    }
-
-    public CBash println(String s) throws IOException {
-        return print(s).println();
-    }
-
-    public CBash println(boolean b) throws IOException {
-        return print(b).println();
-    }
-
-    public CBash println(char c) throws IOException {
-        return print(c).println();
-    }
-
-    public CBash println(int i) throws IOException {
-        return print(i).println();
-    }
-
-    public CBash println(byte b) throws IOException {
-        return print(b).println();
-    }
-
-    public CBash println(double d) throws IOException {
-        return print(d).println();
-    }
-
-    public CBash println(float f) throws IOException {
-        return print(f).println();
-    }
-
-    public CBash println(short s) throws IOException {
-        return print(s).println();
-    }
-
-    public CBash println(long d) throws IOException {
-        return print(d).println();
-    }
-
-    public CBash println() throws IOException {
+    public default CBash println() {
         return print("\n");
+    }
+    public default CBash println(String s) {
+        return print(s).println();
+    }
+    public default CBash println(boolean b) {
+        return println(Boolean.toString(b));
+    }
+    public default CBash println(char c) {
+        return println(Character.toString(c));
+    }
+    public default CBash println(int i) {
+        return println(Integer.toString(i));
+    }
+    public default CBash println(byte b) {
+        return println(Byte.toString(b));
+    }
+    public default CBash println(double d) {
+        return println(Double.toString(d));
+    }
+    public default CBash println(float f) {
+        return println(Float.toString(f));
+    }
+    public default CBash println(short s) {
+        return println(Short.toString(s));
+    }
+    public default CBash println(long d) {
+        return println(Long.toString(d));
     }
 }
