@@ -1,12 +1,10 @@
 package com.czipperz.cLibrary;
 
-import java.io.OutputStream;
-
 /**
- * Created by Chris on 2/19/2015.
+ * Created by czipperz on 3/9/15.
  */
-public class CBashSOut extends CBash {
+public class CBashSOut extends CBashBase {
     public CBashSOut() {
-        super(System.out);
+        super(c->{},System.out::print,System.out::flush);
     }
 }

@@ -1,10 +1,10 @@
 package com.czipperz.cLibrary;
 
 /**
- * Created by Chris on 2/19/2015.
+ * Created by czipperz on 3/9/15.
  */
-public class CBashSErr extends CBash {
+public class CBashSErr extends CBashBase {
     public CBashSErr() {
-        super(System.err);
+        super(c->{},System.err::print,System.err::flush);
     }
 }
