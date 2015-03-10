@@ -1,6 +1,9 @@
 package com.czipperz.cLibrary.test;
 
-import com.czipperz.cLibrary.game.*;
+import com.czipperz.cLibrary.game.CGameFrame;
+import com.czipperz.cLibrary.game.CObjectDrawWrapper;
+import com.czipperz.cLibrary.game.CUpdateAble;
+import com.czipperz.cLibrary.game.CView;
 import com.czipperz.cLibrary.game.controller.CControllerXBox;
 import com.czipperz.cLibrary.game.controller.CControllersHandler;
 import com.czipperz.cLibrary.gui.CJFrameHelper;

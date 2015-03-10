@@ -1,7 +1,5 @@
 package com.czipperz.cLibrary.exceptions;
 
-import com.czipperz.cLibrary.commands.CCommandExecutor;
-
 /**
  * Created by czipperz on 1/31/15.
  */

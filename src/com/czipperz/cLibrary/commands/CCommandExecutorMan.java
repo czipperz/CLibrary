@@ -2,11 +2,9 @@ package com.czipperz.cLibrary.commands;
 
 import com.czipperz.cLibrary.CBash;
 import com.czipperz.cLibrary.exceptions.CCommandException;
-import com.czipperz.cLibrary.exceptions.CExceptionParser;
 import com.czipperz.cLibrary.exceptions.CParameterException;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 
 /**
  * Created by Chris on 2/8/2015.

@@ -1,8 +1,6 @@
 package com.czipperz.cLibrary.exceptions;
 
 import java.io.PrintWriter;
-import java.io.Writer;
-import java.util.ConcurrentModificationException;
 import java.util.function.Consumer;
 
 /**
