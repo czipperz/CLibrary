@@ -1,8 +1,5 @@
 package io.czipperz.github.cLibrary.util.collections
 
-import io.github.czipperz.cLibrary.util.collections.CArrayHelper
-import sun.awt.util.IdentityLinkedList
-
 import java.security.InvalidParameterException
 
 /**
@@ -27,7 +24,7 @@ class CListMap<K, T> implements Iterable<T>, Serializable {
 		this.keys = keys;
 	}
 
-	public io.github.czipperz.cLibrary.util.collections.CListMap<K, T> clear() {
+	public CListMap<K, T> clear() {
 		items.clear()
 		keys.clear()
 		this
@@ -85,13 +82,13 @@ class CListMap<K, T> implements Iterable<T>, Serializable {
 		return false
 	}
 
-	public io.github.czipperz.cLibrary.util.collections.CListMap<K, T> put(K key, T item) {
+	public CListMap<K, T> put(K key, T item) {
 		items.add item
 		keys.add key
 		this
 	}
 
-	public io.github.czipperz.cLibrary.util.collections.CListMap<K, T> putAll(List<K> keys, List<T> items) {
+	public CListMap<K, T> putAll(List<K> keys, List<T> items) {
 		if(items.size() != keys.size())
 			throw new InvalidParameterException()
 		this.items.addAll items

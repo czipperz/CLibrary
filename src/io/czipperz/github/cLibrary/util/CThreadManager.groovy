@@ -17,42 +17,48 @@ class CThreadManager {
 	}
 
 	synchronized static void pauseAllBut(CThread thread) {
-		CClosureHelper.forEach(threads, { it == thread }) {
-			it.paused = true
+		threads.each {
+			if(!(it == thread))
+				it.paused = true
 		}
 	}
 
 	synchronized static void pauseAllBut(ArrayList<CThread> threads) {
-		CClosureHelper.forEach(this.threads, { threads.contains(it) }) {
-			it.paused = true
+		this.threads.each {
+			if(!threads.contains(it))
+				it.paused = true
 		}
 	}
 
 	synchronized static void resumeAll() {
-		threads*.paused = false
+		threads.each {it.paused = false}
 	}
 
 	synchronized static void resumeAllBut(CThread thread) {
-		CClosureHelper.forEach(threads, {it == thread}) {
-			it.paused = false
+		threads.each {
+			if(!(it == thread))
+				it.paused = false
 		}
 	}
 
 	synchronized static void resumeAllBut(ArrayList<CThread> threads) {
-		CClosureHelper.forEach(this.threads, {threads.contains(it)}) {
-			it.paused = false
+		this.threads.each {
+			if(!threads.contains(it))
+				it.paused = false
 		}
 	}
 
 	synchronized static void stopAllBut(CThread thread) {
-		CClosureHelper.forEach(threads, {thread == it}) {
-			it.stopped = true
+		threads.each {
+			if(!(thread == it))
+				it.stopped = true
 		}
 	}
 
 	synchronized static void stopAllBut(ArrayList<CThread> threads) {
-		CClosureHelper.forEach(this.threads, {threads.contains(it)}) {
-			it.stopped = true
+		this.threads.each {
+			if(!threads.contains(it))
+				it.stopped = true
 		}
 	}
 }

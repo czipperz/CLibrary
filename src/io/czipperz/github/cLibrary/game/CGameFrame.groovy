@@ -47,27 +47,22 @@ class CGameFrame extends JFrame {
 	}
 
 	CGameFrame setFullscreen() {
-		this.extendedState = MAXIMIZED_BOTH
-		this.size = CScreen.size
-		this.resizable = false
-		this.undecorated = true
+		this.with {extendedState: MAXIMIZED_BOTH; size: CScreen.size; resizable: false; undecorated: true}
 		this
 	}
 
 	CGameFrame setWindowed() {
-		this.extendedState = NORMAL
-		this.undecorated = false
+		this.with {extendedState: NORMAL; undecorated: false}
 		this
 	}
 
 	CGameFrame setBorderless() {
-		this.extendedState = NORMAL
-		this.undecorated = true
+		this.with {extendedState: NORMAL; undecorated: true}
 		this
 	}
 
 	synchronized void setVisible(boolean visible) {
-		super.setVisible visible
+		this.with {visible: visible}
 		updateThread.start()
 	}
 
