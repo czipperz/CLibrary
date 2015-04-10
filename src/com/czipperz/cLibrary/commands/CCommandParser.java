@@ -20,11 +20,7 @@ public abstract class CCommandParser {
         } catch (CCommandException e) {
             e.printStackTrace(new PrintStream(System.out) {
                 public void println(String s) {
-                    try {
                         bash.println(s);
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
                 }
             });
         }

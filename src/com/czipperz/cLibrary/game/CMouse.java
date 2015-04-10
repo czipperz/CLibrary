@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @see com.czipperz.cLibrary.location.CMouseUnsafe
  * @see com.czipperz.cLibrary.location.CMouseSafe
  */
-public class CMouse extends CMouseSafe implements MouseListener {
+public class CMouse extends CMouseSafe implements MouseListener{
 	private boolean leftDown = false, rightDown = false, middleDown = false;
 	private ArrayList<MouseEvent> ev;
 	private MouseEvent event = null;
