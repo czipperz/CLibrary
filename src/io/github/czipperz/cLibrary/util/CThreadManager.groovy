@@ -1,7 +1,7 @@
 package io.github.czipperz.cLibrary.util
 
-import com.czipperz.cLibrary.util.collections.CListMap
 import groovy.transform.Immutable
+import io.github.czipperz.cLibrary.util.collections.CListMap
 
 /**
  * Created by czipperz on 4/8/15.

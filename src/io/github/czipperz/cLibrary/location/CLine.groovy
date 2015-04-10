@@ -1,7 +1,6 @@
 package io.github.czipperz.cLibrary.location
 
-import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException
-import com.czipperz.cLibrary.location.CRect
+import io.github.czipperz.cLibrary.exceptions.CEnumTypeNotListedException
 import io.github.czipperz.cLibrary.game.CDrawAble
 
 import java.awt.Graphics

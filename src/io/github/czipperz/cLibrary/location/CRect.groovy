@@ -50,6 +50,15 @@ class CRect extends Rectangle2D implements Serializable {
 
 
 
+	List<Integer> getValues() {
+		def list = new ArrayList<Integer>()
+		list.add x
+		list.add y
+		list.add width
+		list.add height
+		list
+	}
+
 	CPoint toCPoint() {
 		new CPoint(x, y)
 	}

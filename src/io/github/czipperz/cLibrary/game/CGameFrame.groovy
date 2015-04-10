@@ -67,7 +67,7 @@ class CGameFrame extends JFrame {
 	}
 
 	synchronized void setVisible(boolean visible) {
-		super.visible = visible
+		super.setVisible visible
 		updateThread.start()
 	}
 

@@ -1,6 +1,6 @@
 package io.github.czipperz.cLibrary.exceptions;
 
-import com.czipperz.cLibrary.commands.CCommandExecutor;
+import io.github.czipperz.cLibrary.commands.CCommandExecutor;
 
 /**
  * Created by czipperz on 1/30/15.

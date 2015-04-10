@@ -1,7 +1,5 @@
 package io.github.czipperz.cLibrary.location
 
-import com.czipperz.cLibrary.location.CPoint
-
 import java.awt.AWTException
 import java.awt.MouseInfo
 import java.awt.Robot

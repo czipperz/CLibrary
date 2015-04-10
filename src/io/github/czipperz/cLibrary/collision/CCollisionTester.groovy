@@ -1,7 +1,7 @@
 package io.github.czipperz.cLibrary.collision
 
-import com.czipperz.cLibrary.CMath
-import com.czipperz.cLibrary.util.collections.CArrayHelper
+import io.github.czipperz.cLibrary.CMath
+import io.github.czipperz.cLibrary.util.collections.CArrayHelper
 
 import java.awt.geom.Point2D
 

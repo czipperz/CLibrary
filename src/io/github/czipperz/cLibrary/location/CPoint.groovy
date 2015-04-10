@@ -22,6 +22,13 @@ class CPoint extends Point2D implements Serializable {
 		this(p.x, p.y)
 	}
 
+	List<Integer> getValues() {
+		def list = new ArrayList<Integer>()
+		list.add x
+		list.add y
+		list
+	}
+
 	CPointImmutable toCPointImmutable() {
 		immutable()
 	}

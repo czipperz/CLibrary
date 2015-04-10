@@ -1,6 +1,6 @@
 package io.github.czipperz.cLibrary.collision
 
-import com.czipperz.cLibrary.imaging.CImageHelper
+import io.github.czipperz.cLibrary.imaging.CImageHelper
 
 import java.awt.Color
 import java.awt.image.RenderedImage

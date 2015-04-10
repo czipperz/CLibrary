@@ -2,16 +2,7 @@ package io.github.czipperz.cLibrary.imaging
 
 import io.github.czipperz.cLibrary.location.CRect
 
-import java.awt.Color
-import java.awt.Dimension
-import java.awt.Font
-import java.awt.FontMetrics
-import java.awt.Graphics
-import java.awt.Image
-import java.awt.Point
-import java.awt.Polygon
-import java.awt.Rectangle
-import java.awt.Shape
+import java.awt.*
 import java.awt.geom.Dimension2D
 import java.awt.geom.Point2D
 import java.awt.geom.Rectangle2D
@@ -126,7 +117,7 @@ class CGraphics {
 		this
 	}
 
-	CGraphics draw3DRect(int arg0, int arg1, int arg2, int arg3, CGraphics arg4) {
+	CGraphics draw3DRect(int arg0, int arg1, int arg2, int arg3, boolean arg4) {
 		g.draw3DRect(arg0, arg1, arg2, arg3, arg4);
 		this
 	}
@@ -149,7 +140,8 @@ class CGraphics {
 
 
 	CGraphics drawImage(Image arg0, Rectangle locScreen, Rectangle locImage, ImageObserver arg4) {
-		g.drawImage(arg0, locScreen.x, locScreen.y, locScreen.x + locScreen.width, locScreen.y + locScreen.height, locImage.x, locImage.y, locImage.x + locImage.width, locImage.y + locImage.height, arg4);
+		g.drawImage(arg0, locScreen.@x, locScreen.@y, locScreen.@x + locScreen.@width, locScreen.@y + locScreen.@height,
+				locImage.@x, locImage.@y, locImage.@x + locImage.@width, locImage.@y + locImage.@height, arg4);
 		this
 	}
 
@@ -176,20 +168,21 @@ class CGraphics {
 	}
 
 	CGraphics drawImage(Image image, Rectangle locScreen, ImageObserver object) {
-		this.drawImage(image, locScreen.x, locScreen.y, locScreen.width, locScreen.height, object);
+		this.drawImage(image, locScreen.@x, locScreen.@y, locScreen.@width, locScreen.@height, object);
 	}
 
 	CGraphics drawImage(Image arg0, int arg1, int arg2, int arg3,
 	                         int arg4, int arg5, int arg6, int arg7, int arg8, Color arg9,
 	                         ImageObserver arg10) {
-		return g.drawImage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
-				arg8, arg9, arg10);
+		g.drawImage(arg0,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10)
+		this
 	}
 
 	CGraphics drawImage(Image arg0, int arg1, int arg2, int arg3,
 	                         int arg4, int arg5, int arg6, int arg7, int arg8, ImageObserver arg9) {
-		return g.drawImage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
+		g.drawImage(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
 				arg8, arg9);
+		this
 	}
 
 
@@ -225,7 +218,7 @@ class CGraphics {
 	}
 
 	CGraphics drawRect(Point2D point, Dimension2D dimension) {
-		drawRect(new com.czipperz.cLibrary.location.CRect(point, dimension));
+		drawRect(new CRect(point, dimension).toRectangle());
 		this
 	}
 
@@ -240,7 +233,7 @@ class CGraphics {
 	}
 
 	CGraphics drawRect(Rectangle rect) {
-		drawRect(rect.x, rect.y, rect.width, rect.height);
+		drawRect(rect.@x, rect.@y, rect.@width, rect.@height);
 		this
 	}
 
@@ -253,7 +246,7 @@ class CGraphics {
 	}
 
 	CGraphics drawRoundRect(Point2D point, Dimension2D dimension, int arg2, int arg3) {
-		drawRoundRect(new com.czipperz.cLibrary.location.CRect(point, dimension), arg2, arg3);
+		drawRoundRect(new CRect(point, dimension).toRectangle(), arg2, arg3);
 		this
 	}
 
@@ -268,7 +261,7 @@ class CGraphics {
 	}
 
 	CGraphics drawRoundRect(Rectangle rect, int arg2, int arg3) {
-		drawRoundRect(rect.x, rect.y, rect.width, rect.height, arg2, arg3);
+		drawRoundRect(rect.@x,rect.@y,rect.@width,rect.@height,arg2,arg3)
 		this
 	}
 
@@ -290,7 +283,7 @@ class CGraphics {
 		g.equals(arg0);
 	}
 
-	CGraphics fill3DRect(int arg0, int arg1, int arg2, int arg3, CGraphics arg4) {
+	CGraphics fill3DRect(int arg0, int arg1, int arg2, int arg3, boolean arg4) {
 		g.fill3DRect(arg0, arg1, arg2, arg3, arg4);
 		this
 	}
@@ -309,7 +302,7 @@ class CGraphics {
 	}
 
 	CGraphics fillOval(Point2D point, Dimension2D dimension) {
-		fillOval(new com.czipperz.cLibrary.location.CRect(point, dimension));
+		fillOval(new CRect(point, dimension).toRectangle());
 		this
 	}
 
@@ -324,7 +317,7 @@ class CGraphics {
 	}
 
 	CGraphics fillOval(Rectangle rect) {
-		fillOval(rect.x, rect.y, rect.width, rect.height);
+		fillOval(rect.@x, rect.@y, rect.@width, rect.@height);
 		this
 	}
 
@@ -346,7 +339,7 @@ class CGraphics {
 	}
 
 	CGraphics fillRect(Point2D point, Dimension2D dimension) {
-		fillRect(new com.czipperz.cLibrary.location.CRect(point, dimension));
+		fillRect(new CRect(point, dimension).toRectangle());
 		this
 	}
 
@@ -361,20 +354,20 @@ class CGraphics {
 	}
 
 	CGraphics fillRect(Rectangle rect) {
-		fillRect(rect.x, rect.y, rect.width, rect.height);
+		fillRect(rect.@x, rect.@y, rect.@width, rect.@height);
 		this
 	}
 
 
 
-	CGraphics fillRoundRect(int arg0, int arg1, int arg2, int arg3, int arg4,
+	CGraphics fillRoundRect(int x, int y, int width, int height, int arg4,
 	                          int arg5) {
-		g.fillRoundRect(arg0, arg1, arg2, arg3, arg4, arg5);
+		g.fillRoundRect(x, y, width, height, arg4, arg5);
 		this
 	}
 
 	CGraphics fillRoundRect(Point2D point, Dimension2D dimension, int arg2, int arg3) {
-		fillRoundRect(new com.czipperz.cLibrary.location.CRect(point, dimension), arg2, arg3);
+		fillRoundRect(new CRect(point, dimension).toRectangle(), arg2, arg3);
 		this
 	}
 
@@ -389,7 +382,7 @@ class CGraphics {
 	}
 
 	CGraphics fillRoundRect(Rectangle rect, int arg2, int arg3) {
-		fillRoundRect(rect.x, rect.y, rect.width, rect.height, arg2, arg3);
+		fillRoundRect(rect.@x, rect.@y, rect.@width, rect.@height, arg2, arg3);
 		this
 	}
 
@@ -439,7 +432,7 @@ class CGraphics {
 	}
 
 	boolean hitClip(Point2D point, Dimension2D dimension) {
-		hitClip(new com.czipperz.cLibrary.location.CRect(point, dimension));
+		hitClip(new CRect(point, dimension).toRectangle());
 	}
 
 	boolean hitClip(int x, int y, Dimension2D dimension) {
@@ -451,7 +444,7 @@ class CGraphics {
 	}
 
 	boolean hitClip(Rectangle rect) {
-		hitClip(rect.x, rect.y, rect.width, rect.height);
+		hitClip(rect.@x, rect.@y, rect.@width, rect.@height);
 	}
 
 
@@ -462,7 +455,7 @@ class CGraphics {
 	}
 
 	CGraphics setClip(Point2D point, Dimension2D dimension) {
-		setClip(new com.czipperz.cLibrary.location.CRect(point, dimension));
+		setClip(new CRect(point, dimension));
 	}
 
 	CGraphics setClip(int x, int y, Dimension2D dimension) {
@@ -474,7 +467,7 @@ class CGraphics {
 	}
 
 	CGraphics setClip(Rectangle rect) {
-		setClip(rect.x, rect.y, rect.width, rect.height);
+		setClip(rect.@x, rect.@y, rect.@width, rect.@height);
 	}
 
 

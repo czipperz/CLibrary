@@ -1,7 +1,5 @@
 package io.github.czipperz.cLibrary.util
 
-import com.czipperz.cLibrary.util.CThreadManager
-
 /**
  * Created by czipperz on 4/8/15.
  */
