@@ -12,14 +12,14 @@ class CListMap<K, T> implements Iterable<T>, Serializable {
 	List<K> keys
 
 	CListMap(int i) {
-		this(new ArrayList<T>(i), new ArrayList<K>(i))
+		this(new ArrayList<K>(i), new ArrayList<T>(i))
 	}
 
 	CListMap(K[] k, T[] t) {
-		this(CArrayHelper.toArrayList(t), CArrayHelper.toArrayList(t))
+		this(CArrayHelper.toArrayList(k), CArrayHelper.toArrayList(t))
 	}
 
-	public CListMap(List<T> items = new ArrayList<>(), List<K> keys = new ArrayList<>()) {
+	public CListMap(List<K> items = new ArrayList<>(), List<T> keys = new ArrayList<>()) {
 		if(items.size() != keys.size())
 			throw new InvalidParameterException("Items and Keys must be of same length")
 		this.items = items;

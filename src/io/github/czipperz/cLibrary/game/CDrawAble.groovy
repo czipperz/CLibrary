@@ -7,34 +7,37 @@ import java.awt.Rectangle
  * Created by czipperz on 4/8/15.
  */
 trait CDrawAble implements Comparable<CDrawAble> {
+	int depth = 0
+	Rectangle bounds
+	boolean needDraw
+
+
+
 	boolean needUpdateBefore() {
-		return false
+		false
 	}
 	abstract boolean needUpdate()
 	boolean needUpdateAfter() {
-		return false
+		false
 	}
+
 
 
 	CDrawAble tickBefore() {
-		return this
+		this
 	}
 	abstract CDrawAble tick()
 	CDrawAble tickAfter() {
-		return this
+		this
 	}
 
 
 
-	abstract int getDepth()
-	abstract Rectangle getBounds()
-
-
-
-	abstract boolean needDraw()
 	abstract CDrawAble draw(Graphics g)
 
 
 
-	abstract int compareTo(CDrawAble other)
+	int compareTo(CDrawAble other) {
+		new CDepthSorter().compare(this, other)
+	}
 }

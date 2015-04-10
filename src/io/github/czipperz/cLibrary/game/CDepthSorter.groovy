@@ -1,7 +1,5 @@
 package io.github.czipperz.cLibrary.game
 
-import com.czipperz.cLibrary.game.CDrawAble
-
 /**
  * Created by czipperz on 4/8/15.
  */

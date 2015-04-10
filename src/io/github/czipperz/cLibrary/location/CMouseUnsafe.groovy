@@ -1,8 +1,5 @@
 package io.github.czipperz.cLibrary.location
 
-import com.czipperz.cLibrary.location.CPoint
-
-import java.awt.AWTException
 import java.awt.MouseInfo
 import java.awt.Robot
 import java.awt.geom.Point2D
@@ -12,7 +9,7 @@ import java.awt.geom.Point2D
  */
 class CMouseUnsafe {
 	static CPoint getLocation() {
-		return new CPoint(MouseInfo.getPointerInfo())
+		return new CPoint(MouseInfo.pointerInfo.location)
 	}
 
 	static int getX() {

@@ -7,10 +7,7 @@ import java.awt.Rectangle
  */
 abstract class CObject implements CDrawAble, Serializable {
 	private boolean needUpdate = true;
-	private boolean needDraw = true;
 	final CGameFrame displayOn
-	int depth
-	Rectangle bounds
 
 	CObject(CGameFrame displayOn, Rectangle bounds) {
 		this.displayOn = displayOn
@@ -22,19 +19,7 @@ abstract class CObject implements CDrawAble, Serializable {
 		needUpdate
 	}
 
-	public void setNeedDraw(boolean draw) {
-		this.needDraw = draw
-	}
-
-	boolean needDraw() {
-		needDraw
-	}
-
 	public void setNeedUpdate(boolean update) {
 		this.needUpdate = update
-	}
-
-	int compareTo(CDrawAble other) {
-		return new CDepthSorter().compare(this, other)
 	}
 }

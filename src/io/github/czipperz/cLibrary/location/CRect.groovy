@@ -104,13 +104,13 @@ class CRect extends Rectangle2D implements Serializable {
 
 	Rectangle2D createIntersection(Rectangle2D rectangle2D) {
 		def d = new Double()
-		Rectangle2D.intersect(this, rectangle2D, d)
+		intersect(this, rectangle2D, d)
 		d
 	}
 
 	Rectangle2D createUnion(Rectangle2D rectangle2D) {
 		def d = new Double()
-		Rectangle2D.union(this, rectangle2D, d)
+		union(this, rectangle2D, d)
 		d
 	}
 

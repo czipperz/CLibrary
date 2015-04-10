@@ -81,19 +81,15 @@ public enum EKeys {
 	K_DOWN(KeyEvent.VK_DOWN),
 	K_RIGHT(KeyEvent.VK_RIGHT);
 	
-	private int vk;
+	final int value;
 	
-	private EKeys(int vk) {
-		this.vk = vk;
-	}
-	
-	public int getValue() {
-		return vk;
+	EKeys(int value) {
+		this.value = value;
 	}
 	
 	public String toString() {
 		String main = super.toString();
-		StringBuffer b = new StringBuffer(main);
+		StringBuilder b = new StringBuilder(main);
 		b.deleteCharAt(0);
 		b.deleteCharAt(0);
 		char[] bl = b.toString().toLowerCase().toCharArray();

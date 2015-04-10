@@ -1,9 +1,6 @@
 package io.github.czipperz.cLibrary.gui
 
-import com.czipperz.cLibrary.gui.CTextArea
-
 import javax.swing.JScrollPane
-import java.awt.event.AdjustmentListener
 
 /**
  * Created by czipperz on 4/8/15.

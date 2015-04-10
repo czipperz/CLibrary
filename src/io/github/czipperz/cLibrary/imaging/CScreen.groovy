@@ -1,7 +1,6 @@
 package io.github.czipperz.cLibrary.imaging
 
-import com.czipperz.cLibrary.location.CRect
-import io.github.czipperz.cLibrary.util.CThread
+import io.github.czipperz.cLibrary.location.CRect
 
 import javax.imageio.ImageIO
 import javax.swing.JFrame

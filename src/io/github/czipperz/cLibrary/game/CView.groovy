@@ -1,15 +1,11 @@
 package io.github.czipperz.cLibrary.game
 
-import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException
+import io.github.czipperz.cLibrary.exceptions.CEnumTypeNotListedException
 import io.github.czipperz.cLibrary.imaging.CGraphics
 import io.github.czipperz.cLibrary.location.CRect
-import org.w3c.dom.css.Rect
 
-import java.awt.Color
-import java.awt.Dimension
-import java.awt.Graphics
-import java.awt.Image
-import java.awt.Rectangle
+import java.awt.*
+import java.util.List
 
 /**
  * Created by czipperz on 4/9/15.
@@ -35,10 +31,6 @@ class CView extends CObject implements CDrawAble{
 
 	CDrawAble tick() {
 		return this
-	}
-
-	Rectangle getBounds() {
-		return null
 	}
 
 	CDrawAble draw(Graphics g) {
@@ -76,11 +68,11 @@ class CView extends CObject implements CDrawAble{
 	}
 
 	private CView paintRuntime(Graphics g) {
-		if(needDraw()) {
+		if(needDraw) {
 			//Draws everything on the supplied CGameFrame
 			if (drawAllObjects) {
 				displayOn.objects.collect() {
-					if(it.needDraw())
+					if(it.needDraw)
 						it.draw(g)
 					if(displayOn.showBorders) {
 						if(it instanceof CObject)
@@ -91,10 +83,10 @@ class CView extends CObject implements CDrawAble{
 					}
 				}
 			}
-			//Draws everything specifically given to it to run.
+			//Draws everything specifically given to it to start.
 			else if (toDraw != null)
 				toDraw.collect() {
-					if(it.needDraw())
+					if(it.needDraw)
 						it.draw(g)
 					else
 						g.setColor(Color.BLACK)
@@ -104,7 +96,7 @@ class CView extends CObject implements CDrawAble{
 				throw new CEnumTypeNotListedException();
 		}
 		//Display
-		new CGraphics(g: g).drawImage(bufferImage, drawRect != null ? drawRect : displayOn.bounds, new CRect(0,0,bufferDimension).toRectangle(), displayOn);
+		new CGraphics(g).drawImage(bufferImage, drawRect != null ? drawRect : displayOn.bounds, new CRect(0,0,bufferDimension).toRectangle(), displayOn);
 		this
 	}
 

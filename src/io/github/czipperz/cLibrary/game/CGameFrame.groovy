@@ -35,7 +35,6 @@ class CGameFrame extends JFrame {
 
 	static final int xOffSet = 8
 	static final int yOffSet = 30
-	static final Point offSet = new Point(xOffSet, yOffSet)
 
 	CGameFrame() {
 		keys = new CKeys()
@@ -48,7 +47,7 @@ class CGameFrame extends JFrame {
 	}
 
 	CGameFrame setFullscreen() {
-		this.extendedState = JFrame.MAXIMIZED_BOTH
+		this.extendedState = MAXIMIZED_BOTH
 		this.size = CScreen.size
 		this.resizable = false
 		this.undecorated = true
@@ -56,13 +55,13 @@ class CGameFrame extends JFrame {
 	}
 
 	CGameFrame setWindowed() {
-		this.extendedState = JFrame.NORMAL
+		this.extendedState = NORMAL
 		this.undecorated = false
 		this
 	}
 
 	CGameFrame setBorderless() {
-		this.extendedState = JFrame.NORMAL
+		this.extendedState = NORMAL
 		this.undecorated = true
 		this
 	}
@@ -144,7 +143,7 @@ class CGameFrame extends JFrame {
 				//Draw After Views
 				draw(bufferGraphics);
 				//Display
-				g.drawImage(bufferImage, getXOffSet(), getYOffSet(), this);
+				g.drawImage(bufferImage, xOffSet, yOffSet, this);
 			}
 		}
 	}
@@ -172,9 +171,9 @@ class CGameFrame extends JFrame {
 	}
 
 	protected CGameFrame drawViews(Graphics g) {
-		views.collect() {
-			if(it.needDraw())
-				it.draw(g)
+		views.each {
+			if(it.needDraw)
+				it.draw g
 		}
 		this
 	}
@@ -198,31 +197,31 @@ class CGameFrame extends JFrame {
 	}
 
 	void tickBefore() {
-		objects.collect() {
+		objects.each {
 			if(it.needUpdateBefore())
 				it.tickBefore()
 		}
-		updaters.collect() {
+		updaters.each {
 			it.updateBefore()
 		}
 	}
 
 	void tick() {
-		objects.collect() {
+		objects.each {
 			if(it.needUpdate())
 				it.tick()
 		}
-		updaters.collect() {
+		updaters.each {
 			it.update()
 		}
 	}
 
 	void tickAfter() {
-		objects.collect() {
+		objects.each {
 			if(it.needUpdateAfter())
 				it.tickAfter()
 		}
-		updaters.collect() {
+		updaters.each {
 			it.updateAfter()
 		}
 	}

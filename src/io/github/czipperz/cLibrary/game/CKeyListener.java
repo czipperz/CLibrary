@@ -1,7 +1,5 @@
 package io.github.czipperz.cLibrary.game;
 
-import com.czipperz.cLibrary.game.CKeys;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

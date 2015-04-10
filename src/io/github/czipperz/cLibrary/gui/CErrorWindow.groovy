@@ -1,8 +1,5 @@
 package io.github.czipperz.cLibrary.gui
 
-import com.czipperz.cLibrary.gui.CScrollPane
-import com.czipperz.cLibrary.gui.CTextArea
-
 import javax.swing.JFrame
 import javax.swing.ScrollPaneConstants
 import java.awt.Color

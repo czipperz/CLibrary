@@ -22,7 +22,7 @@ class CThread {
 		if(b) start();
 	}
 
-	void run() {
+	void start() {
 		stopped = false;
 		while(!stopped) {
 			synchronized (this) {

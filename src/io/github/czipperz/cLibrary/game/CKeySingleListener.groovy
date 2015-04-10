@@ -15,6 +15,11 @@ class CKeySingleListener implements KeyListener {
 		public CO() {
 			listeners = new ArrayList<>()
 		}
+
+		public CO(KeyListener listener) {
+			listeners = new ArrayList<>()
+			listeners.add listener
+		}
 	}
 
 	private CListMap<EKeys, CO> e = new CListMap<>()
@@ -32,14 +37,14 @@ class CKeySingleListener implements KeyListener {
 	}
 
 	void keyPressed(KeyEvent ev) {
-		e.getKeys().stream().filter({it.getValue() == ev.getKeyCode()}).forEach({e.getItem(it).listeners.stream().forEach({it.keyPressed(ev)})});
+		e.keys.each{if(it.value == ev.keyCode) {e.getItem(it).listeners.each {it.keyPressed(ev)}}}
 	}
 
 	void keyReleased(KeyEvent ev) {
-		e.getKeys().stream().filter({it.getValue() == ev.getKeyCode()}).forEach({e.getItem(it).listeners.stream().forEach({it.keyReleased(ev)})});
+		e.keys.each{if(it.value == ev.keyCode) {e.getItem(it).listeners.each {it.keyReleased(ev)}}}
 	}
 
 	void keyTyped(KeyEvent ev) {
-		e.getKeys().stream().filter({it.getValue() == ev.getKeyCode()}).forEach({e.getItem(it).listeners.stream().forEach({it.keyTyped(ev)})});
+		e.keys.each{if(it.value == ev.keyCode) {e.getItem(it).listeners.each {it.keyTyped(ev)}}}
 	}
 }

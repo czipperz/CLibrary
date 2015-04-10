@@ -12,7 +12,7 @@ import java.awt.geom.Point2D
  */
 class CMouseSafe {
 	static CPoint getLocation() {
-		return new CPoint(MouseInfo.getPointerInfo())
+		return new CPoint(MouseInfo.pointerInfo.location)
 	}
 
 	static int getX() {
@@ -32,7 +32,7 @@ class CMouseSafe {
 	}
 
 	static void setLocation(double x, double y) {
-		setLocation(x, y)
+		setLocation((int) x, (int) y)
 	}
 
 	static void setLocation(Point2D p) {

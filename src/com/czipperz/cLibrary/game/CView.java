@@ -124,7 +124,7 @@ public class CView extends CObject implements Serializable, CDrawAble {
 					}
 				}
 			}
-			//Draws everything specifically given to it to run.
+			//Draws everything specifically given to it to start.
 			else if (toDraw != null)
 				for (CDrawAble i : this.toDraw) {
 					if (i.needDraw())

@@ -2,6 +2,7 @@ package io.github.czipperz.cLibrary.location
 
 import com.czipperz.cLibrary.exceptions.CEnumTypeNotListedException
 import com.czipperz.cLibrary.location.CRect
+import io.github.czipperz.cLibrary.game.CDrawAble
 
 import java.awt.Graphics
 import java.awt.Point
@@ -13,8 +14,8 @@ import java.security.InvalidParameterException
 /**
  * Created by czipperz on 4/8/15.
  */
-class CLine extends Line2D implements Serializable {
-	Point start, end
+class CLine extends Line2D implements Serializable, CDrawAble {
+	Point P1, P2
 	int width
 	EWidthTypes type;
 
@@ -25,9 +26,9 @@ class CLine extends Line2D implements Serializable {
 		TYPE_RIGHT,
 	}
 
-	CLine(Point start = new Point(), Point end = new Point()) {
-		this.start = start
-		this.end = end
+	CLine(Point P1 = new Point(), Point P2 = new Point()) {
+		this.P1 = P1
+		this.P2 = P2
 	}
 
 	void setWidth(int width) {
@@ -36,20 +37,20 @@ class CLine extends Line2D implements Serializable {
 		this.width = width;
 	}
 
-	void draw(Graphics g) {
+	CDrawAble draw(Graphics g) {
 		for(int i = 0; i < width; i++) {
 			switch(type) {
 				case EWidthTypes.TYPE_LEFT:
-					g.drawLine(start.x - i, start.y, end.x - i, end.y)
+					g.drawLine(P1.x - i, (int) P1.y, P2.x - i, (int) P2.y)
 					break
 				case EWidthTypes.TYPE_RIGHT:
-					g.drawLine(start.x + i, start.y, end.x + i, end.y)
+					g.drawLine(P1.x + i, (int) P1.y, P2.x + i, (int) P2.y)
 					break
 				case EWidthTypes.TYPE_ABOVE:
-					g.drawLine(start.x, end.y - i, end.x, end.y - i)
+					g.drawLine((int) P1.x, P2.y - i, (int) P2.x, P2.y - i)
 					break
 				case EWidthTypes.TYPE_BELOW:
-					g.drawLine(start.x, end.x + i, end.x, end.y + i)
+					g.drawLine((int) P1.x, P2.x + i, (int) P2.x, P2.y + i)
 					break
 				default:
 					throw new CEnumTypeNotListedException()
@@ -58,27 +59,46 @@ class CLine extends Line2D implements Serializable {
 		this
 	}
 
+	boolean needUpdate() {
+		return false
+	}
+
+	CDrawAble tick() {
+		this
+	}
+
 	Rectangle2D getBounds2D() {
-		new CRect(start, end);
+		new CRect(P1, P2);
 	}
 
 	Point2D getP1() {
-		start;
+		P1;
+	}
+
+	double getX1() {
+		return P1.x
+	}
+
+	double getY1() {
+		return P1.y
+	}
+
+	double getX2() {
+		return P2.x
+	}
+
+	double getY2() {
+		return P2.y
 	}
 
 	Point2D getP2() {
-		end;
+		P2;
 	}
 
-	double X1 = start.&x
-	double X2 = end.&x
-	double Y1 = start.&y
-	double Y2 = end.&y
-
 	void setLine(double x1, double y1, double x2, double y2) {
-		start.x = (int) x1;
-		start.y = (int) y1;
-		end.x = (int) x2;
-		end.y = (int) y2;
+		P1.x = (int) x1;
+		P1.y = (int) y1;
+		P2.x = (int) x2;
+		P2.y = (int) y2;
 	}
 }
