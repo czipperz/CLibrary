@@ -1,6 +1,8 @@
 #CLibrary
-=============================================
+
 A library that assists in many tasks but mainly focuses on graphics on JFrames.
+
+------------------------------------------------
 
 #Packages
 * **io.czipperz.github.cLibrary** has a few general classes.
