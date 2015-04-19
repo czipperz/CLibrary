@@ -6,8 +6,8 @@ import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CKeySingleListener implements KeyListener {
 	private class CO {
 		List<KeyListener> listeners;

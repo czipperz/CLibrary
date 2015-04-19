@@ -3,8 +3,8 @@ package io.czipperz.github.cLibrary.gui
 import javax.swing.JScrollPane
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CScrollPane extends JScrollPane {
 	boolean autoScroll
 

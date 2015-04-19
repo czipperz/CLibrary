@@ -8,8 +8,8 @@ import java.awt.image.RenderedImage
 import java.util.List
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CRect extends Rectangle2D implements Serializable {
 	double x, y, width, height
 

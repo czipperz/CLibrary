@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 /**
  * This class allows for the user to only use the pressed, released, and typed events AS THEY CHOSE in the form as follows: <br />
  * pressed | released | typed + keyName + (KeyEvent e).  Examples: pressedA(KeyEvent e), releasedF3(KeyEvent e), typedDown(KeyEvent e)
- * @author Chris Gregory
+ * @author czipperz
  * @see KeyListener
  * @see CKeys for static boolean values
  */

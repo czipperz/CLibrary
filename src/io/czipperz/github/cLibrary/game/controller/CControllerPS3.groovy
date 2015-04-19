@@ -3,8 +3,8 @@ package io.czipperz.github.cLibrary.game.controller
 import org.lwjgl.input.Controller
 
 /**
- * Created by czipperz on 4/9/15.
- */
+* @author czipperz on 4/9/15.
+*/
 class CControllerPS3 extends CController {
 	static final int buttonSquare = 2, buttonTriangle = 3, buttonCross = 0, buttonCircle = 1, buttonSelect = 6
 	CControllerPS3(Controller c) {

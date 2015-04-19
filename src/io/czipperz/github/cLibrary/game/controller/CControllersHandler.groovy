@@ -5,8 +5,8 @@ import org.lwjgl.input.Controller
 import org.lwjgl.input.Controllers
 
 /**
- * Created by czipperz on 4/9/15.
- */
+* @author czipperz on 4/9/15.
+*/
 class CControllersHandler {
 	static void pollAll() throws LWJGLException {
 		Controllers.poll()

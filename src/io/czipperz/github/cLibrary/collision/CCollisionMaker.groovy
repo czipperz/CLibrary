@@ -6,8 +6,8 @@ import java.awt.Color
 import java.awt.image.RenderedImage
 
 /**
- * Created by czipperz on 4/9/15.
- */
+* @author czipperz on 4/9/15.
+*/
 final class CCollisionMaker {
 	private CCollisionMaker() {}
 

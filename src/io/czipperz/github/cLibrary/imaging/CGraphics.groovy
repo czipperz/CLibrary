@@ -10,8 +10,8 @@ import java.awt.image.ImageObserver
 import java.text.AttributedCharacterIterator
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CGraphics {
 	Graphics g
 

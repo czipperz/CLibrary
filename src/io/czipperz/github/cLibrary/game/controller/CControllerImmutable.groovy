@@ -3,8 +3,8 @@ package io.czipperz.github.cLibrary.game.controller
 import groovy.transform.Immutable
 
 /**
- * Created by czipperz on 4/9/15.
- */
+* @author czipperz on 4/9/15.
+*/
 @Immutable
 class CControllerImmutable {
 	int axisCount;

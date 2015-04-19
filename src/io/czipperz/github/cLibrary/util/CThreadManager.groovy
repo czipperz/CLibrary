@@ -4,8 +4,8 @@ import groovy.transform.Immutable
 import io.czipperz.github.cLibrary.util.collections.CListMap
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 @Immutable
 class CThreadManager {
 	static List<CThread> threads = new ArrayList<>(5);

@@ -4,8 +4,8 @@ import javax.swing.*
 import java.awt.*
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 final class CJFrameHelper {
 	private CJFrameHelper() {}
 

@@ -3,7 +3,7 @@ package io.czipperz.github.cLibrary.exceptions;
 import io.czipperz.github.cLibrary.commands.CCommandExecutor;
 
 /**
- * Created by czipperz on 1/30/15.
+ * @author czipperz on 1/30/15.
  */
 public abstract class CCommandException extends Exception {
     protected CCommandExecutor commandFailed;

@@ -4,8 +4,8 @@ import javax.swing.*
 import java.awt.*
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CErrorWindow {
 	CErrorWindow(Exception e, boolean exitOnClose = false) {
 		def frame = new JFrame()

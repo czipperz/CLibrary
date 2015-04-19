@@ -8,8 +8,8 @@ import java.awt.*
 import java.util.List
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CGameFrame extends JFrame {
 	Set<CDrawAble> objects = new TreeSet<>()
 	Set<CView> views = new TreeSet<>()

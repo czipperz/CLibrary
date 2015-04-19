@@ -4,8 +4,8 @@ import java.awt.*
 import java.awt.geom.Point2D
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CMouseUnsafe {
 	static CPoint getLocation() {
 		return new CPoint(MouseInfo.pointerInfo.location)

@@ -3,8 +3,8 @@ package io.czipperz.github.cLibrary.location
 import java.awt.geom.Point2D
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 abstract class CMoveHelper {
 	static <E extends Point2D> E moveTowardOneTick(E current, E goal, int speed) {
 		E result = current

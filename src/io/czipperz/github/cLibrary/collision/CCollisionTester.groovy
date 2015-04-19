@@ -6,8 +6,8 @@ import io.czipperz.github.cLibrary.util.collections.CArrayHelper
 import java.awt.geom.Point2D
 
 /**
- * Created by czipperz on 4/9/15.
- */
+* @author czipperz on 4/9/15.
+*/
 final class CCollisionTester {
 	private CCollisionTester() {}
 

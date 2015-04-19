@@ -7,8 +7,8 @@ import java.awt.event.MouseEvent
 import java.awt.event.MouseListener
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CMouse extends CMouseSafe implements MouseListener {
 	private boolean leftDown = false, rightDown = false, middleDown = false
 	private ArrayList<MouseEvent> ev

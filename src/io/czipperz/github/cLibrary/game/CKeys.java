@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 /**
  * A class that allows for static access of the Key pressed values of every key on the keyboard without any additional adapters.  <strong>NOTE:</strong> DOES NOT STORE VALUES FOR MORE THAN ONE <code>JFrame.</code>
- * @author Chris Gregory
+ * @author czipperz
  * @see CGameFrame
  * @see KeyListener
  * @see CKeyListener

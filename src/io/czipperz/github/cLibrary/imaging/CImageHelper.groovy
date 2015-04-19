@@ -8,7 +8,10 @@ import java.awt.image.ColorModel;
 import java.awt.image.RenderedImage;
 import java.awt.image.WritableRaster;
 
-public final class CImageHelper {
+/**
+ * @author czipperz 
+ */
+final class CImageHelper {
 	private CImageHelper() {}
 
 	/**
@@ -17,7 +20,7 @@ public final class CImageHelper {
 	 * @param angleDegrees - the angle in degrees
 	 * @return the rotated image.
 	 */
-	public static BufferedImage rotateImageDegrees(BufferedImage image, double angleDegrees) {
+	static BufferedImage rotateImageDegrees(BufferedImage image, double angleDegrees) {
 		if(angleDegrees % 360 == 0)
 			return image;
 		return rotateImageRadians(image, Math.toRadians(angleDegrees));
@@ -29,7 +32,7 @@ public final class CImageHelper {
 	 * @param angleRadians - the angle in radians
 	 * @return the rotated image.
 	 */
-	public static BufferedImage rotateImageRadians(BufferedImage image, double angleRadians) {
+	static BufferedImage rotateImageRadians(BufferedImage image, double angleRadians) {
 		if(Math.toDegrees(angleRadians) % 360.0 == 0.0)
 			return image;
 		int w = image.getWidth();
@@ -50,7 +53,7 @@ public final class CImageHelper {
 		return daImage;
 	}
 
-	public static BufferedImage toBufferedImage(RenderedImage image) {
+	static BufferedImage toBufferedImage(RenderedImage image) {
 		if(image instanceof BufferedImage) {
 			return (BufferedImage) image;
 		}
@@ -71,7 +74,7 @@ public final class CImageHelper {
 		return result;
 	}
 
-	public static BufferedImage[] toBufferedImage(RenderedImage[] images) {
+	static BufferedImage[] toBufferedImage(RenderedImage[] images) {
 		BufferedImage[] result = new BufferedImage[images.length];
 		for(int i = 0; i < result.length; i++) {
 			result[i] = toBufferedImage(images[i]);
@@ -82,13 +85,13 @@ public final class CImageHelper {
 	/**
 	 * This method creates a 2D array of Color[][] which can be used for pixel testing and/or manipulation.
 	 *
-	 * @author Chris Gregory
+	 * @author czipperz
 	 * @param image - the BufferedImage to make the array of Color[][] from.
 	 * @return Color[][] - each pixel is accounted for at c[x][y]
 	 * @see java.awt.image.BufferedImage
 	 * @see java.awt.Color
 	 */
-	public static Color[][] getColorArray(RenderedImage image) {
+	static Color[][] getColorArray(RenderedImage image) {
 		int w = image.getWidth();
 		int h = image.getHeight();
 		Color[][] s = new Color[w][h];
@@ -103,13 +106,13 @@ public final class CImageHelper {
 	/**
 	 * This method gets the Color of a pixel at x, y in the BufferedImage.
 	 *
-	 * @author Chris Gregory
+	 * @author czipperz
 	 * @param BufferedImage image
 	 * @param int x - the x coordinate to get the image
 	 * @param int y - the y coordinate to get the image
 	 * @return Color - the Color the pixel displays
 	 */
-	public static Color getPixel(RenderedImage image, int x, int y) {
+	static Color getPixel(RenderedImage image, int x, int y) {
 		int color = toBufferedImage(image).getRGB(x, y);
 
 		int  red = (color & 0x00ff0000) >> 16;
@@ -119,7 +122,7 @@ public final class CImageHelper {
 		return new Color(red, green, blue, alpha);
 	}
 
-	public static BufferedImage readFile(File f) {
+	static BufferedImage readFile(File f) {
 		try {
 			return ImageIO.read(f);
 		} catch (IOException e) {
@@ -128,7 +131,7 @@ public final class CImageHelper {
 		return null;
 	}
 
-	public static boolean write(RenderedImage image, File f, String extension) {
+	static boolean write(RenderedImage image, File f, String extension) {
 		try {
 			ImageIO.write(image, extension, f);
 			return true;
@@ -138,15 +141,15 @@ public final class CImageHelper {
 		return false;
 	}
 
-	public static boolean writePNG(RenderedImage image, File f) {
+	static boolean writePNG(RenderedImage image, File f) {
 		return write(image, f, "png");
 	}
 
-	public static boolean writeGIF(RenderedImage image, File f) {
+	static boolean writeGIF(RenderedImage image, File f) {
 		return write(image, f, "gif");
 	}
 
-	public static boolean writeJPG(RenderedImage image, File f) {
+	static boolean writeJPG(RenderedImage image, File f) {
 		return write(image, f, "jpg");
 	}
 }

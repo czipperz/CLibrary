@@ -10,8 +10,8 @@ import java.awt.geom.Rectangle2D
 import java.security.InvalidParameterException
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CLine extends Line2D implements Serializable, CDrawAble {
 	Point P1, P2
 	int width

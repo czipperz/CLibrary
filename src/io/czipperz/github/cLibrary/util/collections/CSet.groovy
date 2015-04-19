@@ -3,8 +3,8 @@ package io.czipperz.github.cLibrary.util.collections
 import java.security.InvalidParameterException
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CSet<E> extends TreeSet<E> {
 	CSet() {
 

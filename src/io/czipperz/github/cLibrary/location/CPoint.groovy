@@ -5,8 +5,8 @@ import java.awt.geom.Point2D
 import java.util.List
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CPoint extends Point2D implements Serializable {
 	double x, y
 

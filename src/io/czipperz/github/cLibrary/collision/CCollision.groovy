@@ -1,8 +1,8 @@
 package io.czipperz.github.cLibrary.collision
 
 /**
- * Created by czipperz on 4/9/15.
- */
+* @author czipperz on 4/9/15.
+*/
 final class CCollision implements Serializable {
 	private boolean[][] stat;
 

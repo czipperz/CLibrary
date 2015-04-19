@@ -4,8 +4,8 @@ import java.awt.Graphics
 import java.awt.Rectangle
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 trait CDrawAble implements Comparable<CDrawAble> {
 	int depth = 0
 	Rectangle bounds

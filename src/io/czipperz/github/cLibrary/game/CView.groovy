@@ -8,8 +8,8 @@ import java.awt.*
 import java.util.List
 
 /**
- * Created by czipperz on 4/9/15.
- */
+* @author czipperz on 4/9/15.
+*/
 class CView implements CDrawAble {
 	boolean drawAllObjects
 	List<CDrawAble> toDraw = null

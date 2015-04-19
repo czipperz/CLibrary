@@ -3,11 +3,15 @@ package io.czipperz.github.cLibrary.util.collections
 import java.security.InvalidParameterException
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CListMap<K, T> implements Iterable<T>, Serializable {
 	List<T> items
 	List<K> keys
+
+	CListMap() {
+		this(new ArrayList<K>(), new ArrayList<T>())
+	}
 
 	CListMap(int i) {
 		this(new ArrayList<K>(i), new ArrayList<T>(i))
@@ -17,60 +21,60 @@ class CListMap<K, T> implements Iterable<T>, Serializable {
 		this(CArrayHelper.toArrayList(k), CArrayHelper.toArrayList(t))
 	}
 
-	public CListMap(List<K> items = new ArrayList<>(), List<T> keys = new ArrayList<>()) {
+	CListMap(List<K> items, List<T> keys) {
 		if(items.size() != keys.size())
 			throw new InvalidParameterException("Items and Keys must be of same length")
 		this.items = items;
 		this.keys = keys;
 	}
 
-	public CListMap<K, T> clear() {
+	CListMap<K, T> clear() {
 		items.clear()
 		keys.clear()
 		this
 	}
 
-	public T get(K k) {
+	T get(K k) {
 		getItem k
 	}
 
-	public T getItem(K k) {
+	T getItem(K k) {
 		items.get keys.indexOf(k)
 	}
 
-	public K getKey(T t) {
+	K getKey(T t) {
 		keys.get items.indexOf(t)
 	}
 
-	public int indexOf(K k) {
+	int indexOf(K k) {
 		indexKey k
 	}
 
-	public int indexKey(K k) {
+	int indexKey(K k) {
 		keys.indexOf k
 	}
 
-	public int indexItem(T t) {
+	int indexItem(T t) {
 		items.indexOf t
 	}
 
-	public boolean containsItem(T l) {
+	boolean containsItem(T l) {
 		items.contains l
 	}
 
-	public boolean containsKey(K k) {
+	boolean containsKey(K k) {
 		keys.contains k
 	}
 
-	public T getItem(int i) {
+	T getItem(int i) {
 		items.get i
 	}
 
-	public K getKey(int i) {
+	K getKey(int i) {
 		keys.get i
 	}
 
-	public boolean isEmpty() {
+	boolean isEmpty() {
 		if(items.isEmpty()) {
 			keys.clear()
 			return true
@@ -82,13 +86,13 @@ class CListMap<K, T> implements Iterable<T>, Serializable {
 		return false
 	}
 
-	public CListMap<K, T> put(K key, T item) {
+	CListMap<K, T> put(K key, T item) {
 		items.add item
 		keys.add key
 		this
 	}
 
-	public CListMap<K, T> putAll(List<K> keys, List<T> items) {
+	CListMap<K, T> putAll(List<K> keys, List<T> items) {
 		if(items.size() != keys.size())
 			throw new InvalidParameterException()
 		this.items.addAll items

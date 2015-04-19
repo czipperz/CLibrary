@@ -2,7 +2,7 @@ package io.czipperz.github.cLibrary.exceptions;
 
 /**
  * A {@link RuntimeException} that indicates that the method should not be called.
- * @author Chris Gregory
+ * @author czipperz
  */
 public class CDoNotCallException extends RuntimeException {
 	public CDoNotCallException() {

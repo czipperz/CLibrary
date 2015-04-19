@@ -1,7 +1,7 @@
 package io.czipperz.github.cLibrary.exceptions;
 
 /**
- * Created by czipperz on 1/31/15.
+ * @author czipperz on 1/31/15.
  */
 public class CCommandExecutorUnfoundException extends CCommandException {
     public CCommandExecutorUnfoundException(String command) {

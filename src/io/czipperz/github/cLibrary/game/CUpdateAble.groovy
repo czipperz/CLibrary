@@ -1,8 +1,8 @@
 package io.czipperz.github.cLibrary.game
 
 /**
- * Created by czipperz on 4/9/15.
- */
+* @author czipperz on 4/9/15.
+*/
 trait CUpdateAble {
 	CUpdateAble updateBefore() {
 		this

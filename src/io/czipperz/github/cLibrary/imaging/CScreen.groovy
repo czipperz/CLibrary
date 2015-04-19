@@ -11,8 +11,8 @@ import java.awt.Toolkit
 import java.awt.image.BufferedImage
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 class CScreen {
 	static Dimension getSize() {
 		return Toolkit.getDefaultToolkit().getScreenSize()

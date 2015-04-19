@@ -4,8 +4,8 @@ import java.awt.Graphics
 import java.awt.Rectangle
 
 /**
- * Created by czipperz on 4/9/15.
- */
+* @author czipperz on 4/9/15.
+*/
 class CObjectWrapper implements CDrawAble {
 	private Closure tickcl, drawcl
 	private Closure<Rectangle> boundscl

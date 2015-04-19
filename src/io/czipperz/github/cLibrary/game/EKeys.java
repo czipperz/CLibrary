@@ -2,6 +2,9 @@ package io.czipperz.github.cLibrary.game;
 
 import java.awt.event.KeyEvent;
 
+/**
+ * @author czipperz
+ */
 public enum EKeys {
 	K_ESCAPE(KeyEvent.VK_ESCAPE),
 	K_F1(KeyEvent.VK_F1),
