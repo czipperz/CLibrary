@@ -1,28 +1,37 @@
 package io.czipperz.github.cLibrary.bash
 
-import java.awt.Color
 import java.util.function.Consumer
 
 /**
- * Created by czipperz on 4/8/15.
- */
+* @author czipperz on 4/8/15.
+*/
 abstract class CBashBase implements CBash {
-	final Consumer<Color> colorConsumer;
-	final Consumer<String> stringConsumer;
-	final Runnable flush;
+	private final Consumer<String> stringConsumer;
+	private final Closure flush;
+	private final Consumer<Boolean> boldConsumer;
 
-	CBash setColor(Color c) {
-		colorConsumer.accept(c)
-		return this
+	public CBashBase(Consumer<String> stringConsumer, Closure flush, Consumer<Boolean> boldConsumer) {
+		this.stringConsumer = stringConsumer
+		this.flush = flush
+		this.boldConsumer = boldConsumer
 	}
 
 	CBash out(s) {
 		stringConsumer.accept(String.valueOf(s))
-		return null
+		this
 	}
 
 	CBash flush() {
-		flush.run()
-		return null
+		flush.call()
+		this
+	}
+
+	CBash setBold(boolean b = true) {
+		boldConsumer.accept(b)
+		this
+	}
+
+	CBash setUBold() {
+		setBold(false)
 	}
 }
