@@ -2,7 +2,7 @@
 A library that assists in many tasks but mainly focuses on graphics on JFrames.
 
 ------------------------------------------------
-#Packages
+##Packages
 * _**io.czipperz.github.cLibrary**_ has a few general classes.
 * _**io.czipperz.github.cLibrary.collision**_ has classes that test the collision between two image objects based on their x,y positions.
 * _**io.czipperz.github.cLibrary.exceptions**_ has general exceptions for the classes and an exception handler, CExceptionParser.
