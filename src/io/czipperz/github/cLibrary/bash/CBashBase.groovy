@@ -26,12 +26,8 @@ abstract class CBashBase implements CBash {
 		this
 	}
 
-	CBash setBold(boolean b = true) {
+	CBash setBold(boolean b) {
 		boldConsumer.accept(b)
 		this
-	}
-
-	CBash setUBold() {
-		setBold(false)
 	}
 }
