@@ -1,23 +1,12 @@
 package io.czipperz.github.cLibrary.commands
 
+import groovy.transform.Immutable
+
 /**
- * Created by czipperz on 4/9/15.
- */
+* @author czipperz on 4/9/15.
+*/
+@Immutable
 class CCommandParameter {
 	@Delegate final CCommandParameterType type
-	private ArrayList<String> values
-
-	CCommandParameter(CCommandParameterType type, ArrayList<String> values = new ArrayList<>()) {
-		this.type = type
-		this.values = values
-	}
-
-	CCommandParameter(CCommandParameterType type, String value) {
-		this(type)
-		values.add value
-	}
-
-	ArrayList<String> getAdditionalValues() {
-		return values
-	}
+	String[] additionalValues
 }

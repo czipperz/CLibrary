@@ -1,10 +1,10 @@
-package io.czipperz.github.cLibrary.commands
+package io.czipperz.github.cLibrary.commandsNew
 
 import groovy.transform.Immutable
 
 /**
-* @author czipperz on 4/9/15.
-*/
+ * @author czipperz on 4/19/15.
+ */
 @Immutable
 class CCommandInput {
 	CCommandExecutor commandExecutor

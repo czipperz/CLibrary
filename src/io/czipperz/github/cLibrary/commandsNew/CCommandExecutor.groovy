@@ -1,18 +1,20 @@
-package io.czipperz.github.cLibrary.commands
+package io.czipperz.github.cLibrary.commandsNew
 
 import io.czipperz.github.cLibrary.bash.CBash
+import io.czipperz.github.cLibrary.bash.CBashSystem
 import io.czipperz.github.cLibrary.exceptions.CCommandException
-import io.czipperz.github.cLibrary.exceptions.CParameterException
 
 /**
-* @author czipperz on 4/9/15.
-*/
+ * @author czipperz on 4/19/15.
+ */
 abstract class CCommandExecutor {
 	abstract void execute(CCommandInput input, CBash bash)
-	abstract void execute(CCommandInput input) throws CParameterException
+	void execute(CCommandInput input) {
+		execute(input, new CBashSystem())
+	}
 
 	boolean canExecute(CCommandInput input) {
-		input.commandExecutor.callName.equals this.callName
+		callName.contains input.callName
 	}
 
 	abstract CCommandException whyNoExecute(CCommandInput input)

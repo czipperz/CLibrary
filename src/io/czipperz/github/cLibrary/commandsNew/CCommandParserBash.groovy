@@ -1,14 +1,14 @@
-package io.czipperz.github.cLibrary.commands
+package io.czipperz.github.cLibrary.commandsNew
 
 import io.czipperz.github.cLibrary.exceptions.CCommandExecutorUnfoundException
 
 import java.security.InvalidParameterException
 
 /**
-* @author czipperz on 4/9/15.
-*/
+ * @author czipperz on 4/9/15.
+ */
 class CCommandParserBash extends CCommandParser {
-	public CCommandInput parse(ArrayList<CCommandExecutor> commandExecutors, String input) throws CCommandExecutorUnfoundException, InvalidParameterException {
+	public CCommandParser parse(ArrayList<CCommandExecutor> commandExecutors, String input) throws CCommandExecutorUnfoundException, InvalidParameterException {
 		CCommandExecutor executor = null;
 
 		String[] separatedBySpace = input.trim().split " "

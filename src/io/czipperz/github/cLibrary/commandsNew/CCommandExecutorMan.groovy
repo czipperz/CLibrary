@@ -1,4 +1,4 @@
-package io.czipperz.github.cLibrary.commands
+package io.czipperz.github.cLibrary.commandsNew
 
 import io.czipperz.github.cLibrary.bash.CBash
 import io.czipperz.github.cLibrary.exceptions.CCommandException
