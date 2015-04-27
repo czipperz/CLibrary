@@ -28,4 +28,20 @@ class CControllerImmutable {
 
 	boolean antiCrossRight, antiCrossLeft;
 	boolean autoAntiCrossRight, autoAntiCrossLeft;
+
+	public synchronized boolean isLeftBumperPressed() {
+		isButtonPressed(BUTTON_LEFT_BUMPER)
+	}
+
+	public synchronized boolean isRightBumperPressed() {
+		isButtonPressed(BUTTON_RIGHT_BUMPER)
+	}
+
+	public synchronized boolean isLeftJoystickPressed() {
+		isButtonPressed(BUTTON_LEFT_JOYSTICK)
+	}
+
+	public synchronized boolean isRightJoystickPressed() {
+		isButtonPressed(BUTTON_RIGHT_JOYSTICK)
+	}
 }
