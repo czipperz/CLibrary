@@ -45,7 +45,7 @@ final class CCollision implements Serializable {
 	int getLength(int i) {
 		try {
 			return stat[i].length
-		} catch(IndexOutOfBoundsException e) {
+		} catch(IndexOutOfBoundsException ignored) {
 			return stat[0].length
 		}
 	}
