@@ -1,33 +1,31 @@
 package io.czipperz.github.cLibrary.game.controller
 
-import org.lwjgl.input.Controller
+import groovy.transform.SelfType
 
 /**
 * @author czipperz on 4/9/15.
 */
-class CControllerPS3 extends CController {
+@SelfType(CController)
+trait CControllerPS3 {
 	static final int buttonSquare = 2, buttonTriangle = 3, buttonCross = 0, buttonCircle = 1, buttonSelect = 6
-	CControllerPS3(Controller c) {
-		super(c)
-	}
 
 	synchronized boolean isCrossPressed() {
-		return isButtonPressed(buttonCross)
+		((CController) this).isButtonPressed(buttonCross)
 	}
 
 	synchronized boolean isCirclePressed() {
-		return isButtonPressed(buttonCircle)
+		((CController) this).isButtonPressed(buttonCircle)
 	}
 
 	synchronized boolean isTrianglePressed() {
-		return isButtonPressed(buttonTriangle)
+		((CController) this).isButtonPressed(buttonTriangle)
 	}
 
 	synchronized boolean isSquarePressed() {
-		return isButtonPressed(buttonSquare)
+		((CController) this).isButtonPressed(buttonSquare)
 	}
 
 	synchronized boolean isSelectPressed() {
-		return isButtonPressed(buttonSelect)
+		((CController) this).isButtonPressed(buttonSelect)
 	}
 }

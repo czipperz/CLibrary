@@ -1,34 +1,31 @@
 package io.czipperz.github.cLibrary.game.controller
 
-import org.lwjgl.input.Controller
+import groovy.transform.SelfType
 
 /**
 * @author czipperz on 4/9/15.
 */
-class CControllerXBox extends CController {
+@SelfType(CController)
+trait CControllerXBox {
 	static final int buttonX = 2, buttonY = 3, buttonA = 0, buttonB = 1, buttonBack = 6
 
-	CControllerXBox(Controller c) {
-		super(c)
-	}
-
 	synchronized boolean isXPressed() {
-		isButtonPressed(buttonX)
+		((CController) this).isButtonPressed(buttonX)
 	}
 
 	synchronized boolean isYPressed() {
-		isButtonPressed(buttonY)
+		((CController) this).isButtonPressed(buttonY)
 	}
 
 	synchronized boolean isAPressed() {
-		isButtonPressed(buttonA)
+		((CController) this).isButtonPressed(buttonA)
 	}
 
 	synchronized boolean isBPressed() {
-		isButtonPressed(buttonB)
+		((CController) this).isButtonPressed(buttonB)
 	}
 
 	synchronized boolean isBackPressed() {
-		isButtonPressed(buttonBack)
+		((CController) this).isButtonPressed(buttonBack)
 	}
 }
