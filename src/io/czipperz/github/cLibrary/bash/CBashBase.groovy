@@ -10,7 +10,7 @@ abstract class CBashBase implements CBash {
 	private final Closure flush;
 	private final Consumer<Boolean> boldConsumer;
 
-	public CBashBase(Consumer<String> stringConsumer, Closure flush, Consumer<Boolean> boldConsumer) {
+	CBashBase(Consumer<String> stringConsumer, Closure flush, Consumer<Boolean> boldConsumer) {
 		this.stringConsumer = stringConsumer
 		this.flush = flush
 		this.boldConsumer = boldConsumer
