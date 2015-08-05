@@ -1,4 +1,4 @@
-package io.czipperz.github.cLibrary
+package io.czipperz.github.cLibrary;
 
 /**
 * @author czipperz on 4/8/15.
